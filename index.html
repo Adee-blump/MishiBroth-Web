@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MishiBroth: una forma deliciosa de sumar hidratación a la rutina diaria de tu gato.">
+  <title>MishiBroth | Inicio</title>
+
+  <!-- Tipografías seleccionadas para la identidad visual -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+  <header class="site-header" id="inicio">
+    <div class="header-container">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio de MishiBroth">
+        <span class="brand-logo-placeholder">[LOGO MISHIBROTH]</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-navigation" id="main-navigation" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#por-que-mishibroth">¿Por qué MishiBroth?</a></li>
+          <li><a href="#productos">Tienda</a></li>
+          <li><a href="#mishiclub">MishiClub</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><button class="account-button" type="button" data-open-account-modal>Cuenta</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         HERO / SLIDER
+    ========================================================== -->
+    <section class="hero" aria-label="Presentación de MishiBroth">
+      <div class="hero-slider" data-slider>
+        <div class="hero-slides">
+          <!-- Slide 1 -->
+          <article class="hero-slide is-active" data-slide="0" aria-hidden="false">
+            <div class="hero-copy">
+              <p class="hero-eyebrow">MishiBroth</p>
+              <h1>MishiBroth</h1>
+              <p>Una forma deliciosa de sumar hidratación a su día.</p>
+              <a class="button" href="#conoce-mishibroth">Conoce MishiBroth</a>
+            </div>
+
+            <div class="hero-visual" aria-label="Visual de Mishi sonriendo">
+              <div class="image-placeholder">[MISHI SONRIENDO]</div>
+              <div class="decorations-placeholder" aria-hidden="true">[ESTRELLITAS + GOTITAS]</div>
+            </div>
+          </article>
+
+          <!-- Slide 2 -->
+          <article class="hero-slide" data-slide="1" aria-hidden="true">
+            <div class="hero-copy">
+              <p class="hero-eyebrow">Hidratación y cuidado</p>
+              <h2>Cuidar también es hidratar</h2>
+              <p>Pequeños momentos de cuidado para grandes michis felices.</p>
+              <a class="button" href="#por-que-mishibroth">Aprende sobre hidratación</a>
+            </div>
+
+            <div class="hero-visual" aria-label="Visual de Mishi relacionado con hidratación">
+              <div class="image-placeholder">[MISHI FELIZ O CURIOSO + GOTA / BOWL]</div>
+              <div class="decorations-placeholder" aria-hidden="true">[GOTAS + BURBUJAS + ONDAS]</div>
+            </div>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="hero-slide" data-slide="2" aria-hidden="true">
+            <div class="hero-copy">
+              <p class="hero-eyebrow">Presentaciones</p>
+              <h2>Un MishiBroth para cada momento</h2>
+              <p>Elige la presentación que mejor acompañe la rutina de tu michi.</p>
+              <a class="button" href="#productos">Ver productos</a>
+            </div>
+
+            <div class="hero-visual" aria-label="Mishi junto a las tres presentaciones de MishiBroth">
+              <div class="image-placeholder">[MISHI SONRIENDO]</div>
+
+              <div class="hero-product-list">
+                <div class="hero-product-placeholder">[MISHIBROTH INDIVIDUAL]</div>
+                <div class="hero-product-placeholder">[PACK SEMANAL]</div>
+                <div class="hero-product-placeholder">[PACK FAMILIAR]</div>
+              </div>
+
+              <div class="decorations-placeholder" aria-hidden="true">[ESTRELLITAS + CORAZONES + HUELLITAS]</div>
+            </div>
+          </article>
+        </div>
+
+        <button class="slider-arrow slider-arrow-prev" type="button" aria-label="Ver slide anterior" data-slider-prev>
+          &#10094;
+        </button>
+        <button class="slider-arrow slider-arrow-next" type="button" aria-label="Ver slide siguiente" data-slider-next>
+          &#10095;
+        </button>
+
+        <div class="slider-dots" role="tablist" aria-label="Seleccionar slide">
+          <button class="slider-dot is-active" type="button" aria-label="Ir al slide 1" aria-selected="true" data-slide-to="0"></button>
+          <button class="slider-dot" type="button" aria-label="Ir al slide 2" aria-selected="false" data-slide-to="1"></button>
+          <button class="slider-dot" type="button" aria-label="Ir al slide 3" aria-selected="false" data-slide-to="2"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONOCE MISHIBROTH
+    ========================================================== -->
+    <section class="section section-about" id="conoce-mishibroth">
+      <div class="section-container about-layout">
+        <div class="section-copy" data-reveal>
+          <p class="section-kicker">Nuestra propuesta</p>
+          <h2>Conoce MishiBroth</h2>
+          <p>
+            MishiBroth es un caldo pensado para acompañar las croquetas de tu gato,
+            aportando una forma diferente y sabrosa de incorporar más líquido a su
+            alimentación diaria. La idea es convertir una comida cotidiana en un
+            momento de hidratación, cuidado y disfrute para tu michi.
+          </p>
+
+          <ul class="concept-list">
+            <li>🥣 Para acompañar sus croquetas</li>
+            <li>💧 Pensado alrededor de la hidratación</li>
+            <li>🐱 Hecho para convertir su rutina en un momento especial</li>
+          </ul>
+        </div>
+
+        <div class="section-visual" data-reveal>
+          <div class="image-placeholder">[MISHI SENTADO / RELAJADO / SONRIENDO]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     ¿POR QUÉ MISHIBROTH? / BLOQUE INFORMATIVO
+    ========================================================== -->
+    <section class="section section-hydration" id="por-que-mishibroth">
+     <div class="section-container hydration-layout" data-reveal>
+      <div class="hydration-copy">
+     <p class="section-kicker">¿Por qué MishiBroth?</p>
+      <h2>Hidratación, rutina y cuidado en un mismo momento</h2>
+      <p>
+        MishiBroth propone acompañar la alimentación cotidiana de tu gato con una
+        experiencia pensada alrededor de la hidratación y el cuidado diario.
+      </p>
+    </div>
+    <div class="hydration-visual">
+      <div class="image-placeholder">
+        [VISUAL RELACIONADO CON HIDRATACIÓN]
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+    <!-- =========================================================
+         PILARES BROTH
+    ========================================================== -->
+    <section class="section section-pillars" id="pilares">
+      <div class="section-container">
+        <div class="section-heading" data-reveal>
+          <p class="section-kicker">Nuestra esencia</p>
+          <h2>Los pilares de MishiBroth</h2>
+        </div>
+
+        <div class="broth-cards" aria-label="Pilares BROTH">
+          <article class="flip-card" data-flip-card tabindex="0">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="pillar-letter">B</span>
+              </div>
+              <div class="flip-card-back">
+                <h3>Bienestar</h3>
+                <p>El cuidado diario como parte de una vida más cómoda y feliz.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" data-flip-card tabindex="0">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="pillar-letter">R</span>
+              </div>
+              <div class="flip-card-back">
+                <h3>Rutina</h3>
+                <p>Pequeños hábitos que pueden integrarse de forma sencilla en el día a día.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" data-flip-card tabindex="0">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="pillar-letter">O</span>
+              </div>
+              <div class="flip-card-back">
+                <h3>Orientación</h3>
+                <p>Información clara y cercana sobre hidratación y cuidado felino.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" data-flip-card tabindex="0">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="pillar-letter">T</span>
+              </div>
+              <div class="flip-card-back">
+                <h3>Ternura</h3>
+                <p>Cuidar también es compartir momentos de cariño.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" data-flip-card tabindex="0">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="pillar-letter">H</span>
+              </div>
+              <div class="flip-card-back">
+                <h3>Hidratación</h3>
+                <p>Uno de los pilares centrales de la propuesta de MishiBroth.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PRODUCTOS DESTACADOS
+    ========================================================== -->
+    <section class="section section-products" id="productos">
+      <div class="section-container">
+        <div class="section-heading" data-reveal>
+          <p class="section-kicker">Tienda</p>
+          <h2>Productos destacados</h2>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card" data-reveal>
+            <div class="product-image-placeholder">[MISHIBROTH INDIVIDUAL]</div>
+            <h3>MishiBroth Individual</h3>
+            <p>1 sobre · 80 ml</p>
+            <p class="product-price">$1,50</p>
+            <button class="button" type="button" data-product="individual">Ver producto</button>
+            <button class="button-secondary" type="button" data-add-to-cart="individual">Agregar al carrito</button>
+          </article>
+
+          <article class="product-card" data-reveal>
+            <div class="product-image-placeholder">[PACK SEMANAL]</div>
+            <h3>Pack Semanal</h3>
+            <p>7 sobres · 80 ml c/u</p>
+            <p class="product-price">$8,99</p>
+            <button class="button" type="button" data-product="semanal">Ver producto</button>
+            <button class="button-secondary" type="button" data-add-to-cart="semanal">Agregar al carrito</button>
+          </article>
+
+          <article class="product-card" data-reveal>
+            <div class="product-image-placeholder">[PACK FAMILIAR]</div>
+            <h3>Pack Familiar</h3>
+            <p>7 sobres · 100 ml c/u</p>
+            <p class="product-price">$12,99</p>
+            <button class="button" type="button" data-product="familiar">Ver producto</button>
+            <button class="button-secondary" type="button" data-add-to-cart="familiar">Agregar al carrito</button>
+          </article>
+        </div>
+
+        <div class="products-cta" data-reveal>
+          <button class="button" type="button" data-store-demo>Ir a la tienda</button>
+          <div class="image-placeholder">[MISHI DECORATIVO OPCIONAL]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CARRITO DEMO
+    ========================================================== -->
+    <aside class="demo-cart" aria-label="Carrito de demostración" data-cart>
+      <button class="cart-trigger" type="button" aria-label="Abrir carrito" data-cart-toggle>
+        Carrito (<span data-cart-count>0</span>)
+      </button>
+
+      <div class="cart-panel" hidden data-cart-panel>
+        <div class="cart-header">
+          <h2>Carrito demo</h2>
+          <button type="button" aria-label="Cerrar carrito" data-cart-close>×</button>
+        </div>
+
+        <p>Interfaz demostrativa. No procesa pagos reales.</p>
+        <div class="cart-items" data-cart-items>
+          <p data-empty-cart>Tu carrito está vacío.</p>
+        </div>
+        <p>Subtotal: <strong data-cart-subtotal>$0,00</strong></p>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+         MISHICLUB
+    ========================================================== -->
+    <section class="section section-club" id="mishiclub">
+      <div class="section-container club-layout">
+        <div class="section-copy" data-reveal>
+          <p class="section-kicker">Comunidad</p>
+          <h2>Conoce MishiClub</h2>
+          <p>
+            MishiClub es el espacio de MishiBroth pensado para acercarte aún más al
+            mundo de tu michi. Un lugar donde, poco a poco, podrás descubrir nuevas
+            formas de participar, aprender, disfrutar y conectar con la comunidad
+            MishiBroth.
+          </p>
+          <button class="button" type="button" data-club-demo>Descubrir MishiClub</button>
+        </div>
+
+        <div class="section-visual" data-reveal>
+          <div class="image-placeholder">[MISHI ALEGRE / ENTUSIASTA]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACTO / CTA FINAL
+    ========================================================== -->
+    <section class="section section-contact" id="contacto">
+      <div class="section-container contact-card" data-reveal>
+        <div>
+          <p class="section-kicker">Contacto</p>
+          <h2>¿Quieres saber más sobre MishiBroth?</h2>
+          <p>Estamos aquí para ayudarte a conocer mejor nuestra propuesta y resolver tus dudas.</p>
+          <button class="button" type="button" data-contact-demo>Contáctanos</button>
+        </div>
+
+        <div class="image-placeholder">[MISHI PEQUEÑO OPCIONAL]</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="site-footer">
+    <div class="footer-container section-container">
+      <div class="footer-brand">
+        <div class="brand-logo-placeholder">[LOGO MISHIBROTH]</div>
+        <p>Una propuesta pensada para sumar hidratación, cuidado y disfrute a la rutina de tu michi.</p>
+      </div>
+
+      <div class="footer-links">
+        <h2>Enlaces rápidos</h2>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#por-que-mishibroth">¿Por qué MishiBroth?</a></li>
+          <li><a href="#productos">Tienda</a></li>
+          <li><a href="#mishiclub">MishiClub</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><button type="button" data-open-account-modal>Cuenta</button></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h2>Redes</h2>
+        <p>[ESPACIO RESERVADO PARA REDES OFICIALES]</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© MishiBroth</p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL DE CUENTA
+  ========================================================== -->
+  <div class="modal" hidden data-account-modal>
+    <div class="modal-backdrop" data-close-account-modal></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="account-modal-title">
+      <button class="modal-close" type="button" aria-label="Cerrar" data-close-account-modal>×</button>
+      <h2 id="account-modal-title">Cuenta</h2>
+      <p>Demo visual de acceso. No existe autenticación real.</p>
+
+      <div class="account-tabs">
+        <button type="button" data-account-tab="login">Iniciar sesión</button>
+        <button type="button" data-account-tab="register">Registro</button>
+      </div>
+
+      <div class="account-panel" data-account-panel="login">
+        <form>
+          <label for="login-email">Correo electrónico</label>
+          <input id="login-email" name="login-email" type="email" autocomplete="email">
+
+          <label for="login-password">Contraseña</label>
+          <input id="login-password" name="login-password" type="password" autocomplete="current-password">
+
+          <button class="button" type="button">Ingresar</button>
+        </form>
+      </div>
+
+      <div class="account-panel" hidden data-account-panel="register">
+        <form>
+          <label for="register-name">Nombre</label>
+          <input id="register-name" name="register-name" type="text" autocomplete="name">
+
+          <label for="register-email">Correo electrónico</label>
+          <input id="register-email" name="register-email" type="email" autocomplete="email">
+
+          <label for="register-password">Contraseña</label>
+          <input id="register-password" name="register-password" type="password" autocomplete="new-password">
+
+          <button class="button" type="button">Registrarme</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL DE PRODUCTO
+  ========================================================== -->
+  <div class="modal" hidden data-product-modal>
+    <div class="modal-backdrop" data-close-product-modal></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
+      <button class="modal-close" type="button" aria-label="Cerrar" data-close-product-modal>×</button>
+      <div class="product-modal-image" data-product-modal-image>[IMAGEN DEL PRODUCTO]</div>
+      <h2 id="product-modal-title" data-product-modal-name>Producto MishiBroth</h2>
+      <p data-product-modal-presentation></p>
+      <p class="product-price" data-product-modal-price></p>
+      <button class="button" type="button" data-product-modal-add>Agregar al carrito</button>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4127 @@
+/* =========================================================
+   MISHIBROTH — ETAPA 3
+   HEADER + HERO
+   ========================================================= */
+
+/* =========================================================
+   CONTENEDOR GLOBAL DE SECCIONES
+   ========================================================= */
+
+.header-container,
+.container,
+.section-container {
+  width: min(calc(100% - 48px), var(--page-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Separación vertical general de secciones */
+section:not(.hero) {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+/* Footer */
+.site-footer {
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .container,
+  .section-container {
+    width: min(100% - 36px, 1240px);
+  }
+
+  section:not(.hero) {
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 780px) {
+  .container,
+  .section-container {
+    width: calc(100% - 32px);
+  }
+
+  section:not(.hero) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .site-footer {
+    padding-top: 55px;
+    padding-bottom: 32px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .container,
+  .section-container {
+    width: calc(100% - 24px);
+  }
+
+  section:not(.hero) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+/* =========================================================
+   0. VARIABLES Y AJUSTES GENERALES
+   ========================================================= */
+
+:root {
+  /* Paleta MishiBroth */
+  --cream: #FFFAE6;
+  --cream-soft: #FFFDEE;
+  --cream-light: #FEFAF1;
+
+  --coral: #F8A078;
+  --coral-soft: #FCC6B9;
+
+  --green: #9CAB7B;
+  --green-light: #DAE8C7;
+  --green-dark: #3E5825;
+
+  --aqua: #B6E5DD;
+  --aqua-dark: #9FC6B3;
+
+  --yellow-soft: #FFE9AF;
+
+  --text-dark: #252622;
+  --white: #FFFFFF;
+
+  /* Tipografías */
+  --font-title: "Poppins", sans-serif;
+  --font-subtitle: "Nunito Sans", sans-serif;
+  --font-body: "Fredoka", sans-serif;
+
+  /* Layout */
+  --page-width: 1240px;
+  --header-height: 88px;
+
+  /* Bordes */
+  --radius-small: 14px;
+  --radius-medium: 24px;
+  --radius-large: 36px;
+
+  /* Sombras */
+  --shadow-soft: 0 12px 30px rgba(62, 88, 37, 0.08);
+  --shadow-button: 0 8px 18px rgba(62, 88, 37, 0.16);
+
+  /* Transiciones */
+  --transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   1. RESET BÁSICO
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text-dark);
+  background-color: var(--cream-light);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+}
+
+
+/* =========================================================
+   2. HEADER
+   ========================================================= */
+
+.site-header {
+  position: relative;
+  z-index: 1000;
+
+  width: 100%;
+  min-height: var(--header-height);
+
+  background-color: rgba(255, 253, 238, 0.96);
+
+  border-bottom: 1px solid rgba(62, 88, 37, 0.08);
+}
+
+.header-container {
+  width: min(calc(100% - 48px), var(--page-width));
+  min-height: var(--header-height);
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+}
+
+
+/* -------------------------
+   Logo / marca
+   ------------------------- */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 170px;
+  min-height: 48px;
+
+  padding: 8px 14px;
+
+  border: 2px dashed rgba(62, 88, 37, 0.28);
+  border-radius: var(--radius-small);
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  background-color: rgba(218, 232, 199, 0.25);
+}
+
+
+/* -------------------------
+   Navegación
+   ------------------------- */
+
+.main-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.main-navigation ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+
+  gap: clamp(18px, 2vw, 32px);
+}
+
+.main-navigation a,
+.account-button {
+  position: relative;
+
+  padding: 10px 0;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition),
+    transform var(--transition);
+}
+
+.main-navigation a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+
+  width: 0;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background-color: var(--coral);
+
+  transition: width var(--transition);
+}
+
+.main-navigation a:hover {
+  color: var(--green-dark);
+}
+
+.main-navigation a:hover::after {
+  width: 100%;
+}
+
+
+/* -------------------------
+   Botón Cuenta
+   ------------------------- */
+
+.account-button {
+  min-width: 88px;
+
+  padding: 10px 20px;
+
+  border: 1.5px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--green-dark);
+}
+
+.account-button:hover {
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  transform: translateY(-2px);
+}
+
+
+/* -------------------------
+   Hamburguesa
+   ------------------------- */
+
+.menu-toggle {
+  width: 44px;
+  height: 44px;
+
+  padding: 10px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 5px;
+
+  border-radius: 12px;
+
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+
+  width: 23px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background-color: var(--green-dark);
+}
+
+
+/* =========================================================
+   3. HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.hero-slider {
+  position: relative;
+
+  width: 100%;
+}
+
+.hero-slides {
+  position: relative;
+
+  width: 100%;
+
+  min-height: clamp(600px, calc(100vh - var(--header-height)), 760px);
+}
+
+
+/* =========================================================
+   4. SLIDES
+   ========================================================= */
+
+.hero-slide {
+  position: relative;
+
+  width: 100%;
+  min-height: clamp(600px, calc(100vh - var(--header-height)), 760px);
+
+  padding:
+    clamp(70px, 8vw, 110px)
+    max(24px, calc((100vw - var(--page-width)) / 2));
+
+  display: none;
+  grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+  align-items: center;
+
+  gap: clamp(30px, 6vw, 90px);
+
+  overflow: hidden;
+}
+
+
+/*
+   Sin JavaScript solamente mostramos
+   el slide marcado como .is-active
+*/
+
+.hero-slide.is-active {
+  display: grid;
+}
+
+
+/* -------------------------
+   Fondo Slide 1
+   ------------------------- */
+
+.hero-slide[data-slide="0"] {
+  background:
+    radial-gradient(
+      circle at 82% 25%,
+      rgba(255, 233, 175, 0.5) 0,
+      rgba(255, 233, 175, 0) 24%
+    ),
+    linear-gradient(
+      135deg,
+      #feffbae0 0%,
+      #f8cb35 100%
+    );
+}
+
+
+/* -------------------------
+   Fondo Slide 2
+   ------------------------- */
+
+.hero-slide[data-slide="1"] {
+  background:
+    radial-gradient(
+      circle at 78% 28%,
+      rgba(255, 255, 255, 0.38) 0,
+      rgba(255, 255, 255, 0) 25%
+    ),
+    linear-gradient(
+      135deg,
+      #dffcee 0%,
+      #64b898 100%
+    );
+}
+
+
+/* -------------------------
+   Fondo Slide 3
+   ------------------------- */
+
+.hero-slide[data-slide="2"] {
+  background:
+    radial-gradient(
+      circle at 82% 25%,
+      rgba(255, 233, 175, 0.36) 0,
+      rgba(255, 233, 175, 0) 27%
+    ),
+    linear-gradient(
+      135deg,
+      #fff9c6 0%,
+      #fdb7c3 100%
+    );
+}
+
+
+/* =========================================================
+   5. CONTENIDO DE TEXTO DEL HERO
+   ========================================================= */
+
+.hero-copy {
+  position: relative;
+  z-index: 5;
+
+  width: 100%;
+  max-width: 570px;
+}
+
+.hero-eyebrow {
+  margin: 0 0 14px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-copy h1,
+.hero-copy h2 {
+  max-width: 650px;
+
+  margin: 0 0 22px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 700;
+
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.hero-copy > p:not(.hero-eyebrow) {
+  max-width: 540px;
+
+  margin: 0 0 32px;
+
+  color: rgba(37, 38, 34, 0.82);
+
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.7vw, 22px);
+  font-weight: 400;
+
+  line-height: 1.55;
+}
+
+
+
+.hero-slide[data-slide="2"] .hero-eyebrow,
+.hero-slide[data-slide="2"] .hero-copy h2 {
+  color: var(--green-dark);
+}
+
+
+/* =========================================================
+   6. BOTÓN PRINCIPAL
+   ========================================================= */
+
+.hero .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 52px;
+
+  padding: 13px 27px;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 16px;
+  font-weight: 700;
+
+  box-shadow: var(--shadow-button);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+.hero .button:hover {
+  transform: translateY(-3px);
+
+  background-color: #4A682C;
+
+  box-shadow: 0 12px 24px rgba(62, 88, 37, 0.2);
+}
+
+.hero .button:active {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   7. ZONA VISUAL DE MISHI
+   ========================================================= */
+
+.hero-visual {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  min-height: 460px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Placeholder principal de Mishi */
+
+.hero-visual > .image-placeholder {
+  position: relative;
+  z-index: 3;
+
+  width: min(100%, 470px);
+  min-height: 440px;
+
+  padding: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.3);
+  border-radius: var(--radius-large);
+
+  color: var(--green-dark);
+
+  background-color: rgba(255, 255, 255, 0.28);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  backdrop-filter: blur(4px);
+}
+
+
+/*
+   Mancha decorativa detrás de Mishi
+*/
+
+.hero-visual::before {
+  content: "";
+
+  position: absolute;
+
+  width: min(37vw, 470px);
+  aspect-ratio: 1;
+
+  border-radius:
+    47% 53% 58% 42%
+    / 42% 44% 56% 58%;
+
+  background-color: rgba(255, 255, 255, 0.42);
+
+  transform: rotate(-7deg);
+}
+
+
+/* =========================================================
+   8. DECORACIONES TEMPORALES
+   ========================================================= */
+
+.decorations-placeholder {
+  position: absolute;
+  z-index: 4;
+
+  right: 0;
+  top: 12%;
+
+  max-width: 190px;
+
+  padding: 9px 13px;
+
+  border: 1px dashed rgba(62, 88, 37, 0.3);
+  border-radius: 14px;
+
+  color: rgba(62, 88, 37, 0.8);
+
+  background-color: rgba(255, 255, 255, 0.58);
+
+  font-family: var(--font-subtitle);
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.4;
+  text-align: center;
+}
+
+
+/* =========================================================
+   9. PRODUCTOS DENTRO DEL SLIDE 3
+   ========================================================= */
+
+.hero-slide[data-slide="2"] .hero-visual {
+  align-items: flex-end;
+}
+
+.hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+  width: 42%;
+  min-height: 360px;
+
+  margin-right: auto;
+
+  padding: 18px;
+}
+
+.hero-product-list {
+  position: absolute;
+  z-index: 5;
+
+  right: 0;
+  bottom: 30px;
+
+  width: 64%;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.hero-product-placeholder {
+  flex: 1;
+
+  min-width: 0;
+  min-height: 190px;
+
+  padding: 15px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.3);
+  border-radius: 22px;
+
+  color: var(--green-dark);
+  background-color: rgba(255, 253, 238, 0.72);
+
+  font-family: var(--font-subtitle);
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.35;
+  text-align: center;
+
+  box-shadow: 0 12px 28px rgba(62, 88, 37, 0.08);
+}
+
+.hero-product-placeholder:nth-child(2) {
+  min-height: 220px;
+}
+
+.hero-product-placeholder:nth-child(3) {
+  min-height: 205px;
+}
+
+
+/* =========================================================
+   10. FLECHAS DEL SLIDER
+   ========================================================= */
+
+.slider-arrow {
+  position: absolute;
+  z-index: 20;
+
+  top: 50%;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(62, 88, 37, 0.12);
+  border-radius: 50%;
+
+  color: var(--green-dark);
+
+  background-color: rgba(255, 253, 238, 0.75);
+
+  box-shadow: 0 6px 18px rgba(62, 88, 37, 0.08);
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.slider-arrow:hover {
+  background-color: var(--white);
+
+  transform: translateY(-50%) scale(1.06);
+}
+
+.slider-arrow-prev {
+  left: max(18px, calc((100vw - 1320px) / 2));
+}
+
+.slider-arrow-next {
+  right: max(18px, calc((100vw - 1320px) / 2));
+}
+
+
+/* =========================================================
+   11. DOTS DEL SLIDER
+   ========================================================= */
+
+.slider-dots {
+  position: absolute;
+  z-index: 20;
+
+  left: 50%;
+  bottom: 28px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  transform: translateX(-50%);
+}
+
+.slider-dot {
+  width: 9px;
+  height: 9px;
+
+  padding: 0;
+
+  border-radius: 999px;
+
+  background-color: rgba(62, 88, 37, 0.32);
+
+  cursor: pointer;
+
+  transition:
+    width var(--transition),
+    background-color var(--transition);
+}
+
+.slider-dot.is-active {
+  width: 28px;
+
+  background-color: var(--green-dark);
+}
+
+
+/* =========================================================
+   12. FOCUS DE ACCESIBILIDAD
+   ========================================================= */
+
+.main-navigation a:focus-visible,
+.account-button:focus-visible,
+.menu-toggle:focus-visible,
+.hero .button:focus-visible,
+.slider-arrow:focus-visible,
+.slider-dot:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   13. RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  :root {
+    --header-height: 78px;
+  }
+
+  .header-container {
+    width: min(calc(100% - 36px), var(--page-width));
+  }
+
+
+  /* HEADER */
+
+  .main-navigation ul {
+    gap: 16px;
+  }
+
+  .main-navigation a,
+  .account-button {
+    font-size: 14px;
+  }
+
+  .account-button {
+    min-width: auto;
+
+    padding: 9px 15px;
+  }
+
+
+  /* HERO */
+
+  .hero-slide {
+    grid-template-columns: minmax(0, 1fr) minmax(330px, 0.9fr);
+
+    gap: 35px;
+
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .hero-copy h1,
+  .hero-copy h2 {
+    font-size: clamp(40px, 5vw, 56px);
+  }
+
+  .hero-visual {
+    min-height: 400px;
+  }
+
+  .hero-visual > .image-placeholder {
+    min-height: 380px;
+  }
+
+  .slider-arrow-prev {
+    left: 12px;
+  }
+
+  .slider-arrow-next {
+    right: 12px;
+  }
+}
+
+
+/* =========================================================
+   14. RESPONSIVE — MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  :root {
+    --header-height: 72px;
+  }
+
+
+  /* -------------------------
+     Header móvil
+     ------------------------- */
+
+  .site-header {
+    min-height: var(--header-height);
+  }
+
+  .header-container {
+    width: calc(100% - 32px);
+    min-height: var(--header-height);
+  }
+
+  .brand-logo-placeholder {
+    min-width: 145px;
+    min-height: 42px;
+
+    font-size: 11px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  /*
+     El menú permanece cerrado porque todavía
+     no estamos programando JavaScript.
+  */
+
+  .main-navigation {
+    display: none;
+  }
+
+
+  /* -------------------------
+     Hero móvil
+     ------------------------- */
+
+  .hero-slides {
+    min-height: auto;
+  }
+
+  .hero-slide {
+    min-height: auto;
+
+    padding:
+      54px
+      24px
+      82px;
+
+    grid-template-columns: 1fr;
+
+    gap: 42px;
+
+    text-align: center;
+  }
+
+  .hero-copy {
+    max-width: 620px;
+
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 10px;
+
+    font-size: 13px;
+  }
+
+  .hero-copy h1,
+  .hero-copy h2 {
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: clamp(38px, 11vw, 52px);
+
+    line-height: 1.1;
+  }
+
+  .hero-copy > p:not(.hero-eyebrow) {
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 18px;
+  }
+
+  .hero .button {
+    min-height: 50px;
+
+    padding: 12px 24px;
+  }
+
+
+  /* -------------------------
+     Visual móvil
+     ------------------------- */
+
+  .hero-visual {
+    min-height: 350px;
+  }
+
+  .hero-visual::before {
+    width: min(86vw, 410px);
+  }
+
+  .hero-visual > .image-placeholder {
+    width: min(88%, 400px);
+    min-height: 340px;
+
+    padding: 24px;
+  }
+
+  .decorations-placeholder {
+    top: 0;
+    right: 2%;
+
+    max-width: 150px;
+
+    font-size: 10px;
+  }
+
+
+  /* -------------------------
+     Slide 3 móvil
+     ------------------------- */
+
+  .hero-slide[data-slide="2"] .hero-visual {
+    min-height: 460px;
+  }
+
+  .hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+    position: absolute;
+
+    left: 0;
+    bottom: 110px;
+
+    width: 43%;
+    min-height: 280px;
+  }
+
+  .hero-product-list {
+    right: 0;
+    bottom: 30px;
+
+    width: 68%;
+
+    gap: 7px;
+  }
+
+  .hero-product-placeholder {
+    min-height: 150px;
+
+    padding: 9px 5px;
+
+    border-radius: 16px;
+
+    font-size: 9px;
+  }
+
+  .hero-product-placeholder:nth-child(2) {
+    min-height: 175px;
+  }
+
+  .hero-product-placeholder:nth-child(3) {
+    min-height: 162px;
+  }
+
+
+  /* -------------------------
+     Controles móvil
+     ------------------------- */
+
+  .slider-arrow {
+    display: none;
+  }
+
+  .slider-dots {
+    bottom: 22px;
+  }
+}
+
+
+/* =========================================================
+   15. MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .header-container {
+    width: calc(100% - 24px);
+  }
+
+  .brand-logo-placeholder {
+    min-width: 132px;
+
+    padding: 7px 10px;
+
+    font-size: 10px;
+  }
+
+  .hero-slide {
+    padding:
+      44px
+      18px
+      74px;
+  }
+
+  .hero-copy h1,
+  .hero-copy h2 {
+    font-size: clamp(34px, 11vw, 45px);
+  }
+
+  .hero-copy > p:not(.hero-eyebrow) {
+    font-size: 17px;
+  }
+
+  .hero-visual {
+    min-height: 310px;
+  }
+
+  .hero-visual > .image-placeholder {
+    min-height: 300px;
+  }
+
+  .hero-slide[data-slide="2"] .hero-visual {
+    min-height: 420px;
+  }
+
+  .hero-product-placeholder {
+    min-height: 132px;
+
+    font-size: 8px;
+  }
+
+  .hero-product-placeholder:nth-child(2) {
+    min-height: 152px;
+  }
+
+  .hero-product-placeholder:nth-child(3) {
+    min-height: 142px;
+  }
+}
+/* =========================================================
+   CONOCE MISHIBROTH
+   ========================================================= */
+
+.section-about {
+  background-color: var(--cream-light);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+
+  gap: clamp(55px, 7vw, 100px);
+}
+
+
+/* -----------------------------------------
+   Orden visual
+   En escritorio mostramos primero a Mishi.
+   ----------------------------------------- */
+
+.section-about .section-visual {
+  order: 1;
+}
+
+.section-about .section-copy {
+  order: 2;
+}
+
+
+/* -----------------------------------------
+   Textos generales
+   ----------------------------------------- */
+
+.section-kicker {
+  margin: 0 0 10px;
+
+  color: var(--coral);
+
+  font-family: var(--font-subtitle);
+  font-size: 17px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-about h2,
+.section-hydration h2 {
+  margin: 0 0 20px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.section-about .section-copy > p:not(.section-kicker) {
+  max-width: 620px;
+
+  margin: 0 0 30px;
+
+  color: rgba(37, 38, 34, 0.82);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   CAJITAS DE CONCEPTOS
+   ========================================================= */
+
+.concept-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+}
+
+.concept-list li {
+  min-height: 130px;
+
+  padding: 20px 18px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  border: 1px solid rgba(62, 88, 37, 0.08);
+  border-radius: 22px;
+
+  color: var(--text-dark);
+  background-color: var(--white);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1.45;
+
+  box-shadow:
+    0 10px 28px rgba(62, 88, 37, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.concept-list li:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 32px rgba(62, 88, 37, 0.1);
+}
+
+
+/* Pequeña variación de fondo entre tarjetas */
+
+.concept-list li:nth-child(1) {
+  background-color: #FFFDEE;
+}
+
+.concept-list li:nth-child(2) {
+  background-color: #EAF5F1;
+}
+
+.concept-list li:nth-child(3) {
+  background-color: #F2F5EA;
+}
+
+
+/* =========================================================
+   PLACEHOLDER DE MISHI
+   ========================================================= */
+
+.section-about .section-visual {
+  position: relative;
+
+  min-height: 480px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-about .section-visual::before {
+  content: "";
+
+  position: absolute;
+
+  width: min(100%, 430px);
+  aspect-ratio: 1;
+
+  border-radius:
+    46% 54% 58% 42%
+    / 48% 42% 58% 52%;
+
+  background-color: var(--green-light);
+
+  opacity: 0.65;
+
+  transform: rotate(-6deg);
+}
+
+.section-about .section-visual .image-placeholder {
+  position: relative;
+  z-index: 2;
+
+  width: min(82%, 360px);
+  min-height: 390px;
+
+  padding: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.28);
+  border-radius: 30px;
+
+  color: var(--green-dark);
+  background-color: rgba(255, 255, 255, 0.45);
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+/* =========================================================
+   ¿POR QUÉ MISHIBROTH? / HIDRATACIÓN
+   ========================================================= */
+
+.section-hydration {
+  background-color: #FFFDEE;
+}
+
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+.hydration-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+  align-items: center;
+
+  gap: clamp(50px, 6vw, 80px);
+}
+
+
+/* =========================================================
+   BLOQUE DE TEXTO
+   ========================================================= */
+
+.hydration-copy {
+  max-width: 560px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 0;
+}
+
+
+/* Kicker */
+
+.hydration-copy .section-kicker {
+  margin: 0 0 12px;
+
+  color: var(--coral);
+
+  font-family: var(--font-subtitle);
+  font-size: 17 px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* Título */
+
+.hydration-copy h2 {
+  margin: 0 0 22px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(34px, 3.4vw, 46px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+
+/* Párrafo */
+
+.hydration-copy > p:not(.section-kicker) {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: rgba(37, 38, 34, 0.82);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   VISUAL
+   ========================================================= */
+
+.hydration-visual {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hydration-visual .image-placeholder {
+  width: 100%;
+  min-height: 360px;
+
+  padding: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.24);
+  border-radius: 30px;
+
+  color: var(--green-dark);
+
+  background:
+    radial-gradient(
+      circle at 72% 28%,
+      rgba(255, 255, 255, 0.62) 0,
+      rgba(255, 255, 255, 0) 30%
+    ),
+    var(--aqua);
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .hydration-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 1fr);
+
+    gap: 40px;
+  }
+
+  .hydration-copy h2 {
+    font-size: clamp(32px, 4vw, 40px);
+  }
+
+  .hydration-visual .image-placeholder {
+    min-height: 330px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .hydration-layout {
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+  }
+
+  .hydration-copy {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .hydration-copy h2 {
+    max-width: 560px;
+
+    font-size: clamp(32px, 8vw, 40px);
+  }
+
+  .hydration-copy > p:not(.section-kicker) {
+    max-width: 540px;
+  }
+
+  .hydration-visual .image-placeholder {
+    min-height: 290px;
+  }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .hydration-layout {
+    gap: 32px;
+  }
+
+  .hydration-copy .section-kicker {
+    font-size: 14px;
+  }
+
+  .hydration-copy h2 {
+    margin-bottom: 18px;
+
+    font-size: 31px;
+  }
+
+  .hydration-copy > p:not(.section-kicker) {
+    font-size: 17px;
+  }
+
+  .hydration-visual .image-placeholder {
+    min-height: 245px;
+
+    border-radius: 24px;
+  }
+}
+
+/* =========================================================
+   PILARES BROTH
+   ========================================================= */
+
+.section-pillars {
+  background-color: var(--cream-light);
+}
+
+
+/* =========================================================
+   ENCABEZADO DE SECCIÓN
+   ========================================================= */
+
+.section-pillars .section-heading {
+  max-width: 760px;
+
+  margin: 0 auto 48px;
+
+  text-align: center;
+}
+
+.section-pillars .section-kicker {
+  margin-bottom: 10px;
+}
+
+.section-pillars .section-heading h2 {
+  margin: 0;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+
+/* =========================================================
+   CONTENEDOR DE TARJETAS
+   ========================================================= */
+
+.broth-cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+
+/* =========================================================
+   TARJETA BASE
+   ========================================================= */
+
+.flip-card {
+  min-width: 0;
+  height: 300px;
+
+  perspective: 1000px;
+
+  border-radius: 26px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transition: transform 0.6s ease;
+
+  transform-style: preserve-3d;
+}
+
+
+/* =========================================================
+   CARAS DE LA TARJETA
+   ========================================================= */
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 26px;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  box-shadow:
+    0 12px 28px rgba(62, 88, 37, 0.08);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FRENTE
+   ========================================================= */
+
+.flip-card-front {
+  border: 1px solid rgba(62, 88, 37, 0.1);
+
+  background-color: var(--white);
+}
+
+.pillar-letter {
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(72px, 6vw, 104px);
+  font-weight: 700;
+
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+
+/* =========================================================
+   REVERSO
+   ========================================================= */
+
+.flip-card-back {
+  transform: rotateY(180deg);
+
+  text-align: center;
+
+  background-color: var(--green-dark);
+  color: var(--cream-light);
+}
+
+.flip-card-back h3 {
+  margin: 0 0 14px;
+
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.flip-card-back p {
+  margin: 0;
+
+  font-family: var(--font-body);
+  font-size: 15px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   VARIACIONES DE COLOR
+   ========================================================= */
+
+.flip-card:nth-child(1) .flip-card-front {
+  background-color: #FFFDEE;
+}
+
+.flip-card:nth-child(2) .flip-card-front {
+  background-color: #EAF5F1;
+}
+
+.flip-card:nth-child(3) .flip-card-front {
+  background-color: #F4EDE6;
+}
+
+.flip-card:nth-child(4) .flip-card-front {
+  background-color: #FDE5DE;
+}
+
+.flip-card:nth-child(5) .flip-card-front {
+  background-color: #EFF4E8;
+}
+
+
+/* =========================================================
+   MICROINTERACCIÓN VISUAL
+   ========================================================= */
+
+.flip-card {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.flip-card:hover {
+  transform: translateY(-6px);
+}
+
+.flip-card:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 5px;
+}
+
+
+/* =========================================================
+   PREPARADO PARA EL FLIP FUTURO
+   ========================================================= */
+
+/*
+   Más adelante, JavaScript podrá agregar
+   una clase como .is-flipped a la tarjeta.
+*/
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .broth-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+  }
+
+  .flip-card {
+    height: 290px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .section-pillars .section-heading {
+    margin-bottom: 36px;
+  }
+
+  .broth-cards {
+    display: flex;
+
+    gap: 16px;
+
+    overflow-x: auto;
+
+    padding-bottom: 14px;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: thin;
+  }
+
+  .flip-card {
+    flex: 0 0 210px;
+
+    height: 300px;
+
+    scroll-snap-align: start;
+  }
+
+  .pillar-letter {
+    font-size: 88px;
+  }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .section-pillars .section-heading h2 {
+    font-size: 32px;
+  }
+
+  .flip-card {
+    flex-basis: 190px;
+
+    height: 280px;
+  }
+
+  .pillar-letter {
+    font-size: 78px;
+  }
+
+  .flip-card-back {
+    padding: 20px;
+  }
+
+  .flip-card-back h3 {
+    font-size: 21px;
+  }
+
+  .flip-card-back p {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   PRODUCTOS DESTACADOS
+   ========================================================= */
+
+.section-products {
+  background-color: #FFFDEE;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.section-products .section-heading {
+  max-width: 760px;
+
+  margin: 0 auto 48px;
+
+  text-align: center;
+}
+
+.section-products .section-kicker {
+  margin-bottom: 10px;
+}
+
+.section-products .section-heading h2 {
+  margin: 0;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+
+/* =========================================================
+   GRID DE PRODUCTOS
+   ========================================================= */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   TARJETA
+   ========================================================= */
+
+.product-card {
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid rgba(62, 88, 37, 0.08);
+  border-radius: 28px;
+
+  background-color: var(--white);
+
+  box-shadow:
+    0 12px 30px rgba(62, 88, 37, 0.07);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 18px 36px rgba(62, 88, 37, 0.11);
+}
+
+
+/* =========================================================
+   PLACEHOLDER DE IMAGEN
+   ========================================================= */
+
+.product-image-placeholder {
+  width: 100%;
+  min-height: 260px;
+
+  margin-bottom: 24px;
+
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.22);
+  border-radius: 22px;
+
+  color: var(--green-dark);
+
+  background-color: #F8F5EC;
+
+  font-family: var(--font-subtitle);
+  font-size: 13px;
+  font-weight: 700;
+
+  line-height: 1.4;
+  text-align: center;
+}
+
+
+/* =========================================================
+   TEXTOS
+   ========================================================= */
+
+.product-card h3 {
+  margin: 0 0 8px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 23px;
+  font-weight: 700;
+
+  line-height: 1.25;
+}
+
+.product-card > p:not(.product-price) {
+  margin: 0 0 12px;
+
+  color: rgba(37, 38, 34, 0.68);
+
+  font-family: var(--font-body);
+  font-size: 16px;
+
+  line-height: 1.5;
+}
+
+.product-price {
+  margin: 4px 0 22px;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-title);
+  font-size: 26px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   BOTONES DE PRODUCTO
+   ========================================================= */
+
+.product-card .button,
+.products-cta .button {
+  min-height: 50px;
+
+  padding: 12px 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-card .button:hover,
+.products-cta .button:hover {
+  transform: translateY(-2px);
+
+  background-color: #4A682C;
+
+  box-shadow:
+    0 8px 18px rgba(62, 88, 37, 0.16);
+}
+
+
+/* Botón secundario */
+
+.product-card .button-secondary {
+  min-height: 48px;
+
+  margin-top: 10px;
+
+  padding: 11px 20px;
+
+  border: 1.5px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--green-dark);
+  background-color: transparent;
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.product-card .button-secondary:hover {
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CTA GENERAL
+   ========================================================= */
+
+.products-cta {
+  margin-top: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 28px;
+}
+
+.products-cta .image-placeholder {
+  width: 170px;
+  min-height: 120px;
+
+  padding: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.2);
+  border-radius: 20px;
+
+  color: var(--green-dark);
+
+  background-color: rgba(218, 232, 199, 0.35);
+
+  font-family: var(--font-subtitle);
+  font-size: 11px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.product-card .button:focus-visible,
+.product-card .button-secondary:focus-visible,
+.products-cta .button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-card:last-child {
+    grid-column: 1 / -1;
+
+    width: min(100%, 520px);
+
+    justify-self: center;
+  }
+
+  .product-image-placeholder {
+    min-height: 230px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .section-products .section-heading {
+    margin-bottom: 36px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .product-card:last-child {
+    grid-column: auto;
+
+    width: 100%;
+  }
+
+  .product-card {
+    max-width: 520px;
+
+    margin: 0 auto;
+  }
+
+  .product-image-placeholder {
+    min-height: 220px;
+  }
+
+  .products-cta {
+    margin-top: 34px;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .products-cta .image-placeholder {
+    width: min(100%, 260px);
+    min-height: 110px;
+  }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .section-products .section-heading h2 {
+    font-size: 32px;
+  }
+
+  .product-card {
+    padding: 18px;
+
+    border-radius: 24px;
+  }
+
+  .product-image-placeholder {
+    min-height: 190px;
+
+    margin-bottom: 20px;
+
+    border-radius: 18px;
+  }
+
+  .product-card h3 {
+    font-size: 21px;
+  }
+
+  .product-price {
+    font-size: 24px;
+  }
+}
+
+/* =========================================================
+   CORRECCIÓN RESPONSIVE — CONOCE MISHIBROTH
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .section-about .about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .section-about .section-copy {
+    order: 1;
+
+    width: 100%;
+    max-width: 100%;
+
+    text-align: center;
+  }
+
+  .section-about .section-copy > p:not(.section-kicker) {
+    width: 100%;
+    max-width: 560px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-about .concept-list {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .section-about .concept-list li {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 18px;
+
+    text-align: left;
+  }
+
+  .section-about .section-visual {
+    order: 2;
+
+    width: 100%;
+    min-height: 340px;
+
+    margin: 0 auto;
+  }
+
+  .section-about .section-visual .image-placeholder {
+    width: min(100%, 340px);
+    min-height: 310px;
+
+    margin: 0 auto;
+  }
+
+  .section-about .section-visual::before {
+    width: min(85vw, 360px);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .section-about .about-layout {
+    gap: 30px;
+  }
+
+  .section-about .section-copy h2 {
+    font-size: 31px;
+  }
+
+  .section-about .section-copy > p:not(.section-kicker) {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .section-about .section-visual {
+    min-height: 300px;
+  }
+
+  .section-about .section-visual .image-placeholder {
+    width: min(100%, 290px);
+    min-height: 270px;
+  }
+
+  .section-about .concept-list li {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   CORRECCIÓN RESPONSIVE — PRODUCTOS EN MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    width: 100%;
+    gap: 20px;
+  }
+
+  .product-card,
+  .product-card:last-child {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+    justify-self: stretch;
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .product-card,
+  .product-card:last-child {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    min-height: 190px;
+  }
+}
+
+/* =========================================================
+   MISHICLUB
+   ========================================================= */
+
+.section-club {
+  background-color: #F2F5EA;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.club-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 0.9fr);
+  align-items: center;
+
+  gap: clamp(55px, 7vw, 90px);
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+.section-club .section-copy {
+  max-width: 600px;
+}
+
+.section-club .section-kicker {
+  margin-bottom: 10px;
+}
+
+.section-club .section-copy h2 {
+  margin: 0 0 20px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.section-club .section-copy > p:not(.section-kicker) {
+  max-width: 560px;
+
+  margin: 0 0 28px;
+
+  color: rgba(37, 38, 34, 0.82);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   BOTÓN
+   ========================================================= */
+
+.section-club .button {
+  min-height: 52px;
+
+  padding: 13px 26px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 18px rgba(62, 88, 37, 0.14);
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.section-club .button:hover {
+  transform: translateY(-3px);
+
+  background-color: #4A682C;
+
+  box-shadow:
+    0 12px 24px rgba(62, 88, 37, 0.18);
+}
+
+
+/* =========================================================
+   VISUAL DE MISHI
+   ========================================================= */
+
+.section-club .section-visual {
+  position: relative;
+
+  min-height: 430px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Mancha decorativa */
+
+.section-club .section-visual::before {
+  content: "";
+
+  position: absolute;
+
+  width: min(100%, 410px);
+  aspect-ratio: 1;
+
+  border-radius:
+    54% 46% 43% 57%
+    / 48% 55% 45% 52%;
+
+  background-color: var(--coral-soft);
+
+  opacity: 0.55;
+
+  transform: rotate(7deg);
+}
+
+
+/* Placeholder */
+
+.section-club .section-visual .image-placeholder {
+  position: relative;
+  z-index: 2;
+
+  width: min(82%, 350px);
+  min-height: 360px;
+
+  padding: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.25);
+  border-radius: 30px;
+
+  color: var(--green-dark);
+
+  background-color: rgba(255, 255, 255, 0.45);
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.section-club .button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .club-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+
+    gap: 45px;
+  }
+
+  .section-club .section-visual {
+    min-height: 390px;
+  }
+
+  .section-club .section-visual .image-placeholder {
+    min-height: 330px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .club-layout {
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+  }
+
+  .section-club .section-copy {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .section-club .section-copy > p:not(.section-kicker) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-club .section-visual {
+    min-height: 350px;
+  }
+
+  .section-club .section-visual .image-placeholder {
+    width: min(100%, 320px);
+    min-height: 300px;
+  }
+
+  .section-club .section-visual::before {
+    width: min(84vw, 350px);
+  }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .club-layout {
+    gap: 30px;
+  }
+
+  .section-club .section-copy h2 {
+    font-size: 32px;
+  }
+
+  .section-club .section-copy > p:not(.section-kicker) {
+    font-size: 17px;
+  }
+
+  .section-club .section-visual {
+    min-height: 300px;
+  }
+
+  .section-club .section-visual .image-placeholder {
+    width: min(100%, 280px);
+    min-height: 260px;
+  }
+}
+
+/* =========================================================
+   CONTACTO / CTA FINAL
+   ========================================================= */
+
+.section-contact {
+  background-color: var(--cream-light);
+}
+
+.contact-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+  align-items: center;
+
+  gap: clamp(35px, 5vw, 70px);
+
+  padding: clamp(34px, 5vw, 56px);
+
+  border: 1px solid rgba(62, 88, 37, 0.08);
+  border-radius: 32px;
+
+  background-color: #EAF5F1;
+
+  box-shadow:
+    0 14px 34px rgba(62, 88, 37, 0.07);
+}
+
+
+/* =========================================================
+   TEXTO DE CONTACTO
+   ========================================================= */
+
+.section-contact .section-kicker {
+  margin-bottom: 10px;
+}
+
+.section-contact h2 {
+  max-width: 700px;
+
+  margin: 0 0 18px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(32px, 3.8vw, 46px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.section-contact .contact-card > div:first-child > p:not(.section-kicker) {
+  max-width: 620px;
+
+  margin: 0 0 26px;
+
+  color: rgba(37, 38, 34, 0.8);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOTÓN DE CONTACTO
+   ========================================================= */
+
+.section-contact .button {
+  min-height: 50px;
+
+  padding: 12px 25px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.section-contact .button:hover {
+  transform: translateY(-3px);
+
+  background-color: #4A682C;
+
+  box-shadow:
+    0 10px 22px rgba(62, 88, 37, 0.16);
+}
+
+
+/* =========================================================
+   MISHI PEQUEÑO
+   ========================================================= */
+
+.section-contact .image-placeholder {
+  width: 100%;
+  min-height: 220px;
+
+  padding: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.22);
+  border-radius: 26px;
+
+  color: var(--green-dark);
+
+  background-color: rgba(255, 255, 255, 0.45);
+
+  font-family: var(--font-subtitle);
+  font-size: 12px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+  background-color: var(--green-dark);
+  color: var(--cream-light);
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL DEL FOOTER
+   ========================================================= */
+
+.footer-container {
+  padding-top: 64px;
+  padding-bottom: 48px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(180px, 0.7fr) minmax(180px, 0.7fr);
+
+  gap: clamp(35px, 6vw, 80px);
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   MARCA
+   ========================================================= */
+
+.footer-brand {
+  max-width: 430px;
+}
+
+.footer-brand .brand-logo-placeholder {
+  width: fit-content;
+  min-width: 170px;
+
+  margin-bottom: 20px;
+
+  border-color: rgba(255, 253, 238, 0.35);
+
+  color: var(--cream-light);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.footer-brand p {
+  margin: 0;
+
+  color: rgba(255, 253, 238, 0.78);
+
+  font-family: var(--font-body);
+  font-size: 16px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   TÍTULOS DEL FOOTER
+   ========================================================= */
+
+.footer-links h2,
+.footer-social h2 {
+  margin: 0 0 18px;
+
+  color: var(--cream-light);
+
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   ENLACES
+   ========================================================= */
+
+.footer-links ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.footer-links a,
+.footer-links button {
+  padding: 0;
+
+  border: 0;
+
+  color: rgba(255, 253, 238, 0.78);
+  background: transparent;
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-links button:hover {
+  color: var(--white);
+
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   REDES
+   ========================================================= */
+
+.footer-social p {
+  max-width: 260px;
+
+  margin: 0;
+
+  color: rgba(255, 253, 238, 0.62);
+
+  font-family: var(--font-body);
+  font-size: 14px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   PARTE INFERIOR DEL FOOTER
+   ========================================================= */
+
+.footer-bottom {
+  width: min(calc(100% - 48px), var(--page-width));
+
+  margin: 0 auto;
+
+  padding: 20px 0 26px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-bottom p {
+  margin: 0;
+
+  color: rgba(255, 253, 238, 0.6);
+
+  font-family: var(--font-subtitle);
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.section-contact .button:focus-visible,
+.footer-links a:focus-visible,
+.footer-links button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .contact-card {
+    grid-template-columns: minmax(0, 1fr) minmax(190px, 0.38fr);
+  }
+
+  .footer-container {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+
+  .footer-social {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  /* CONTACTO */
+
+  .contact-card {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+
+    padding: 34px 26px;
+
+    text-align: center;
+  }
+
+  .section-contact h2,
+  .section-contact .contact-card > div:first-child > p:not(.section-kicker) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-contact .image-placeholder {
+    width: min(100%, 280px);
+    min-height: 190px;
+
+    margin: 0 auto;
+  }
+
+
+  /* FOOTER */
+
+  .footer-container {
+    grid-template-columns: 1fr;
+
+    gap: 34px;
+
+    padding-top: 50px;
+    padding-bottom: 38px;
+  }
+
+  .footer-brand,
+  .footer-social {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    width: calc(100% - 32px);
+
+    padding-bottom: 24px;
+  }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .contact-card {
+    padding: 28px 20px;
+
+    border-radius: 26px;
+  }
+
+  .section-contact h2 {
+    font-size: 31px;
+  }
+
+  .section-contact .contact-card > div:first-child > p:not(.section-kicker) {
+    font-size: 17px;
+  }
+
+  .section-contact .image-placeholder {
+    min-height: 165px;
+  }
+
+  .footer-container {
+    padding-top: 44px;
+  }
+
+  .footer-bottom {
+    width: calc(100% - 24px);
+  }
+}
+
+/* =========================================================
+   ESTADO ABIERTO — MENÚ MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .site-header {
+    position: relative;
+  }
+
+  .main-navigation.is-open {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    width: 100%;
+
+    display: block;
+
+    padding: 18px 24px 24px;
+
+    background-color: rgba(255, 253, 238, 0.98);
+
+    border-bottom: 1px solid rgba(62, 88, 37, 0.08);
+
+    box-shadow:
+      0 12px 24px rgba(62, 88, 37, 0.08);
+  }
+
+  .main-navigation.is-open ul {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 4px;
+  }
+
+  .main-navigation.is-open li {
+    width: 100%;
+  }
+
+  .main-navigation.is-open a {
+    width: 100%;
+
+    display: block;
+
+    padding: 12px 4px;
+  }
+
+  .main-navigation.is-open .account-button {
+    width: 100%;
+
+    margin-top: 8px;
+  }
+
+
+  /* Animación hamburguesa */
+
+  .menu-toggle span {
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* =========================================================
+   EVITAR DESPLAZAMIENTO HORIZONTAL AL HACER SWIPE
+   ========================================================= */
+
+.hero-slider {
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+}
+
+/* =========================================================
+   ESTABILIDAD HORIZONTAL EN MÓVIL
+   ========================================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.hero-slider {
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+}
+
+/* =========================================================
+   MODAL DE CUENTA
+   ========================================================= */
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 3000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+}
+
+
+/* Fondo */
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+
+  background-color: rgba(37, 38, 34, 0.48);
+
+  backdrop-filter: blur(4px);
+}
+
+
+/* Caja principal */
+
+.modal-dialog {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 480px);
+  max-height: calc(100vh - 48px);
+
+  overflow-y: auto;
+
+  padding: 34px;
+
+  border-radius: 28px;
+
+  background-color: var(--cream-light);
+
+  box-shadow:
+    0 24px 60px rgba(37, 38, 34, 0.22);
+}
+
+
+/* =========================================================
+   CERRAR
+   ========================================================= */
+
+.modal-close {
+  position: absolute;
+
+  top: 16px;
+  right: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: var(--green-dark);
+  background-color: transparent;
+
+  font-size: 28px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.modal-close:hover {
+  background-color: rgba(62, 88, 37, 0.08);
+
+  transform: rotate(5deg);
+}
+
+
+/* =========================================================
+   TÍTULO Y TEXTO
+   ========================================================= */
+
+.modal-dialog h2 {
+  margin: 0 45px 10px 0;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.modal-dialog > p {
+  margin: 0 0 26px;
+
+  color: rgba(37, 38, 34, 0.72);
+
+  font-family: var(--font-body);
+  font-size: 15px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   TABS
+   ========================================================= */
+
+.account-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+
+  margin-bottom: 26px;
+
+  padding: 5px;
+
+  border-radius: 999px;
+
+  background-color: rgba(218, 232, 199, 0.55);
+}
+
+.account-tabs button {
+  min-height: 42px;
+
+  padding: 9px 14px;
+
+  border-radius: 999px;
+
+  color: var(--green-dark);
+  background-color: transparent;
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.account-tabs button.is-active {
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  box-shadow:
+    0 5px 12px rgba(62, 88, 37, 0.14);
+}
+
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+.account-panel form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.account-panel label {
+  margin-top: 4px;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.account-panel input {
+  width: 100%;
+  min-height: 48px;
+
+  padding: 11px 14px;
+
+  border: 1.5px solid rgba(62, 88, 37, 0.18);
+  border-radius: 14px;
+
+  color: var(--text-dark);
+  background-color: var(--white);
+
+  font-family: var(--font-body);
+  font-size: 16px;
+
+  outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.account-panel input:focus {
+  border-color: var(--green-dark);
+
+  box-shadow:
+    0 0 0 3px rgba(62, 88, 37, 0.1);
+}
+
+
+/* =========================================================
+   BOTÓN
+   ========================================================= */
+
+.account-panel .button {
+  min-height: 50px;
+
+  margin-top: 12px;
+
+  padding: 12px 22px;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.account-panel .button:hover {
+  transform: translateY(-2px);
+
+  background-color: #4A682C;
+}
+
+
+/* =========================================================
+   BLOQUEO DE SCROLL
+   ========================================================= */
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .modal {
+    padding: 16px;
+  }
+
+  .modal-dialog {
+    padding: 28px 20px;
+
+    border-radius: 24px;
+  }
+
+  .modal-dialog h2 {
+    font-size: 28px;
+  }
+
+  .account-tabs button {
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   MODAL DE PRODUCTO
+   ========================================================= */
+
+[data-product-modal] .modal-dialog {
+  width: min(100%, 520px);
+
+  text-align: center;
+}
+
+
+/* Imagen / placeholder */
+
+.product-modal-image {
+  width: 100%;
+  min-height: 250px;
+
+  margin-bottom: 24px;
+
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed rgba(62, 88, 37, 0.2);
+  border-radius: 22px;
+
+  color: var(--green-dark);
+
+  background-color: #F8F5EC;
+
+  font-family: var(--font-subtitle);
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* Título */
+
+[data-product-modal] .modal-dialog h2 {
+  margin: 0 40px 10px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 30px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* Presentación */
+
+[data-product-modal-presentation] {
+  margin: 0 0 8px;
+
+  color: rgba(37, 38, 34, 0.7);
+
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+
+/* Precio */
+
+[data-product-modal] .product-price {
+  margin: 12px 0 24px;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-title);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+
+/* Botón */
+
+[data-product-modal] .button {
+  width: 100%;
+  min-height: 50px;
+
+  padding: 12px 22px;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+[data-product-modal] .button:hover {
+  transform: translateY(-2px);
+
+  background-color: #4A682C;
+
+  box-shadow:
+    0 8px 18px rgba(62, 88, 37, 0.16);
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .product-modal-image {
+    min-height: 210px;
+  }
+
+  [data-product-modal] .modal-dialog h2 {
+    margin-left: 25px;
+    margin-right: 25px;
+
+    font-size: 26px;
+  }
+
+  [data-product-modal] .product-price {
+    font-size: 25px;
+  }
+}
+
+/* =========================================================
+   CARRITO DEMO
+   ========================================================= */
+
+.demo-cart {
+  position: relative;
+  z-index: 2500;
+}
+
+
+/* =========================================================
+   BOTÓN FLOTANTE DEL CARRITO
+   ========================================================= */
+
+.cart-trigger {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 2500;
+
+  min-height: 50px;
+
+  padding: 12px 20px;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 24px rgba(37, 38, 34, 0.18);
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.cart-trigger:hover {
+  transform: translateY(-3px);
+
+  background-color: #4A682C;
+
+  box-shadow:
+    0 14px 28px rgba(37, 38, 34, 0.22);
+}
+
+
+/* =========================================================
+   PANEL
+   ========================================================= */
+
+.cart-panel[hidden] {
+  display: none;
+}
+
+.cart-panel {
+  position: fixed;
+
+  right: 24px;
+  bottom: 86px;
+
+  z-index: 2490;
+
+  width: min(calc(100% - 48px), 390px);
+  max-height: min(620px, calc(100vh - 120px));
+
+  padding: 24px;
+
+  overflow-y: auto;
+
+  border: 1px solid rgba(62, 88, 37, 0.1);
+  border-radius: 26px;
+
+  background-color: var(--cream-light);
+
+  box-shadow:
+    0 22px 55px rgba(37, 38, 34, 0.2);
+}
+
+
+/* =========================================================
+   CABECERA
+   ========================================================= */
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 8px;
+}
+
+.cart-header h2 {
+  margin: 0;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cart-header button {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: var(--green-dark);
+  background-color: transparent;
+
+  font-size: 27px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.cart-header button:hover {
+  background-color: rgba(62, 88, 37, 0.08);
+
+  transform: rotate(5deg);
+}
+
+
+/* Texto de advertencia demo */
+
+.cart-panel > p {
+  margin: 0 0 20px;
+
+  color: rgba(37, 38, 34, 0.65);
+
+  font-family: var(--font-body);
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   LISTA DE PRODUCTOS
+   ========================================================= */
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-bottom: 22px;
+}
+
+
+/* Carrito vacío */
+
+.cart-items [data-empty-cart] {
+  margin: 10px 0;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  color: rgba(37, 38, 34, 0.65);
+  background-color: rgba(218, 232, 199, 0.35);
+
+  font-family: var(--font-body);
+  font-size: 15px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   PRODUCTO DEL CARRITO
+   ========================================================= */
+
+.cart-item {
+  padding: 15px;
+
+  border: 1px solid rgba(62, 88, 37, 0.08);
+  border-radius: 18px;
+
+  background-color: var(--white);
+}
+
+.cart-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  margin-bottom: 12px;
+}
+
+.cart-item-info {
+  min-width: 0;
+}
+
+.cart-item-name {
+  margin: 0 0 3px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+.cart-item-presentation {
+  margin: 0;
+
+  color: rgba(37, 38, 34, 0.62);
+
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.cart-item-price {
+  flex-shrink: 0;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-title);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CONTROLES DE CANTIDAD
+   ========================================================= */
+
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.cart-quantity {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 4px;
+
+  border-radius: 999px;
+
+  background-color: #F2F5EA;
+}
+
+.cart-quantity button {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: var(--green-dark);
+  background-color: var(--white);
+
+  font-family: var(--font-subtitle);
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.cart-quantity button:hover {
+  color: var(--white);
+  background-color: var(--green-dark);
+}
+
+.cart-quantity span {
+  min-width: 28px;
+
+  color: var(--text-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* Eliminar */
+
+.cart-remove {
+  padding: 7px 9px;
+
+  border-radius: 10px;
+
+  color: #7A4035;
+  background-color: transparent;
+
+  font-family: var(--font-subtitle);
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease;
+}
+
+.cart-remove:hover {
+  background-color: rgba(248, 160, 120, 0.18);
+}
+
+
+/* =========================================================
+   SUBTOTAL
+   ========================================================= */
+
+.cart-panel > p:last-child {
+  margin: 0;
+
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(62, 88, 37, 0.12);
+
+  color: var(--text-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 16px;
+}
+
+[data-cart-subtotal] {
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.cart-trigger:focus-visible,
+.cart-header button:focus-visible,
+.cart-quantity button:focus-visible,
+.cart-remove:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .cart-trigger {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .cart-panel {
+    right: 16px;
+    bottom: 78px;
+
+    width: calc(100% - 32px);
+    max-height: calc(100vh - 110px);
+  }
+}
+
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .cart-panel {
+    padding: 20px;
+
+    border-radius: 22px;
+  }
+
+  .cart-header h2 {
+    font-size: 22px;
+  }
+
+  .cart-item-bottom {
+    align-items: flex-end;
+  }
+}
+
+/* =========================================================
+   ANIMACIONES AL HACER SCROLL
+   ========================================================= */
+
+[data-reveal] {
+  opacity: 0;
+
+  transform: translateY(28px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* Respetar preferencias de accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+
+  [data-reveal] {
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+  }
+}
