@@ -986,7 +986,9 @@ const addProductToCart = (productId) => {
   }
 
 
+  if (cart) {
   renderCart();
+}
 
   openCart();
 

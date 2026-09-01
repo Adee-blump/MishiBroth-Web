@@ -423,6 +423,153 @@
     </div>
   </div>
 
+<!-- =========================================================
+     MODAL DE CUENTA
+========================================================== -->
+<div class="modal" hidden data-account-modal>
+
+  <div
+    class="modal-backdrop"
+    data-close-account-modal
+  ></div>
+
+  <div
+    class="modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="account-modal-title"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      aria-label="Cerrar"
+      data-close-account-modal
+    >
+      ×
+    </button>
+
+    <h2 id="account-modal-title">
+      Cuenta
+    </h2>
+
+    <p>
+      Demo visual de acceso. No existe autenticación real.
+    </p>
+
+    <div class="account-tabs">
+
+      <button
+        type="button"
+        data-account-tab="login"
+      >
+        Iniciar sesión
+      </button>
+
+      <button
+        type="button"
+        data-account-tab="register"
+      >
+        Registro
+      </button>
+
+    </div>
+
+    <div
+      class="account-panel"
+      data-account-panel="login"
+    >
+
+      <form>
+
+        <label for="login-email">
+          Correo electrónico
+        </label>
+
+        <input
+          id="login-email"
+          name="login-email"
+          type="email"
+          autocomplete="email"
+        >
+
+        <label for="login-password">
+          Contraseña
+        </label>
+
+        <input
+          id="login-password"
+          name="login-password"
+          type="password"
+          autocomplete="current-password"
+        >
+
+        <button
+          class="button"
+          type="button"
+        >
+          Ingresar
+        </button>
+
+      </form>
+
+    </div>
+
+    <div
+      class="account-panel"
+      hidden
+      data-account-panel="register"
+    >
+
+      <form>
+
+        <label for="register-name">
+          Nombre
+        </label>
+
+        <input
+          id="register-name"
+          name="register-name"
+          type="text"
+          autocomplete="name"
+        >
+
+        <label for="register-email">
+          Correo electrónico
+        </label>
+
+        <input
+          id="register-email"
+          name="register-email"
+          type="email"
+          autocomplete="email"
+        >
+
+        <label for="register-password">
+          Contraseña
+        </label>
+
+        <input
+          id="register-password"
+          name="register-password"
+          type="password"
+          autocomplete="new-password"
+        >
+
+        <button
+          class="button"
+          type="button"
+        >
+          Registrarme
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
   <script src="js/script.js"></script>
 </body>
 </html>
