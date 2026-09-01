@@ -4049,7 +4049,6 @@ body.modal-open {
   outline-offset: 3px;
 }
 
-
 /* =========================================================
    MÓVIL
    ========================================================= */
@@ -4123,5 +4122,311 @@ body.modal-open {
     transform: none;
 
     transition: none;
+  }
+}
+
+/* =========================================================
+   TIENDA — ESTILOS ESPECÍFICOS
+   ========================================================= */
+
+
+/* =========================================================
+   HERO / ENCABEZADO DE TIENDA
+   ========================================================= */
+
+section.shop-hero {
+  padding-top: 42px;
+  padding-bottom: 42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #FFFDEE 0%,
+      #FFFAE6 100%
+    );
+}
+
+.shop-hero .section-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.shop-hero .section-heading {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.shop-hero .section-kicker {
+  margin-bottom: 12px;
+}
+
+.shop-hero h1 {
+  margin: 0 0 18px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(40px, 5vw, 58px);
+  font-weight: 700;
+
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.shop-hero .section-heading > p:not(.section-kicker) {
+  max-width: 620px;
+
+  margin: 0 auto;
+
+  color: rgba(37, 38, 34, 0.78);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   PRODUCTOS EN TIENDA
+   ========================================================= */
+
+.shop-products {
+  background-color: #FFFDEE;
+}
+
+.shop-products .product-grid {
+  align-items: stretch;
+}
+
+.shop-products .product-card {
+  scroll-margin-top: 120px;
+}
+
+.shop-products .product-card h2 {
+  margin: 0 0 8px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: 23px;
+  font-weight: 700;
+
+  line-height: 1.25;
+}
+
+.shop-products .product-card > p:not(.product-price) {
+  margin-bottom: 12px;
+}
+
+.shop-products .product-price {
+  margin-top: 4px;
+}
+
+
+/* =========================================================
+   BLOQUE SCRATCH
+   ========================================================= */
+
+.shop-discount {
+  background-color: var(--cream-light);
+}
+
+.shop-discount .section-container {
+  position: relative;
+
+  max-width: 980px;
+
+  padding:
+    clamp(42px, 6vw, 70px)
+    clamp(28px, 6vw, 70px);
+
+  border: 1px solid rgba(62, 88, 37, 0.08);
+  border-radius: 32px;
+
+  background:
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(182, 229, 221, 0.55) 0,
+      rgba(182, 229, 221, 0) 28%
+    ),
+    linear-gradient(
+      135deg,
+      #FFFDEE 0%,
+      #F2F5EA 100%
+    );
+
+  box-shadow:
+    0 16px 38px rgba(62, 88, 37, 0.08);
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+
+/* Decoración suave */
+
+.shop-discount .section-container::before {
+  content: "🎮";
+
+  position: absolute;
+
+  right: clamp(20px, 5vw, 50px);
+  top: clamp(18px, 4vw, 34px);
+
+  font-size: clamp(44px, 6vw, 68px);
+
+  opacity: 0.12;
+
+  transform: rotate(8deg);
+
+  pointer-events: none;
+}
+
+
+.shop-discount .section-kicker {
+  margin-bottom: 12px;
+}
+
+.shop-discount h2 {
+  max-width: 720px;
+
+  margin: 0 auto 18px;
+
+  color: var(--green-dark);
+
+  font-family: var(--font-title);
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.shop-discount .section-container > p:not(.section-kicker) {
+  max-width: 620px;
+
+  margin: 0 auto 28px;
+
+  color: rgba(37, 38, 34, 0.78);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+
+/* Botón Scratch */
+
+.shop-discount .button {
+  min-height: 52px;
+
+  padding: 13px 28px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-size: 15px;
+  font-weight: 700;
+
+  box-shadow:
+    0 8px 18px rgba(62, 88, 37, 0.14);
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.shop-discount .button:hover {
+  transform: translateY(-3px);
+
+  background-color: #4A682C;
+
+  box-shadow:
+    0 12px 24px rgba(62, 88, 37, 0.18);
+}
+
+/* =========================================================
+   TIENDA — ESCRITORIO
+   Más de 780px
+   ========================================================= */
+
+section.shop-hero {
+  padding-top: 42px;
+  padding-bottom: 42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #FFFDEE 0%,
+      #FFFAE6 100%
+    );
+}
+
+.shop-hero .section-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* =========================================================
+   TIENDA — TABLET Y MÓVIL
+   Hasta 780px
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  section.shop-hero {
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+
+  .shop-hero .section-container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .shop-hero h1 {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+
+  .shop-hero .section-heading > p:not(.section-kicker) {
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   TIENDA — MÓVILES PEQUEÑOS
+   Hasta 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  section.shop-hero {
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+
+  .shop-hero h1 {
+    font-size: 32px;
+  }
+
+  .shop-hero .section-heading > p:not(.section-kicker) {
+    font-size: 16px;
+    line-height: 1.55;
   }
 }
