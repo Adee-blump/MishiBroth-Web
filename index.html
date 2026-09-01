@@ -336,28 +336,6 @@
 </section>
 
     <!-- =========================================================
-         CARRITO DEMO
-    ========================================================== -->
-    <aside class="demo-cart" aria-label="Carrito de demostración" data-cart>
-      <button class="cart-trigger" type="button" aria-label="Abrir carrito" data-cart-toggle>
-        Carrito (<span data-cart-count>0</span>)
-      </button>
-
-      <div class="cart-panel" hidden data-cart-panel>
-        <div class="cart-header">
-          <h2>Carrito demo</h2>
-          <button type="button" aria-label="Cerrar carrito" data-cart-close>×</button>
-        </div>
-
-        <p>Interfaz demostrativa. No procesa pagos reales.</p>
-        <div class="cart-items" data-cart-items>
-          <p data-empty-cart>Tu carrito está vacío.</p>
-        </div>
-        <p>Subtotal: <strong data-cart-subtotal>$0,00</strong></p>
-      </div>
-    </aside>
-
-    <!-- =========================================================
          MISHICLUB
     ========================================================== -->
     <section class="section section-club" id="mishiclub">
@@ -412,7 +390,7 @@
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#por-que-mishibroth">¿Por qué MishiBroth?</a></li>
-          <li><a href="#productos">Tienda</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
           <li><a href="#mishiclub">MishiClub</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><button type="button" data-open-account-modal>Cuenta</button></li>
@@ -429,50 +407,6 @@
       <p>© MishiBroth</p>
     </div>
   </footer>
-
-  <!-- =========================================================
-       MODAL DE CUENTA
-  ========================================================== -->
-  <div class="modal" hidden data-account-modal>
-    <div class="modal-backdrop" data-close-account-modal></div>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="account-modal-title">
-      <button class="modal-close" type="button" aria-label="Cerrar" data-close-account-modal>×</button>
-      <h2 id="account-modal-title">Cuenta</h2>
-      <p>Demo visual de acceso. No existe autenticación real.</p>
-
-      <div class="account-tabs">
-        <button type="button" data-account-tab="login">Iniciar sesión</button>
-        <button type="button" data-account-tab="register">Registro</button>
-      </div>
-
-      <div class="account-panel" data-account-panel="login">
-        <form>
-          <label for="login-email">Correo electrónico</label>
-          <input id="login-email" name="login-email" type="email" autocomplete="email">
-
-          <label for="login-password">Contraseña</label>
-          <input id="login-password" name="login-password" type="password" autocomplete="current-password">
-
-          <button class="button" type="button">Ingresar</button>
-        </form>
-      </div>
-
-      <div class="account-panel" hidden data-account-panel="register">
-        <form>
-          <label for="register-name">Nombre</label>
-          <input id="register-name" name="register-name" type="text" autocomplete="name">
-
-          <label for="register-email">Correo electrónico</label>
-          <input id="register-email" name="register-email" type="email" autocomplete="email">
-
-          <label for="register-password">Contraseña</label>
-          <input id="register-password" name="register-password" type="password" autocomplete="new-password">
-
-          <button class="button" type="button">Registrarme</button>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- =========================================================
        MODAL DE PRODUCTO
