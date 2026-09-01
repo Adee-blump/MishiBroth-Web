@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tienda | MishiBroth</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+  <header class="site-header" id="inicio">
+    <div class="header-container">
+
+      <a class="brand" href="index.html" aria-label="Ir al inicio de MishiBroth">
+        <span class="brand-logo-placeholder">[LOGO MISHIBROTH]</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav
+        class="main-navigation"
+        id="main-navigation"
+        aria-label="Navegación principal"
+      >
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#por-que-mishibroth">¿Por qué MishiBroth?</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="index.html#mishiclub">MishiClub</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+          <li>
+            <button
+              class="account-button"
+              type="button"
+              data-open-account-modal
+            >
+              Cuenta
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================================================
+         ENCABEZADO DE TIENDA
+    ========================================================== -->
+    <section class="section shop-hero">
+      <div class="section-container">
+
+        <div class="section-heading" data-reveal>
+          <p class="section-kicker">Tienda</p>
+          <h1>Tienda MishiBroth</h1>
+          <p>
+            Conoce las presentaciones disponibles de MishiBroth y explora
+            esta experiencia comercial demostrativa.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         PRODUCTOS DE TIENDA
+    ========================================================== -->
+    <section class="section section-products shop-products">
+      <div class="section-container">
+
+        <div class="product-grid">
+
+          <!-- PRODUCTO 1 -->
+          <article
+            class="product-card"
+            id="individual"
+            data-reveal
+          >
+            <div class="product-image-placeholder">
+              [MISHIBROTH INDIVIDUAL]
+            </div>
+
+            <h2>MishiBroth Individual</h2>
+
+            <p>1 sobre · 80 ml</p>
+
+            <p class="product-price">$1,50</p>
+
+            <button
+              class="button"
+              type="button"
+              data-product="individual"
+            >
+              Ver producto
+            </button>
+
+            <button
+              class="button-secondary"
+              type="button"
+              data-add-to-cart="individual"
+            >
+              Agregar al carrito
+            </button>
+          </article>
+
+
+          <!-- PRODUCTO 2 -->
+          <article
+            class="product-card"
+            id="semanal"
+            data-reveal
+          >
+            <div class="product-image-placeholder">
+              [PACK SEMANAL]
+            </div>
+
+            <h2>Pack Semanal</h2>
+
+            <p>7 sobres · 80 ml c/u</p>
+
+            <p class="product-price">$8,99</p>
+
+            <button
+              class="button"
+              type="button"
+              data-product="semanal"
+            >
+              Ver producto
+            </button>
+
+            <button
+              class="button-secondary"
+              type="button"
+              data-add-to-cart="semanal"
+            >
+              Agregar al carrito
+            </button>
+          </article>
+
+
+          <!-- PRODUCTO 3 -->
+          <article
+            class="product-card"
+            id="familiar"
+            data-reveal
+          >
+            <div class="product-image-placeholder">
+              [PACK FAMILIAR]
+            </div>
+
+            <h2>Pack Familiar</h2>
+
+            <p>7 sobres · 100 ml c/u</p>
+
+            <p class="product-price">$12,99</p>
+
+            <button
+              class="button"
+              type="button"
+              data-product="familiar"
+            >
+              Ver producto
+            </button>
+
+            <button
+              class="button-secondary"
+              type="button"
+              data-add-to-cart="familiar"
+            >
+              Agregar al carrito
+            </button>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         SCRATCH / DESCUENTO
+    ========================================================== -->
+    <section class="section shop-discount">
+      <div class="section-container" data-reveal>
+
+        <p class="section-kicker">Reto MishiBroth</p>
+
+        <h2>¿Quieres conseguir un descuento? 🎮</h2>
+
+        <p>
+          Pon a prueba cuánto sabes sobre el cuidado de los michis
+          y completa nuestro reto MishiBroth.
+        </p>
+
+        <a
+          class="button"
+          href="https://scratch.mit.edu/projects/1332551725"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jugar y obtener mi descuento
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="site-footer">
+
+    <div class="footer-container section-container">
+
+      <div class="footer-brand">
+        <div class="brand-logo-placeholder">
+          [LOGO MISHIBROTH]
+        </div>
+
+        <p>
+          Una propuesta pensada para sumar hidratación,
+          cuidado y disfrute a la rutina de tu michi.
+        </p>
+      </div>
+
+
+      <div class="footer-links">
+        <h2>Enlaces rápidos</h2>
+
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+
+          <li>
+            <a href="index.html#por-que-mishibroth">
+              ¿Por qué MishiBroth?
+            </a>
+          </li>
+
+          <li><a href="tienda.html">Tienda</a></li>
+
+          <li>
+            <a href="index.html#mishiclub">
+              MishiClub
+            </a>
+          </li>
+
+          <li>
+            <a href="index.html#contacto">
+              Contacto
+            </a>
+          </li>
+
+          <li>
+            <button
+              type="button"
+              data-open-account-modal
+            >
+              Cuenta
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="footer-social">
+        <h2>Redes</h2>
+
+        <p>
+          [ESPACIO RESERVADO PARA REDES OFICIALES]
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+      <p>© MishiBroth</p>
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       CARRITO DEMO
+  ========================================================== -->
+  <aside
+    class="demo-cart"
+    aria-label="Carrito de demostración"
+    data-cart
+  >
+
+    <button
+      class="cart-trigger"
+      type="button"
+      aria-label="Abrir carrito"
+      data-cart-toggle
+    >
+      Carrito (<span data-cart-count>0</span>)
+    </button>
+
+
+    <div
+      class="cart-panel"
+      hidden
+      data-cart-panel
+    >
+
+      <div class="cart-header">
+
+        <h2>Carrito demo</h2>
+
+        <button
+          type="button"
+          aria-label="Cerrar carrito"
+          data-cart-close
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <p>
+        Interfaz demostrativa. No procesa pagos reales.
+      </p>
+
+
+      <div
+        class="cart-items"
+        data-cart-items
+      >
+        <p data-empty-cart>
+          Tu carrito está vacío.
+        </p>
+      </div>
+
+
+      <p>
+        Subtotal:
+        <strong data-cart-subtotal>
+          $0,00
+        </strong>
+      </p>
+
+    </div>
+  </aside>
+
+
+  <!-- =========================================================
+       MODAL DE CUENTA
+  ========================================================== -->
+  <div
+    class="modal"
+    hidden
+    data-account-modal
+  >
+
+    <div
+      class="modal-backdrop"
+      data-close-account-modal
+    ></div>
+
+
+    <div
+      class="modal-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="account-modal-title"
+    >
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Cerrar"
+        data-close-account-modal
+      >
+        ×
+      </button>
+
+
+      <h2 id="account-modal-title">
+        Cuenta
+      </h2>
+
+      <p>
+        Demo visual de acceso. No existe autenticación real.
+      </p>
+
+
+      <div class="account-tabs">
+
+        <button
+          type="button"
+          data-account-tab="login"
+        >
+          Iniciar sesión
+        </button>
+
+        <button
+          type="button"
+          data-account-tab="register"
+        >
+          Registro
+        </button>
+
+      </div>
+
+
+      <div
+        class="account-panel"
+        data-account-panel="login"
+      >
+
+        <form>
+
+          <label for="login-email">
+            Correo electrónico
+          </label>
+
+          <input
+            id="login-email"
+            name="login-email"
+            type="email"
+            autocomplete="email"
+          >
+
+
+          <label for="login-password">
+            Contraseña
+          </label>
+
+          <input
+            id="login-password"
+            name="login-password"
+            type="password"
+            autocomplete="current-password"
+          >
+
+
+          <button
+            class="button"
+            type="button"
+          >
+            Ingresar
+          </button>
+
+        </form>
+
+      </div>
+
+
+      <div
+        class="account-panel"
+        hidden
+        data-account-panel="register"
+      >
+
+        <form>
+
+          <label for="register-name">
+            Nombre
+          </label>
+
+          <input
+            id="register-name"
+            name="register-name"
+            type="text"
+            autocomplete="name"
+          >
+
+
+          <label for="register-email">
+            Correo electrónico
+          </label>
+
+          <input
+            id="register-email"
+            name="register-email"
+            type="email"
+            autocomplete="email"
+          >
+
+
+          <label for="register-password">
+            Contraseña
+          </label>
+
+          <input
+            id="register-password"
+            name="register-password"
+            type="password"
+            autocomplete="new-password"
+          >
+
+
+          <button
+            class="button"
+            type="button"
+          >
+            Registrarme
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================
+       MODAL DE PRODUCTO
+  ========================================================== -->
+  <div
+    class="modal"
+    hidden
+    data-product-modal
+  >
+
+    <div
+      class="modal-backdrop"
+      data-close-product-modal
+    ></div>
+
+
+    <div
+      class="modal-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="product-modal-title"
+    >
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Cerrar"
+        data-close-product-modal
+      >
+        ×
+      </button>
+
+
+      <div
+        class="product-modal-image"
+        data-product-modal-image
+      >
+        [IMAGEN DEL PRODUCTO]
+      </div>
+
+
+      <h2
+        id="product-modal-title"
+        data-product-modal-name
+      >
+        Producto MishiBroth
+      </h2>
+
+
+      <p data-product-modal-presentation></p>
+
+
+      <p
+        class="product-price"
+        data-product-modal-price
+      ></p>
+
+
+      <button
+        class="button"
+        type="button"
+        data-product-modal-add
+      >
+        Agregar al carrito
+      </button>
+
+    </div>
+  </div>
+
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
