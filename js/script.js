@@ -677,6 +677,11 @@ const productModalImage =
 const productModalAdd =
   document.querySelector("[data-product-modal-add]");
 
+const productViewButtons =
+  document.querySelectorAll("[data-product-view]");
+
+let currentProductView = "front";
+
 
 /* -------------------------------------------------------
    Datos de productos
@@ -689,7 +694,11 @@ const products = {
     presentation: "1 sobre · 80 ml",
     price: 1.50,
     priceText: "$1,50",
-    imagePlaceholder: "[MISHIBROTH INDIVIDUAL]"
+
+    images: {
+      front: "[MISHIBROTH INDIVIDUAL — FRENTE]",
+      back: "[MISHIBROTH INDIVIDUAL — REVERSO]"
+    }
   },
 
   semanal: {
@@ -697,7 +706,11 @@ const products = {
     presentation: "7 sobres · 80 ml c/u",
     price: 8.99,
     priceText: "$8,99",
-    imagePlaceholder: "[PACK SEMANAL]"
+
+    images: {
+      front: "[PACK SEMANAL — FRENTE]",
+      back: "[PACK SEMANAL — REVERSO]"
+    }
   },
 
   familiar: {
@@ -705,7 +718,11 @@ const products = {
     presentation: "7 sobres · 100 ml c/u",
     price: 12.99,
     priceText: "$12,99",
-    imagePlaceholder: "[PACK FAMILIAR]"
+
+    images: {
+      front: "[PACK FAMILIAR — FRENTE]",
+      back: "[PACK FAMILIAR — REVERSO]"
+    }
   }
 
 };
@@ -728,6 +745,7 @@ const openProductModal = (productId) => {
   if (!product) return;
 
   currentProductId = productId;
+  currentProductView = "front";
 
   lastProductFocus = document.activeElement;
 
@@ -744,8 +762,19 @@ const openProductModal = (productId) => {
     product.priceText;
 
   productModalImage.textContent =
-    product.imagePlaceholder;
+  product.images.front;
 
+  productViewButtons.forEach((button) => {
+
+  const isFront =
+    button.dataset.productView === "front";
+
+  button.classList.toggle(
+    "is-active",
+    isFront
+  );
+
+});
 
   /* Guardar producto en botón */
 
@@ -836,6 +865,75 @@ document.addEventListener("keydown", (event) => {
   ) {
     closeProductModal();
   }
+
+});
+
+/* =======================================================
+   CAMBIAR FRENTE / REVERSO
+   ======================================================= */
+
+productViewButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    if (!currentProductId) return;
+
+    const selectedView =
+      button.dataset.productView;
+
+    if (
+      selectedView !== "front" &&
+      selectedView !== "back"
+    ) {
+      return;
+    }
+
+    if (selectedView === currentProductView) {
+      return;
+    }
+
+    const product =
+      products[currentProductId];
+
+    if (!product) return;
+
+    currentProductView = selectedView;
+
+
+    /* Actualizar botón activo */
+
+    productViewButtons.forEach((item) => {
+
+      const isActive =
+        item.dataset.productView ===
+        selectedView;
+
+      item.classList.toggle(
+        "is-active",
+        isActive
+      );
+
+    });
+
+
+    /* Cambio suave de imagen */
+
+    productModalImage.classList.add(
+      "is-changing"
+    );
+
+    setTimeout(() => {
+
+      productModalImage.textContent =
+        product.images[selectedView];
+
+      productModalImage.classList.remove(
+        "is-changing"
+      );
+
+    }, 180);
+
+  });
 
 });
 
