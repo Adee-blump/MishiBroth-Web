@@ -4430,3 +4430,104 @@ section.shop-hero {
     line-height: 1.55;
   }
 }
+
+/* =========================================================
+   MODAL DE PRODUCTO — FRENTE / REVERSO
+   ========================================================= */
+
+.product-modal-visual {
+  margin-bottom: 24px;
+}
+
+.product-modal-image {
+  margin-bottom: 14px;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.product-modal-image.is-changing {
+  opacity: 0;
+
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   SELECTOR DE VISTA
+   ========================================================= */
+
+.product-view-switch {
+  width: fit-content;
+
+  margin: 0 auto;
+
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  border-radius: 999px;
+
+  background-color: rgba(218, 232, 199, 0.55);
+}
+
+.product-view-switch button {
+  min-width: 90px;
+  min-height: 38px;
+
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  color: var(--green-dark);
+  background-color: transparent;
+
+  font-family: var(--font-subtitle);
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.product-view-switch button.is-active {
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  box-shadow:
+    0 5px 12px rgba(62, 88, 37, 0.14);
+}
+
+.product-view-switch button:hover:not(.is-active) {
+  background-color: rgba(62, 88, 37, 0.08);
+}
+
+.product-view-switch button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .product-view-switch {
+    width: 100%;
+  }
+
+  .product-view-switch button {
+    flex: 1;
+    min-width: 0;
+  }
+}
