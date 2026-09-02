@@ -561,13 +561,38 @@
       </button>
 
 
-      <div
-        class="product-modal-image"
-        data-product-modal-image
-      >
-        [IMAGEN DEL PRODUCTO]
-      </div>
+      <div class="product-modal-visual">
 
+  <div
+    class="product-modal-image"
+    data-product-modal-image
+  >
+    [IMAGEN DEL PRODUCTO]
+  </div>
+
+  <div
+    class="product-view-switch"
+    aria-label="Cambiar vista del producto"
+  >
+
+    <button
+      type="button"
+      class="is-active"
+      data-product-view="front"
+    >
+      Frente
+    </button>
+
+    <button
+      type="button"
+      data-product-view="back"
+    >
+      Reverso
+    </button>
+
+  </div>
+
+</div>
 
       <h2
         id="product-modal-title"
