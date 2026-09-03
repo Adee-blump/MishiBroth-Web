@@ -1229,10 +1229,23 @@ button {
   text-transform: uppercase;
 }
 
-.section-about h2,
-.section-hydration h2 {
-  margin: 0 0 20px;
+/* =========================================================
+   TÍTULOS PRINCIPALES COMPARTIDOS
+   Inicio + Tienda + MishiClub
+   ========================================================= */
 
+.section-about h2,
+.section-hydration h2,
+.section-pillars .section-heading h2,
+.section-products .section-heading h2,
+.section-club .section-copy h2,
+.section-contact h2,
+
+.shop-hero h1,
+
+.club-page-heading h1,
+.club-coming-soon-card h2,
+.club-feature-copy h2 {
   color: var(--green-dark);
 
   font-family: var(--font-title);
@@ -4165,15 +4178,6 @@ section.shop-hero {
 
 .shop-hero h1 {
   margin: 0 0 18px;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(40px, 5vw, 58px);
-  font-weight: 700;
-
-  line-height: 1.1;
-  letter-spacing: -0.03em;
 }
 
 .shop-hero .section-heading > p:not(.section-kicker) {
@@ -4571,6 +4575,7 @@ section.club-page-hero {
     );
 }
 
+
 .club-page-hero-inner {
   display: flex;
   flex-direction: column;
@@ -4580,7 +4585,10 @@ section.club-page-hero {
 }
 
 
-/* Título */
+/* =========================================================
+   ENCABEZADO MISHICLUB
+   Misma jerarquía que títulos de secciones de Inicio
+   ========================================================= */
 
 .club-page-heading {
   position: relative;
@@ -4589,21 +4597,15 @@ section.club-page-hero {
   margin-bottom: 24px;
 }
 
+
 .club-page-heading .section-kicker {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
+
 
 .club-page-heading h1 {
   margin: 0;
 
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(58px, 7vw, 88px);
-  font-weight: 700;
-
-  line-height: 1;
-  letter-spacing: -0.045em;
 }
 
 
@@ -4622,6 +4624,7 @@ section.club-page-hero {
   padding: 26px 34px;
 
   border: 1px solid rgba(62, 88, 37, 0.08);
+
   border-radius:
     34px 34px 34px 12px;
 
@@ -4632,6 +4635,7 @@ section.club-page-hero {
 
   backdrop-filter: blur(6px);
 }
+
 
 .club-intro-bubble p {
   margin: 0;
@@ -4660,6 +4664,7 @@ section.club-page-hero {
   justify-content: center;
 }
 
+
 .club-hero-visual::before {
   content: "";
 
@@ -4679,6 +4684,7 @@ section.club-page-hero {
   transform: rotate(-8deg);
 }
 
+
 .club-hero-visual .image-placeholder {
   position: relative;
   z-index: 2;
@@ -4696,6 +4702,7 @@ section.club-page-hero {
   border-radius: 30px;
 
   color: var(--green-dark);
+
   background-color: rgba(255, 255, 255, 0.45);
 
   font-family: var(--font-subtitle);
@@ -4706,7 +4713,9 @@ section.club-page-hero {
 }
 
 
-/* Decoraciones hero */
+/* =========================================================
+   DECORACIONES DEL HERO
+   ========================================================= */
 
 .club-decoration {
   position: absolute;
@@ -4717,6 +4726,7 @@ section.club-page-hero {
   border-radius: 14px;
 
   color: var(--green-dark);
+
   background-color: rgba(255, 255, 255, 0.55);
 
   font-family: var(--font-subtitle);
@@ -4724,15 +4734,18 @@ section.club-page-hero {
   font-weight: 700;
 }
 
+
 .club-decoration-star {
   top: 8%;
   left: 2%;
 }
 
+
 .club-decoration-heart {
   top: 20%;
   right: 0;
 }
+
 
 .club-decoration-paw {
   bottom: 10%;
@@ -4747,6 +4760,7 @@ section.club-page-hero {
 .club-coming-soon {
   background-color: var(--cream-light);
 }
+
 
 .club-coming-soon-card {
   max-width: 920px;
@@ -4768,17 +4782,11 @@ section.club-page-hero {
   text-align: center;
 }
 
+
 .club-coming-soon-card h2 {
   margin: 0 0 16px;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(34px, 4vw, 46px);
-  font-weight: 700;
-
-  line-height: 1.15;
 }
+
 
 .club-coming-soon-card > p:not(.section-kicker) {
   max-width: 720px;
@@ -4804,43 +4812,58 @@ section.club-page-hero {
   overflow: hidden;
 }
 
+
 .club-feature-layout {
   min-height: 430px;
 
   padding: clamp(38px, 5vw, 58px);
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 0.9fr);
+
   align-items: center;
 
   gap: clamp(50px, 7vw, 90px);
 
   border-radius: 34px;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
+
+
+.club-feature-layout:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 36px rgba(62, 88, 37, 0.08);
+}
+
 
 .club-feature-layout-reverse {
-  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1fr);
+  grid-template-columns:
+    minmax(320px, 0.9fr)
+    minmax(0, 1fr);
 }
 
 
-/* Texto */
+/* =========================================================
+   TEXTO DE BLOQUES
+   ========================================================= */
 
 .club-feature-copy {
   max-width: 580px;
 }
 
+
 .club-feature-copy h2 {
   margin: 0 0 18px;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(38px, 4vw, 50px);
-  font-weight: 700;
-
-  line-height: 1.12;
-  letter-spacing: -0.03em;
 }
+
 
 .club-feature-copy > p {
   margin: 0;
@@ -4853,6 +4876,7 @@ section.club-page-hero {
   line-height: 1.65;
 }
 
+
 .club-feature-highlight {
   margin-bottom: 14px !important;
 
@@ -4864,7 +4888,9 @@ section.club-page-hero {
 }
 
 
-/* Visual */
+/* =========================================================
+   VISUALES DE BLOQUES
+   ========================================================= */
 
 .club-feature-visual {
   position: relative;
@@ -4875,6 +4901,7 @@ section.club-page-hero {
   align-items: center;
   justify-content: center;
 }
+
 
 .club-feature-visual .image-placeholder {
   position: relative;
@@ -4903,6 +4930,7 @@ section.club-page-hero {
   text-align: center;
 }
 
+
 .club-mini-decoration {
   position: absolute;
   z-index: 3;
@@ -4917,6 +4945,7 @@ section.club-page-hero {
   border-radius: 14px;
 
   color: var(--green-dark);
+
   background-color: rgba(255, 255, 255, 0.62);
 
   font-family: var(--font-subtitle);
@@ -4928,12 +4957,13 @@ section.club-page-hero {
 
 
 /* =========================================================
-   MISHIPUNTOS
+   5. MISHIPUNTOS
    ========================================================= */
 
 .club-feature-points {
   background-color: var(--cream-light);
 }
+
 
 .club-feature-points .club-feature-layout {
   background:
@@ -4947,12 +4977,13 @@ section.club-page-hero {
 
 
 /* =========================================================
-   MISHIECO
+   6. MISHIECO
    ========================================================= */
 
 .club-feature-eco {
   background-color: var(--cream-light);
 }
+
 
 .club-feature-eco .club-feature-layout {
   background:
@@ -4966,12 +4997,13 @@ section.club-page-hero {
 
 
 /* =========================================================
-   MISHICARE
+   7. MISHICARE
    ========================================================= */
 
 .club-feature-care {
   background-color: var(--cream-light);
 }
+
 
 .club-feature-care .club-feature-layout {
   background:
@@ -4989,7 +5021,7 @@ section.club-page-hero {
 
 
 /* =========================================================
-   5. CIERRE VISUAL / RESPIRO
+   8. CIERRE VISUAL / RESPIRO
    ========================================================= */
 
 .club-breathing-space {
@@ -5007,11 +5039,13 @@ section.club-page-hero {
     );
 }
 
+
 .club-breathing-inner {
   position: relative;
 
   min-height: 420px;
 }
+
 
 .club-breathing-mishi {
   position: absolute;
@@ -5021,6 +5055,7 @@ section.club-page-hero {
 
   transform: translateX(-50%);
 }
+
 
 .club-breathing-mishi .image-placeholder {
   width: 230px;
@@ -5036,6 +5071,7 @@ section.club-page-hero {
   border-radius: 28px;
 
   color: var(--green-dark);
+
   background-color: rgba(218, 232, 199, 0.22);
 
   font-family: var(--font-subtitle);
@@ -5046,7 +5082,9 @@ section.club-page-hero {
 }
 
 
-/* Decoraciones flotantes */
+/* =========================================================
+   DECORACIONES FLOTANTES
+   ========================================================= */
 
 .club-floating-decoration {
   position: absolute;
@@ -5056,6 +5094,7 @@ section.club-page-hero {
   border-radius: 14px;
 
   color: rgba(62, 88, 37, 0.72);
+
   background-color: rgba(255, 255, 255, 0.52);
 
   font-family: var(--font-subtitle);
@@ -5066,10 +5105,12 @@ section.club-page-hero {
     club-float 6s ease-in-out infinite;
 }
 
+
 .club-floating-1 {
   left: 10%;
   top: 18%;
 }
+
 
 .club-floating-2 {
   left: 24%;
@@ -5078,12 +5119,14 @@ section.club-page-hero {
   animation-delay: -1.2s;
 }
 
+
 .club-floating-3 {
   right: 15%;
   top: 24%;
 
   animation-delay: -2.4s;
 }
+
 
 .club-floating-4 {
   right: 28%;
@@ -5092,12 +5135,14 @@ section.club-page-hero {
   animation-delay: -3.4s;
 }
 
+
 .club-floating-5 {
   left: 42%;
   top: 12%;
 
   animation-delay: -4s;
 }
+
 
 .club-floating-6 {
   right: 7%;
@@ -5107,7 +5152,9 @@ section.club-page-hero {
 }
 
 
-/* Movimiento muy suave */
+/* =========================================================
+   ANIMACIÓN FLOTANTE
+   ========================================================= */
 
 @keyframes club-float {
 
@@ -5119,24 +5166,6 @@ section.club-page-hero {
   50% {
     transform: translateY(-10px);
   }
-}
-
-
-/* =========================================================
-   MICROINTERACCIONES
-   ========================================================= */
-
-.club-feature-layout {
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.club-feature-layout:hover {
-  transform: translateY(-4px);
-
-  box-shadow:
-    0 18px 36px rgba(62, 88, 37, 0.08);
 }
 
 
@@ -5153,6 +5182,7 @@ section.club-page-hero {
     gap: 40px;
   }
 
+
   .club-feature-visual .image-placeholder {
     min-height: 250px;
   }
@@ -5160,7 +5190,7 @@ section.club-page-hero {
 
 
 /* =========================================================
-   MÓVIL — HASTA 780px
+   MÓVIL / TABLET PEQUEÑA — HASTA 780px
    ========================================================= */
 
 @media (max-width: 780px) {
@@ -5170,30 +5200,50 @@ section.club-page-hero {
     padding-bottom: 48px;
   }
 
-  .club-page-heading h1 {
-    font-size: clamp(48px, 15vw, 64px);
+
+  /* -----------------------------------------
+     TÍTULOS
+     Misma escala de secciones de Inicio
+     ----------------------------------------- */
+
+  .club-page-heading h1,
+  .club-coming-soon-card h2,
+  .club-feature-copy h2 {
+    font-size: clamp(32px, 8vw, 40px);
+
+    line-height: 1.15;
   }
+
+
+  /* -----------------------------------------
+     Introducción
+     ----------------------------------------- */
 
   .club-intro-bubble {
     width: 100%;
 
     margin-bottom: 32px;
 
-    padding: 22px 22px;
+    padding: 22px;
 
-    border-radius: 26px 26px 26px 10px;
+    border-radius:
+      26px 26px 26px 10px;
   }
+
 
   .club-intro-bubble p {
     font-size: 18px;
   }
+
 
   .club-hero-visual {
     min-height: 320px;
   }
 
 
-  /* Próximamente */
+  /* -----------------------------------------
+     Próximamente
+     ----------------------------------------- */
 
   .club-coming-soon-card {
     padding: 34px 24px;
@@ -5202,7 +5252,9 @@ section.club-page-hero {
   }
 
 
-  /* Bloques */
+  /* -----------------------------------------
+     Bloques conceptuales
+     ----------------------------------------- */
 
   .club-feature-layout,
   .club-feature-layout-reverse {
@@ -5215,6 +5267,7 @@ section.club-page-hero {
     gap: 32px;
   }
 
+
   .club-feature-copy {
     max-width: 600px;
 
@@ -5223,19 +5276,23 @@ section.club-page-hero {
     text-align: center;
   }
 
+
   .club-feature-copy > p {
     margin-left: auto;
     margin-right: auto;
   }
 
+
   .club-feature-visual {
     min-height: 280px;
   }
+
 
   .club-feature-visual .image-placeholder {
     width: min(100%, 340px);
     min-height: 250px;
   }
+
 
   .club-mini-decoration {
     right: 5%;
@@ -5243,24 +5300,27 @@ section.club-page-hero {
 
 
   /* MishiEco:
-     en móvil dejamos texto primero
-     y visual después */
+     texto primero en móvil */
 
   .club-feature-eco .club-feature-copy {
     order: 1;
   }
+
 
   .club-feature-eco .club-feature-visual {
     order: 2;
   }
 
 
-  /* Respiro */
+  /* -----------------------------------------
+     Cierre visual
+     ----------------------------------------- */
 
   .club-breathing-space,
   .club-breathing-inner {
     min-height: 360px;
   }
+
 
   .club-breathing-mishi .image-placeholder {
     width: 190px;
@@ -5280,23 +5340,29 @@ section.club-page-hero {
     padding-bottom: 38px;
   }
 
-  .club-page-heading h1 {
-    font-size: 46px;
+
+  /* -----------------------------------------
+     TÍTULOS
+     Igual que secciones de Inicio
+     ----------------------------------------- */
+
+  .club-page-heading h1,
+  .club-coming-soon-card h2,
+  .club-feature-copy h2 {
+    font-size: 32px;
   }
+
 
   .club-intro-bubble p {
     font-size: 17px;
   }
 
-  .club-coming-soon-card h2,
-  .club-feature-copy h2 {
-    font-size: 31px;
-  }
 
   .club-coming-soon-card > p:not(.section-kicker),
   .club-feature-copy > p {
     font-size: 17px;
   }
+
 
   .club-feature-layout,
   .club-feature-layout-reverse {
@@ -5305,18 +5371,22 @@ section.club-page-hero {
     border-radius: 26px;
   }
 
+
   .club-feature-visual {
     min-height: 240px;
   }
+
 
   .club-feature-visual .image-placeholder {
     min-height: 220px;
   }
 
+
   .club-breathing-space,
   .club-breathing-inner {
     min-height: 320px;
   }
+
 
   .club-floating-decoration {
     font-size: 8px;
@@ -5325,7 +5395,7 @@ section.club-page-hero {
 
 
 /* =========================================================
-   REDUCIR MOVIMIENTO
+   ACCESIBILIDAD — REDUCIR MOVIMIENTO
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -5334,7 +5404,58 @@ section.club-page-hero {
     animation: none;
   }
 
+
   .club-feature-layout {
     transition: none;
   }
+}
+
+/* =========================================================
+   TÍTULOS COMPARTIDOS — TABLET / MÓVIL
+   Hasta 780px
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .section-about h2,
+  .section-hydration h2,
+  .section-pillars .section-heading h2,
+  .section-products .section-heading h2,
+  .section-club .section-copy h2,
+  .section-contact h2,
+
+  .shop-hero h1,
+
+  .club-page-heading h1,
+  .club-coming-soon-card h2,
+  .club-feature-copy h2 {
+    font-size: clamp(32px, 8vw, 40px);
+    line-height: 1.15;
+  }
+
+}
+
+/* =========================================================
+   TÍTULOS COMPARTIDOS — MÓVILES PEQUEÑOS
+   Hasta 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .section-about h2,
+  .section-hydration h2,
+  .section-pillars .section-heading h2,
+  .section-products .section-heading h2,
+  .section-club .section-copy h2,
+  .section-contact h2,
+
+  .shop-hero h1,
+
+  .club-page-heading h1,
+  .club-coming-soon-card h2,
+  .club-feature-copy h2 {
+    font-size: 31px;
+    line-height: 1.15;
+  }
+
 }
