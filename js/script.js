@@ -1,8 +1,6 @@
 /* =========================================================
-   MISHIBROTH — ETAPA 4
-   INTERACCIONES:
-   1. Menú móvil
-   2. Hero slider
+   MISHIBROTH — INTERACCIONES GENERALES
+   Menú · Slider · BROTH · Cuenta · Productos · Carrito
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
