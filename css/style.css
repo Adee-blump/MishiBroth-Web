@@ -370,6 +370,13 @@ button {
   position: relative;
 
   width: 100%;
+
+  display: grid;
+
+  overflow: hidden;
+
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
 }
 
 .hero-slides {
@@ -377,9 +384,12 @@ button {
 
   width: 100%;
 
-  min-height: clamp(600px, calc(100vh - var(--header-height)), 760px);
-}
+  height: clamp(600px, calc(100vh - var(--header-height)), 760px);
 
+  display: grid;
+
+  overflow: hidden;
+}
 
 /* =========================================================
    4. SLIDES
@@ -388,30 +398,49 @@ button {
 .hero-slide {
   position: relative;
 
+  grid-area: 1 / 1;
+
+  z-index: 1;
+
   width: 100%;
-  min-height: clamp(600px, calc(100vh - var(--header-height)), 760px);
+  height: 100%;
 
   padding:
     clamp(70px, 8vw, 110px)
     max(24px, calc((100vw - var(--page-width)) / 2));
 
-  display: none;
+  display: grid;
+
   grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+
   align-items: center;
 
   gap: clamp(30px, 6vw, 90px);
 
   overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.75s;
+
+  will-change: opacity;
 }
 
 
-/*
-   Sin JavaScript solamente mostramos
-   el slide marcado como .is-active
-*/
-
 .hero-slide.is-active {
-  display: grid;
+  z-index: 2;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0s;
 }
 
 
@@ -963,11 +992,6 @@ button {
     display: flex;
   }
 
-  /*
-     El menú permanece cerrado porque todavía
-     no estamos programando JavaScript.
-  */
-
   .main-navigation {
     display: none;
   }
@@ -977,24 +1001,29 @@ button {
      Hero móvil
      ------------------------- */
 
-  .hero-slides {
-    min-height: auto;
-  }
+ .hero-slides {
+  height: 760px;
+  min-height: 0;
+}
 
-  .hero-slide {
-    min-height: auto;
+.hero-slide {
+  height: 100%;
+  min-height: 0;
 
-    padding:
-      54px
-      24px
-      82px;
+  padding:
+    54px
+    24px
+    82px;
 
-    grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
 
-    gap: 42px;
+  align-content: center;
 
-    text-align: center;
-  }
+  gap: 32px;
+
+  text-align: center;
+}
 
   .hero-copy {
     max-width: 620px;
@@ -1065,47 +1094,48 @@ button {
      Slide 3 móvil
      ------------------------- */
 
-  .hero-slide[data-slide="2"] .hero-visual {
-    min-height: 460px;
-  }
+.hero-slide[data-slide="2"] .hero-visual {
+  min-height: 370px;
+}
 
-  .hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
-    position: absolute;
+.hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+  position: absolute;
 
-    left: 0;
-    bottom: 110px;
+  left: 0;
+  bottom: 85px;
 
-    width: 43%;
-    min-height: 280px;
-  }
+  width: 40%;
+  min-height: 235px;
 
-  .hero-product-list {
-    right: 0;
-    bottom: 30px;
+  padding: 14px;
+}
 
-    width: 68%;
+.hero-slide[data-slide="2"] .hero-product-list {
+  right: 0;
+  bottom: 22px;
 
-    gap: 7px;
-  }
+  width: 66%;
 
-  .hero-product-placeholder {
-    min-height: 150px;
+  gap: 6px;
+}
 
-    padding: 9px 5px;
+.hero-slide[data-slide="2"] .hero-product-placeholder {
+  min-height: 118px;
 
-    border-radius: 16px;
+  padding: 7px 4px;
 
-    font-size: 9px;
-  }
+  border-radius: 14px;
 
-  .hero-product-placeholder:nth-child(2) {
-    min-height: 175px;
-  }
+  font-size: 8px;
+}
 
-  .hero-product-placeholder:nth-child(3) {
-    min-height: 162px;
-  }
+.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
+  min-height: 138px;
+}
 
+.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
+  min-height: 128px;
+}
 
   /* -------------------------
      Controles móvil
@@ -1140,11 +1170,16 @@ button {
   }
 
   .hero-slide {
-    padding:
-      44px
-      18px
-      74px;
-  }
+  height: 100%;
+  min-height: 0;
+
+  padding:
+    44px
+    18px
+    74px;
+
+  gap: 28px;
+}
 
   .hero-copy h1,
   .hero-copy h2 {
@@ -1164,22 +1199,41 @@ button {
   }
 
   .hero-slide[data-slide="2"] .hero-visual {
-    min-height: 420px;
-  }
+  min-height: 330px;
+}
 
-  .hero-product-placeholder {
-    min-height: 132px;
+.hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+  bottom: 76px;
 
-    font-size: 8px;
-  }
+  width: 39%;
+  min-height: 210px;
 
-  .hero-product-placeholder:nth-child(2) {
-    min-height: 152px;
-  }
+  padding: 12px;
+}
 
-  .hero-product-placeholder:nth-child(3) {
-    min-height: 142px;
-  }
+.hero-slide[data-slide="2"] .hero-product-list {
+  bottom: 18px;
+
+  width: 65%;
+
+  gap: 5px;
+}
+
+.hero-slide[data-slide="2"] .hero-product-placeholder {
+  min-height: 102px;
+
+  padding: 6px 3px;
+
+  font-size: 7px;
+}
+
+.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
+  min-height: 122px;
+}
+
+.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
+  min-height: 112px;
+}
 }
 /* =========================================================
    CONOCE MISHIBROTH
@@ -3230,15 +3284,6 @@ button {
 }
 
 /* =========================================================
-   EVITAR DESPLAZAMIENTO HORIZONTAL AL HACER SWIPE
-   ========================================================= */
-
-.hero-slider {
-  touch-action: pan-y;
-  overscroll-behavior-x: none;
-}
-
-/* =========================================================
    ESTABILIDAD HORIZONTAL EN MÓVIL
    ========================================================= */
 
@@ -3246,11 +3291,6 @@ html,
 body {
   max-width: 100%;
   overflow-x: clip;
-}
-
-.hero-slider {
-  touch-action: pan-y;
-  overscroll-behavior-x: none;
 }
 
 /* =========================================================
@@ -4136,6 +4176,19 @@ body.modal-open {
 
     transition: none;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-slide {
+    transition: none;
+  }
+}
 }
 
 /* =========================================================
