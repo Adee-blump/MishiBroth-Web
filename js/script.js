@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         dot.setAttribute(
-          "aria-selected",
+          "aria-current",
           String(isActive)
         );
       });
@@ -490,16 +490,20 @@ const openAccountModal = () => {
 
   accountTabs.forEach((tab) => {
 
-    const isLogin =
-      tab.dataset.accountTab === "login";
+  const isLogin =
+    tab.dataset.accountTab === "login";
 
-    tab.classList.toggle(
-      "is-active",
-      isLogin
-    );
+  tab.classList.toggle(
+    "is-active",
+    isLogin
+  );
 
-  });
+  tab.setAttribute(
+    "aria-pressed",
+    String(isLogin)
+  );
 
+});
 
   accountPanels.forEach((panel) => {
 
@@ -589,16 +593,21 @@ accountTabs.forEach((tab) => {
 
     accountTabs.forEach((item) => {
 
-      const isActive =
-        item.dataset.accountTab ===
-        selectedTab;
+  const isActive =
+    item.dataset.accountTab ===
+    selectedTab;
 
-      item.classList.toggle(
-        "is-active",
-        isActive
-      );
+  item.classList.toggle(
+    "is-active",
+    isActive
+  );
 
-    });
+  item.setAttribute(
+    "aria-pressed",
+    String(isActive)
+  );
+
+});
 
 
     /* Cambiar panel */
@@ -774,6 +783,11 @@ const openProductModal = (productId) => {
     isFront
   );
 
+  button.setAttribute(
+    "aria-pressed",
+    String(isFront)
+  );
+
 });
 
   /* Guardar producto en botón */
@@ -904,16 +918,21 @@ productViewButtons.forEach((button) => {
 
     productViewButtons.forEach((item) => {
 
-      const isActive =
-        item.dataset.productView ===
-        selectedView;
+  const isActive =
+    item.dataset.productView ===
+    selectedView;
 
-      item.classList.toggle(
-        "is-active",
-        isActive
-      );
+  item.classList.toggle(
+    "is-active",
+    isActive
+  );
 
-    });
+  item.setAttribute(
+    "aria-pressed",
+    String(isActive)
+  );
+
+});
 
 
     /* Cambio suave de imagen */
@@ -1001,6 +1020,11 @@ const openCart = () => {
       "aria-label",
       "Cerrar carrito"
     );
+
+    cartToggle.setAttribute(
+      "aria-expanded",
+      "true"
+    );
   }
 
 };
@@ -1016,6 +1040,11 @@ const closeCart = () => {
     cartToggle.setAttribute(
       "aria-label",
       "Abrir carrito"
+    );
+
+    cartToggle.setAttribute(
+      "aria-expanded",
+      "false"
     );
   }
 
