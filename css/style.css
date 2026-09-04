@@ -1,6 +1,6 @@
 /* =========================================================
-   MISHIBROTH — ETAPA 3
-   HEADER + HERO
+   MISHIBROTH — ESTILOS GENERALES
+   Inicio + Tienda + MishiClub
    ========================================================= */
 
 /* =========================================================
@@ -25,13 +25,17 @@ section:not(.hero) {
 .site-footer {
   padding-top: 70px;
   padding-bottom: 40px;
+
+  background-color: var(--green-dark);
+  color: var(--cream-light);
 }
 
 /* Tablet */
 @media (max-width: 1000px) {
+  .header-container,
   .container,
   .section-container {
-    width: min(100% - 36px, 1240px);
+    width: min(100% - 36px, var(--page-width));
   }
 
   section:not(.hero) {
@@ -42,6 +46,7 @@ section:not(.hero) {
 
 /* Móvil */
 @media (max-width: 780px) {
+  .header-container,
   .container,
   .section-container {
     width: calc(100% - 32px);
@@ -60,6 +65,7 @@ section:not(.hero) {
 
 /* Móviles pequeños */
 @media (max-width: 480px) {
+  .header-container,
   .container,
   .section-container {
     width: calc(100% - 24px);
@@ -77,21 +83,15 @@ section:not(.hero) {
 
 :root {
   /* Paleta MishiBroth */
-  --cream: #FFFAE6;
-  --cream-soft: #FFFDEE;
   --cream-light: #FEFAF1;
 
   --coral: #F8A078;
   --coral-soft: #FCC6B9;
 
-  --green: #9CAB7B;
   --green-light: #DAE8C7;
   --green-dark: #3E5825;
 
   --aqua: #B6E5DD;
-  --aqua-dark: #9FC6B3;
-
-  --yellow-soft: #FFE9AF;
 
   --text-dark: #252622;
   --white: #FFFFFF;
@@ -107,11 +107,9 @@ section:not(.hero) {
 
   /* Bordes */
   --radius-small: 14px;
-  --radius-medium: 24px;
   --radius-large: 36px;
 
   /* Sombras */
-  --shadow-soft: 0 12px 30px rgba(62, 88, 37, 0.08);
   --shadow-button: 0 8px 18px rgba(62, 88, 37, 0.16);
 
   /* Transiciones */
@@ -179,7 +177,6 @@ button {
 }
 
 .header-container {
-  width: min(calc(100% - 48px), var(--page-width));
   min-height: var(--header-height);
 
   margin: 0 auto;
@@ -556,14 +553,6 @@ button {
   line-height: 1.55;
 }
 
-
-
-.hero-slide[data-slide="2"] .hero-eyebrow,
-.hero-slide[data-slide="2"] .hero-copy h2 {
-  color: var(--green-dark);
-}
-
-
 /* =========================================================
    6. BOTÓN PRINCIPAL
    ========================================================= */
@@ -900,11 +889,6 @@ button {
     --header-height: 78px;
   }
 
-  .header-container {
-    width: min(calc(100% - 36px), var(--page-width));
-  }
-
-
   /* HEADER */
 
   .main-navigation ul {
@@ -972,15 +956,6 @@ button {
      Header móvil
      ------------------------- */
 
-  .site-header {
-    min-height: var(--header-height);
-  }
-
-  .header-container {
-    width: calc(100% - 32px);
-    min-height: var(--header-height);
-  }
-
   .brand-logo-placeholder {
     min-width: 145px;
     min-height: 42px;
@@ -1002,14 +977,10 @@ button {
      ------------------------- */
 
  .hero-slides {
-  height: 760px;
   min-height: 0;
 }
 
 .hero-slide {
-  height: 100%;
-  min-height: 0;
-
   padding:
     54px
     24px
@@ -1094,47 +1065,50 @@ button {
      Slide 3 móvil
      ------------------------- */
 
-.hero-slide[data-slide="2"] .hero-visual {
-  min-height: 370px;
+   .hero-slide[data-slide="2"] .hero-visual {
+    min-height: 370px;
 }
 
-.hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
-  position: absolute;
+   .hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+    position: absolute;
 
-  left: 0;
-  bottom: 85px;
+    left: 0;
 
-  width: 40%;
-  min-height: 235px;
+    bottom: 85px;
 
-  padding: 14px;
+    width: 40%;
+
+    min-height: 235px;
+
+    padding: 14px;
 }
 
-.hero-slide[data-slide="2"] .hero-product-list {
-  right: 0;
-  bottom: 22px;
+  .hero-slide[data-slide="2"] .hero-product-list {
+    right: 0;
 
-  width: 66%;
+    bottom: 22px;
 
-  gap: 6px;
+    width: 66%;
+
+    gap: 6px;
 }
 
-.hero-slide[data-slide="2"] .hero-product-placeholder {
-  min-height: 118px;
+  .hero-slide[data-slide="2"] .hero-product-placeholder {
+    min-height: 118px;
 
-  padding: 7px 4px;
+    padding: 7px 4px;
+ 
+    border-radius: 14px;
 
-  border-radius: 14px;
-
-  font-size: 8px;
+    font-size: 8px;
 }
 
-.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
-  min-height: 138px;
+  .hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
+    min-height: 138px;
 }
 
-.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
-  min-height: 128px;
+  .hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
+    min-height: 128px;
 }
 
   /* -------------------------
@@ -1156,10 +1130,6 @@ button {
    ========================================================= */
 
 @media (max-width: 480px) {
-
-  .header-container {
-    width: calc(100% - 24px);
-  }
 
   .brand-logo-placeholder {
     min-width: 132px;
@@ -1453,6 +1423,99 @@ button {
 }
 
 /* =========================================================
+   RESPONSIVE — CONOCE MISHIBROTH
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .section-about .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .section-about .section-copy {
+    order: 1;
+
+    width: 100%;
+    max-width: 100%;
+
+    text-align: center;
+  }
+
+  .section-about .section-copy > p:not(.section-kicker) {
+    width: 100%;
+    max-width: 560px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-about .concept-list {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .section-about .concept-list li {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 18px;
+
+    text-align: left;
+  }
+
+  .section-about .section-visual {
+    order: 2;
+
+    width: 100%;
+    min-height: 340px;
+
+    margin: 0 auto;
+  }
+
+  .section-about .section-visual .image-placeholder {
+    width: min(100%, 340px);
+    min-height: 310px;
+
+    margin: 0 auto;
+  }
+
+  .section-about .section-visual::before {
+    width: min(85vw, 360px);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .section-about .about-layout {
+    gap: 30px;
+  }
+
+  .section-about .section-copy > p:not(.section-kicker) {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .section-about .section-visual {
+    min-height: 300px;
+  }
+
+  .section-about .section-visual .image-placeholder {
+    width: min(100%, 290px);
+    min-height: 270px;
+  }
+
+  .section-about .concept-list li {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
    ¿POR QUÉ MISHIBROTH? / HIDRATACIÓN
    ========================================================= */
 
@@ -1497,7 +1560,7 @@ button {
   color: var(--coral);
 
   font-family: var(--font-subtitle);
-  font-size: 17 px;
+  font-size: 17px;
   font-weight: 800;
 
   letter-spacing: 0.1em;
@@ -1509,15 +1572,6 @@ button {
 
 .hydration-copy h2 {
   margin: 0 0 22px;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(34px, 3.4vw, 46px);
-  font-weight: 700;
-
-  line-height: 1.15;
-  letter-spacing: -0.025em;
 }
 
 
@@ -1592,10 +1646,6 @@ button {
     gap: 40px;
   }
 
-  .hydration-copy h2 {
-    font-size: clamp(32px, 4vw, 40px);
-  }
-
   .hydration-visual .image-placeholder {
     min-height: 330px;
   }
@@ -1626,8 +1676,6 @@ button {
 
   .hydration-copy h2 {
     max-width: 560px;
-
-    font-size: clamp(32px, 8vw, 40px);
   }
 
   .hydration-copy > p:not(.section-kicker) {
@@ -1656,8 +1704,6 @@ button {
 
   .hydration-copy h2 {
     margin-bottom: 18px;
-
-    font-size: 31px;
   }
 
   .hydration-copy > p:not(.section-kicker) {
@@ -1698,15 +1744,6 @@ button {
 
 .section-pillars .section-heading h2 {
   margin: 0;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(34px, 4vw, 48px);
-  font-weight: 700;
-
-  line-height: 1.15;
-  letter-spacing: -0.025em;
 }
 
 
@@ -1737,6 +1774,10 @@ button {
   outline: none;
 
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .flip-card-inner {
@@ -1866,12 +1907,6 @@ button {
    MICROINTERACCIÓN VISUAL
    ========================================================= */
 
-.flip-card {
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease;
-}
-
 .flip-card:hover {
   transform: translateY(-6px);
 }
@@ -1883,13 +1918,9 @@ button {
 
 
 /* =========================================================
-   PREPARADO PARA EL FLIP FUTURO
+   ESTADO ACTIVO DEL FLIP
+   La clase .is-flipped se controla desde JavaScript.
    ========================================================= */
-
-/*
-   Más adelante, JavaScript podrá agregar
-   una clase como .is-flipped a la tarjeta.
-*/
 
 .flip-card.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
@@ -1958,10 +1989,6 @@ button {
 
 @media (max-width: 480px) {
 
-  .section-pillars .section-heading h2 {
-    font-size: 32px;
-  }
-
   .flip-card {
     flex-basis: 190px;
 
@@ -2012,15 +2039,6 @@ button {
 
 .section-products .section-heading h2 {
   margin: 0;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(34px, 4vw, 48px);
-  font-weight: 700;
-
-  line-height: 1.15;
-  letter-spacing: -0.025em;
 }
 
 
@@ -2303,25 +2321,30 @@ button {
   }
 
   .product-grid {
+    width: 100%;
+
     grid-template-columns: 1fr;
 
     gap: 20px;
   }
 
+  .product-card,
   .product-card:last-child {
-    grid-column: auto;
-
     width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+    justify-self: stretch;
   }
 
-  .product-card {
-    max-width: 520px;
-
-    margin: 0 auto;
+  .product-card:last-child {
+    grid-column: auto;
   }
 
   .product-image-placeholder {
-    min-height: 220px;
+    width: 100%;
+    min-height: 260px;
   }
 
   .products-cta {
@@ -2338,16 +2361,11 @@ button {
   }
 }
 
-
 /* =========================================================
    MÓVILES PEQUEÑOS
    ========================================================= */
 
 @media (max-width: 480px) {
-
-  .section-products .section-heading h2 {
-    font-size: 32px;
-  }
 
   .product-card {
     padding: 18px;
@@ -2369,147 +2387,6 @@ button {
 
   .product-price {
     font-size: 24px;
-  }
-}
-
-/* =========================================================
-   CORRECCIÓN RESPONSIVE — CONOCE MISHIBROTH
-   ========================================================= */
-
-@media (max-width: 780px) {
-
-  .section-about .about-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
-  }
-
-  .section-about .section-copy {
-    order: 1;
-
-    width: 100%;
-    max-width: 100%;
-
-    text-align: center;
-  }
-
-  .section-about .section-copy > p:not(.section-kicker) {
-    width: 100%;
-    max-width: 560px;
-
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .section-about .concept-list {
-    width: 100%;
-
-    grid-template-columns: 1fr;
-
-    gap: 12px;
-  }
-
-  .section-about .concept-list li {
-    width: 100%;
-
-    min-height: auto;
-
-    padding: 18px;
-
-    text-align: left;
-  }
-
-  .section-about .section-visual {
-    order: 2;
-
-    width: 100%;
-    min-height: 340px;
-
-    margin: 0 auto;
-  }
-
-  .section-about .section-visual .image-placeholder {
-    width: min(100%, 340px);
-    min-height: 310px;
-
-    margin: 0 auto;
-  }
-
-  .section-about .section-visual::before {
-    width: min(85vw, 360px);
-  }
-}
-
-@media (max-width: 480px) {
-
-  .section-about .about-layout {
-    gap: 30px;
-  }
-
-  .section-about .section-copy h2 {
-    font-size: 31px;
-  }
-
-  .section-about .section-copy > p:not(.section-kicker) {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  .section-about .section-visual {
-    min-height: 300px;
-  }
-
-  .section-about .section-visual .image-placeholder {
-    width: min(100%, 290px);
-    min-height: 270px;
-  }
-
-  .section-about .concept-list li {
-    font-size: 14px;
-  }
-}
-
-/* =========================================================
-   CORRECCIÓN RESPONSIVE — PRODUCTOS EN MÓVIL
-   ========================================================= */
-
-@media (max-width: 780px) {
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-
-    width: 100%;
-    gap: 20px;
-  }
-
-  .product-card,
-  .product-card:last-child {
-    width: 100%;
-    max-width: 100%;
-
-    margin: 0;
-
-    justify-self: stretch;
-  }
-
-  .product-image-placeholder {
-    width: 100%;
-    min-height: 220px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .product-card,
-  .product-card:last-child {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .product-image-placeholder {
-    width: 100%;
-    min-height: 190px;
   }
 }
 
@@ -2549,15 +2426,6 @@ button {
 
 .section-club .section-copy h2 {
   margin: 0 0 20px;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(34px, 4vw, 48px);
-  font-weight: 700;
-
-  line-height: 1.15;
-  letter-spacing: -0.025em;
 }
 
 .section-club .section-copy > p:not(.section-kicker) {
@@ -2767,10 +2635,6 @@ button {
     gap: 30px;
   }
 
-  .section-club .section-copy h2 {
-    font-size: 32px;
-  }
-
   .section-club .section-copy > p:not(.section-kicker) {
     font-size: 17px;
   }
@@ -2786,7 +2650,7 @@ button {
 }
 
 /* =========================================================
-   CONTACTO / CTA FINAL
+   CONTACTO / WHATSAPP
    ========================================================= */
 
 .section-contact {
@@ -2824,15 +2688,6 @@ button {
   max-width: 700px;
 
   margin: 0 0 18px;
-
-  color: var(--green-dark);
-
-  font-family: var(--font-title);
-  font-size: clamp(32px, 3.8vw, 46px);
-  font-weight: 700;
-
-  line-height: 1.15;
-  letter-spacing: -0.025em;
 }
 
 .section-contact .contact-card > div:first-child > p:not(.section-kicker) {
@@ -2922,12 +2777,6 @@ button {
 /* =========================================================
    FOOTER
    ========================================================= */
-
-.site-footer {
-  background-color: var(--green-dark);
-  color: var(--cream-light);
-}
-
 
 /* =========================================================
    CONTENEDOR PRINCIPAL DEL FOOTER
@@ -3182,10 +3031,6 @@ button {
     border-radius: 26px;
   }
 
-  .section-contact h2 {
-    font-size: 31px;
-  }
-
   .section-contact .contact-card > div:first-child > p:not(.section-kicker) {
     font-size: 17px;
   }
@@ -3208,10 +3053,6 @@ button {
    ========================================================= */
 
 @media (max-width: 780px) {
-
-  .site-header {
-    position: relative;
-  }
 
   .main-navigation.is-open {
     position: absolute;
@@ -3294,7 +3135,7 @@ body {
 }
 
 /* =========================================================
-   MODAL DE CUENTA
+   MODALES — ESTILOS BASE
    ========================================================= */
 
 .modal[hidden] {
@@ -3415,7 +3256,7 @@ body {
 
 
 /* =========================================================
-   TABS
+   SELECTOR INICIAR SESIÓN / REGISTRO
    ========================================================= */
 
 .account-tabs {
@@ -3465,7 +3306,7 @@ body {
 
 
 /* =========================================================
-   FORMULARIOS
+   MODAL DE CUENTA
    ========================================================= */
 
 .account-panel form {
@@ -3601,7 +3442,7 @@ body.modal-open {
   width: 100%;
   min-height: 250px;
 
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 
   padding: 24px;
 
@@ -3621,6 +3462,9 @@ body.modal-open {
   font-weight: 700;
 
   text-align: center;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 
@@ -4164,20 +4008,11 @@ body.modal-open {
   transform: translateY(0);
 }
 
-
-/* Respetar preferencias de accesibilidad */
+/* =========================================================
+   ACCESIBILIDAD — REDUCIR MOVIMIENTO
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
-  [data-reveal] {
-    opacity: 1;
-
-    transform: none;
-
-    transition: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
 
   [data-reveal] {
     opacity: 1;
@@ -4188,7 +4023,14 @@ body.modal-open {
   .hero-slide {
     transition: none;
   }
-}
+
+  .club-floating-decoration {
+    animation: none;
+  }
+
+  .club-feature-layout {
+    transition: none;
+  }
 }
 
 /* =========================================================
@@ -4251,10 +4093,6 @@ section.shop-hero {
    PRODUCTOS EN TIENDA
    ========================================================= */
 
-.shop-products {
-  background-color: #FFFDEE;
-}
-
 .shop-products .product-grid {
   align-items: stretch;
 }
@@ -4274,15 +4112,6 @@ section.shop-hero {
 
   line-height: 1.25;
 }
-
-.shop-products .product-card > p:not(.product-price) {
-  margin-bottom: 12px;
-}
-
-.shop-products .product-price {
-  margin-top: 4px;
-}
-
 
 /* =========================================================
    BLOQUE SCRATCH
@@ -4417,27 +4246,6 @@ section.shop-hero {
     0 12px 24px rgba(62, 88, 37, 0.18);
 }
 
-/* =========================================================
-   TIENDA — ESCRITORIO
-   Más de 780px
-   ========================================================= */
-
-section.shop-hero {
-  padding-top: 42px;
-  padding-bottom: 42px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #FFFDEE 0%,
-      #FFFAE6 100%
-    );
-}
-
-.shop-hero .section-container {
-  padding-top: 0;
-  padding-bottom: 0;
-}
 
 /* =========================================================
    TIENDA — TABLET Y MÓVIL
@@ -4449,15 +4257,6 @@ section.shop-hero {
   section.shop-hero {
     padding-top: 34px;
     padding-bottom: 34px;
-  }
-
-  .shop-hero .section-container {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .shop-hero h1 {
-    font-size: clamp(34px, 10vw, 44px);
   }
 
   .shop-hero .section-heading > p:not(.section-kicker) {
@@ -4478,10 +4277,6 @@ section.shop-hero {
     padding-bottom: 26px;
   }
 
-  .shop-hero h1 {
-    font-size: 32px;
-  }
-
   .shop-hero .section-heading > p:not(.section-kicker) {
     font-size: 16px;
     line-height: 1.55;
@@ -4496,20 +4291,11 @@ section.shop-hero {
   margin-bottom: 24px;
 }
 
-.product-modal-image {
-  margin-bottom: 14px;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
 .product-modal-image.is-changing {
   opacity: 0;
 
   transform: scale(0.98);
 }
-
 
 /* =========================================================
    SELECTOR DE VISTA
@@ -4929,14 +4715,13 @@ section.club-page-hero {
   line-height: 1.65;
 }
 
+.club-feature-copy > p.club-feature-highlight {
+  margin-bottom: 14px;
 
-.club-feature-highlight {
-  margin-bottom: 14px !important;
+  color: var(--green-dark);
 
-  color: var(--green-dark) !important;
-
-  font-family: var(--font-subtitle) !important;
-  font-size: 20px !important;
+  font-family: var(--font-subtitle);
+  font-size: 20px;
   font-weight: 800;
 }
 
@@ -5010,14 +4795,19 @@ section.club-page-hero {
 
 
 /* =========================================================
-   5. MISHIPUNTOS
+   FONDO COMPARTIDO — MISHIPUNTOS / MISHIECO / MISHICARE
    ========================================================= */
 
-.club-feature-points {
+.club-feature-points,
+.club-feature-eco,
+.club-feature-care {
   background-color: var(--cream-light);
 }
 
-
+/* =========================================================
+   5. MISHIPUNTOS
+   ========================================================= */
+   
 .club-feature-points .club-feature-layout {
   background:
     radial-gradient(
@@ -5033,11 +4823,6 @@ section.club-page-hero {
    6. MISHIECO
    ========================================================= */
 
-.club-feature-eco {
-  background-color: var(--cream-light);
-}
-
-
 .club-feature-eco .club-feature-layout {
   background:
     radial-gradient(
@@ -5052,11 +4837,6 @@ section.club-page-hero {
 /* =========================================================
    7. MISHICARE
    ========================================================= */
-
-.club-feature-care {
-  background-color: var(--cream-light);
-}
-
 
 .club-feature-care .club-feature-layout {
   background:
@@ -5077,11 +4857,14 @@ section.club-page-hero {
    8. CIERRE VISUAL / RESPIRO
    ========================================================= */
 
-.club-breathing-space {
+.club-breathing-space,
+.club-breathing-inner {
   position: relative;
 
   min-height: 420px;
+}
 
+.club-breathing-space {
   overflow: hidden;
 
   background:
@@ -5092,14 +4875,6 @@ section.club-page-hero {
     );
 }
 
-
-.club-breathing-inner {
-  position: relative;
-
-  min-height: 420px;
-}
-
-
 .club-breathing-mishi {
   position: absolute;
 
@@ -5108,7 +4883,6 @@ section.club-page-hero {
 
   transform: translateX(-50%);
 }
-
 
 .club-breathing-mishi .image-placeholder {
   width: 230px;
@@ -5133,7 +4907,6 @@ section.club-page-hero {
 
   text-align: center;
 }
-
 
 /* =========================================================
    DECORACIONES FLOTANTES
@@ -5164,14 +4937,12 @@ section.club-page-hero {
   top: 18%;
 }
 
-
 .club-floating-2 {
   left: 24%;
   top: 50%;
 
   animation-delay: -1.2s;
 }
-
 
 .club-floating-3 {
   right: 15%;
@@ -5180,14 +4951,12 @@ section.club-page-hero {
   animation-delay: -2.4s;
 }
 
-
 .club-floating-4 {
   right: 28%;
   top: 58%;
 
   animation-delay: -3.4s;
 }
-
 
 .club-floating-5 {
   left: 42%;
@@ -5196,14 +4965,12 @@ section.club-page-hero {
   animation-delay: -4s;
 }
 
-
 .club-floating-6 {
   right: 7%;
   top: 65%;
 
   animation-delay: -5s;
 }
-
 
 /* =========================================================
    ANIMACIÓN FLOTANTE
@@ -5252,21 +5019,6 @@ section.club-page-hero {
     padding-top: 48px;
     padding-bottom: 48px;
   }
-
-
-  /* -----------------------------------------
-     TÍTULOS
-     Misma escala de secciones de Inicio
-     ----------------------------------------- */
-
-  .club-page-heading h1,
-  .club-coming-soon-card h2,
-  .club-feature-copy h2 {
-    font-size: clamp(32px, 8vw, 40px);
-
-    line-height: 1.15;
-  }
-
 
   /* -----------------------------------------
      Introducción
@@ -5393,19 +5145,6 @@ section.club-page-hero {
     padding-bottom: 38px;
   }
 
-
-  /* -----------------------------------------
-     TÍTULOS
-     Igual que secciones de Inicio
-     ----------------------------------------- */
-
-  .club-page-heading h1,
-  .club-coming-soon-card h2,
-  .club-feature-copy h2 {
-    font-size: 32px;
-  }
-
-
   .club-intro-bubble p {
     font-size: 17px;
   }
@@ -5443,23 +5182,6 @@ section.club-page-hero {
 
   .club-floating-decoration {
     font-size: 8px;
-  }
-}
-
-
-/* =========================================================
-   ACCESIBILIDAD — REDUCIR MOVIMIENTO
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .club-floating-decoration {
-    animation: none;
-  }
-
-
-  .club-feature-layout {
-    transition: none;
   }
 }
 
