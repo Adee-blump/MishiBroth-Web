@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+  name="description"
+  content="Conoce las presentaciones disponibles de MishiBroth y explora nuestra tienda demostrativa."
+>
 
   <title>Tienda | MishiBroth</title>
   
@@ -47,7 +51,7 @@
           <li><a href="index.html">Inicio</a></li>
           <li><a href="index.html#por-que-mishibroth">¿Por qué MishiBroth?</a></li>
           <li><a href="tienda.html">Tienda</a></li>
-          <li><a href="index.html#mishiclub">MishiClub</a></li>
+          <li><a href="mishiclub.html">MishiClub</a></li>
           <li><a href="index.html#contacto">Contacto</a></li>
           <li>
             <button
@@ -89,7 +93,7 @@
     <!-- =========================================================
          PRODUCTOS DE TIENDA
     ========================================================== -->
-    <section class="section section-products shop-products">
+    <section class="section section-products shop-products" aria-label="Productos disponibles" >
       <div class="section-container">
 
         <div class="product-grid">
@@ -238,19 +242,27 @@
 
     <div class="footer-container section-container">
 
-      <div class="footer-brand">
-        <div class="brand-logo-placeholder">
-          [LOGO MISHIBROTH]
-        </div>
+    <div class="footer-brand">
 
-        <p>
-          Una propuesta pensada para sumar hidratación,
-          cuidado y disfrute a la rutina de tu michi.
-        </p>
-      </div>
+   <a
+    class="brand"
+    href="index.html"
+    aria-label="Ir al inicio de MishiBroth"
+  >
+    <span class="brand-logo-placeholder">
+      [LOGO MISHIBROTH]
+    </span>
+  </a>
+
+  <p>
+    Una propuesta pensada para sumar hidratación,
+    cuidado y disfrute a la rutina de tu michi.
+  </p>
+
+</div>
 
 
-      <div class="footer-links">
+      <nav class="footer-links" aria-label="Enlaces del pie de página">
         <h2>Enlaces rápidos</h2>
 
         <ul>
@@ -265,7 +277,7 @@
           <li><a href="tienda.html">Tienda</a></li>
 
           <li>
-            <a href="index.html#mishiclub">
+            <a href="mishiclub.html">
               MishiClub
             </a>
           </li>
@@ -285,7 +297,7 @@
             </button>
           </li>
         </ul>
-      </div>
+      </nav>
 
 
       <div class="footer-social">
@@ -300,7 +312,7 @@
 
 
     <div class="footer-bottom">
-      <p>© MishiBroth</p>
+      <p>© MishiBroth - Adela Villarreal</p>
     </div>
 
   </footer>
@@ -315,18 +327,21 @@
     data-cart
   >
 
-    <button
-      class="cart-trigger"
-      type="button"
-      aria-label="Abrir carrito"
-      data-cart-toggle
-    >
-      Carrito (<span data-cart-count>0</span>)
+  <button
+    class="cart-trigger"
+    type="button"
+    aria-label="Abrir carrito"
+    aria-expanded="false"
+    aria-controls="cart-panel"
+    data-cart-toggle>
+
+    Carrito (<span data-cart-count>0</span>)
     </button>
 
 
     <div
       class="cart-panel"
+      id="cart-panel"
       hidden
       data-cart-panel
     >
@@ -576,9 +591,10 @@
   </div>
 
   <div
-    class="product-view-switch"
-    aria-label="Cambiar vista del producto"
-  >
+  class="product-view-switch"
+  role="group"
+  aria-label="Cambiar vista del producto"
+>
 
     <button
       type="button"
