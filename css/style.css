@@ -90,6 +90,7 @@ section:not(.hero) {
 
   --green-light: #DAE8C7;
   --green-dark: #3E5825;
+  --green-hover: #4A682C;
 
   --aqua: #B6E5DD;
 
@@ -159,6 +160,83 @@ button {
   border: 0;
 }
 
+/* Focus visible compartido */
+
+.main-navigation a:focus-visible,
+.account-button:focus-visible,
+.menu-toggle:focus-visible,
+.hero .button:focus-visible,
+.slider-arrow:focus-visible,
+.slider-dot:focus-visible,
+.flip-card:focus-visible,
+.product-card .button:focus-visible,
+.product-card .button-secondary:focus-visible,
+.products-cta .button:focus-visible,
+.section-club .button:focus-visible,
+.section-contact .button:focus-visible,
+.footer-links a:focus-visible,
+.footer-links button:focus-visible,
+.account-tabs button:focus-visible,
+.account-panel .button:focus-visible,
+[data-product-modal] .button:focus-visible,
+.shop-discount .button:focus-visible,
+.cart-trigger:focus-visible,
+.cart-header button:focus-visible,
+.cart-quantity button:focus-visible,
+.cart-remove:focus-visible,
+.product-view-switch button:focus-visible {
+  outline: 3px solid var(--coral);
+}
+
+/* =========================================================
+   BOTONES PRINCIPALES — BASE COMPARTIDA
+   ========================================================= */
+
+.hero .button,
+.product-card .button,
+.products-cta .button,
+.section-club .button,
+.section-contact .button,
+.account-panel .button,
+[data-product-modal] .button,
+.shop-discount .button {
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+
+  color: var(--white);
+  background-color: var(--green-dark);
+
+  font-family: var(--font-subtitle);
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.hero .button:hover,
+.product-card .button:hover,
+.products-cta .button:hover,
+.section-club .button:hover,
+.section-contact .button:hover,
+.account-panel .button:hover,
+[data-product-modal] .button:hover,
+.shop-discount .button:hover {
+  background-color: var(--green-hover);
+}
+
+.hero .button:hover,
+.section-club .button:hover,
+.section-contact .button:hover,
+.shop-discount .button:hover {
+  transform: translateY(-3px);
+}
+
+.product-card .button:hover,
+.products-cta .button:hover,
+.account-panel .button:hover,
+[data-product-modal] .button:hover {
+  transform: translateY(-2px);
+}
+
 
 /* =========================================================
    2. HEADER
@@ -178,8 +256,6 @@ button {
 
 .header-container {
   min-height: var(--header-height);
-
-  margin: 0 auto;
 
   display: flex;
   align-items: center;
@@ -260,9 +336,7 @@ button {
 
   cursor: pointer;
 
-  transition:
-    color var(--transition),
-    transform var(--transition);
+  transition: color var(--transition);
 }
 
 .main-navigation a::after {
@@ -309,8 +383,6 @@ button {
 .account-button:hover {
   color: var(--white);
   background-color: var(--green-dark);
-
-  transform: translateY(-2px);
 }
 
 
@@ -566,15 +638,7 @@ button {
 
   padding: 13px 27px;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 16px;
-  font-weight: 700;
 
   box-shadow: var(--shadow-button);
 
@@ -585,10 +649,6 @@ button {
 }
 
 .hero .button:hover {
-  transform: translateY(-3px);
-
-  background-color: #4A682C;
-
   box-shadow: 0 12px 24px rgba(62, 88, 37, 0.2);
 }
 
@@ -874,7 +934,6 @@ button {
 .hero .button:focus-visible,
 .slider-arrow:focus-visible,
 .slider-dot:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 4px;
 }
 
@@ -976,25 +1035,25 @@ button {
      Hero móvil
      ------------------------- */
 
- .hero-slides {
-  min-height: 0;
-}
+  .hero-slides {
+    min-height: 0;
+  }
 
-.hero-slide {
-  padding:
-    54px
-    24px
-    82px;
+  .hero-slide {
+    padding:
+      54px
+      24px
+      82px;
 
-  grid-template-columns: 1fr;
-  grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
 
-  align-content: center;
+    align-content: center;
 
-  gap: 32px;
+    gap: 32px;
 
-  text-align: center;
-}
+    text-align: center;
+  }
 
   .hero-copy {
     max-width: 620px;
@@ -1065,11 +1124,11 @@ button {
      Slide 3 móvil
      ------------------------- */
 
-   .hero-slide[data-slide="2"] .hero-visual {
+  .hero-slide[data-slide="2"] .hero-visual {
     min-height: 370px;
-}
+  }
 
-   .hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+  .hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
     position: absolute;
 
     left: 0;
@@ -1081,7 +1140,7 @@ button {
     min-height: 235px;
 
     padding: 14px;
-}
+  }
 
   .hero-slide[data-slide="2"] .hero-product-list {
     right: 0;
@@ -1091,7 +1150,7 @@ button {
     width: 66%;
 
     gap: 6px;
-}
+  }
 
   .hero-slide[data-slide="2"] .hero-product-placeholder {
     min-height: 118px;
@@ -1101,15 +1160,15 @@ button {
     border-radius: 14px;
 
     font-size: 8px;
-}
+  }
 
   .hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
     min-height: 138px;
-}
+  }
 
   .hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
     min-height: 128px;
-}
+  }
 
   /* -------------------------
      Controles móvil
@@ -1140,16 +1199,13 @@ button {
   }
 
   .hero-slide {
-  height: 100%;
-  min-height: 0;
+    padding:
+      44px
+      18px
+      74px;
 
-  padding:
-    44px
-    18px
-    74px;
-
-  gap: 28px;
-}
+    gap: 28px;
+  }
 
   .hero-copy h1,
   .hero-copy h2 {
@@ -1169,49 +1225,45 @@ button {
   }
 
   .hero-slide[data-slide="2"] .hero-visual {
-  min-height: 330px;
-}
+    min-height: 330px;
+  }
 
-.hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
-  bottom: 76px;
+  .hero-slide[data-slide="2"] .hero-visual > .image-placeholder {
+    bottom: 76px;
 
-  width: 39%;
-  min-height: 210px;
+    width: 39%;
+    min-height: 210px;
 
-  padding: 12px;
-}
+    padding: 12px;
+  }
 
-.hero-slide[data-slide="2"] .hero-product-list {
-  bottom: 18px;
+  .hero-slide[data-slide="2"] .hero-product-list {
+    bottom: 18px;
 
-  width: 65%;
+    width: 65%;
 
-  gap: 5px;
-}
+    gap: 5px;
+  }
 
-.hero-slide[data-slide="2"] .hero-product-placeholder {
-  min-height: 102px;
+  .hero-slide[data-slide="2"] .hero-product-placeholder {
+    min-height: 102px;
 
-  padding: 6px 3px;
+    padding: 6px 3px;
 
-  font-size: 7px;
-}
+    font-size: 7px;
+  }
 
-.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
-  min-height: 122px;
-}
+  .hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(2) {
+    min-height: 122px;
+  }
 
-.hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
-  min-height: 112px;
-}
+  .hero-slide[data-slide="2"] .hero-product-placeholder:nth-child(3) {
+    min-height: 112px;
+  }
 }
 /* =========================================================
    CONOCE MISHIBROTH
    ========================================================= */
-
-.section-about {
-  background-color: var(--cream-light);
-}
 
 .about-layout {
   display: grid;
@@ -1253,6 +1305,19 @@ button {
   text-transform: uppercase;
 }
 
+/* Párrafos principales compartidos */
+
+.section-about .section-copy > p:not(.section-kicker),
+.hydration-copy > p:not(.section-kicker),
+.section-club .section-copy > p:not(.section-kicker) {
+  color: rgba(37, 38, 34, 0.82);
+
+  font-family: var(--font-body);
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
 /* =========================================================
    TÍTULOS PRINCIPALES COMPARTIDOS
    Inicio + Tienda + MishiClub
@@ -1284,13 +1349,6 @@ button {
   max-width: 620px;
 
   margin: 0 0 30px;
-
-  color: rgba(37, 38, 34, 0.82);
-
-  font-family: var(--font-body);
-  font-size: 18px;
-
-  line-height: 1.65;
 }
 
 
@@ -1436,14 +1494,10 @@ button {
   .section-about .section-copy {
     order: 1;
 
-    width: 100%;
-    max-width: 100%;
-
     text-align: center;
   }
 
   .section-about .section-copy > p:not(.section-kicker) {
-    width: 100%;
     max-width: 560px;
 
     margin-left: auto;
@@ -1451,16 +1505,12 @@ button {
   }
 
   .section-about .concept-list {
-    width: 100%;
-
     grid-template-columns: 1fr;
 
     gap: 12px;
   }
 
   .section-about .concept-list li {
-    width: 100%;
-
     min-height: auto;
 
     padding: 18px;
@@ -1471,7 +1521,6 @@ button {
   .section-about .section-visual {
     order: 2;
 
-    width: 100%;
     min-height: 340px;
 
     margin: 0 auto;
@@ -1547,26 +1596,14 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  gap: 0;
 }
 
 
 /* Kicker */
 
 .hydration-copy .section-kicker {
-  margin: 0 0 12px;
-
-  color: var(--coral);
-
-  font-family: var(--font-subtitle);
-  font-size: 17px;
-  font-weight: 800;
-
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  margin-bottom: 12px;
 }
-
 
 /* Título */
 
@@ -1581,13 +1618,6 @@ button {
   max-width: 520px;
 
   margin: 0;
-
-  color: rgba(37, 38, 34, 0.82);
-
-  font-family: var(--font-body);
-  font-size: 18px;
-
-  line-height: 1.65;
 }
 
 
@@ -1721,16 +1751,12 @@ button {
    PILARES BROTH
    ========================================================= */
 
-.section-pillars {
-  background-color: var(--cream-light);
-}
-
-
 /* =========================================================
    ENCABEZADO DE SECCIÓN
    ========================================================= */
 
-.section-pillars .section-heading {
+.section-pillars .section-heading,
+.section-products .section-heading {
   max-width: 760px;
 
   margin: 0 auto 48px;
@@ -1738,11 +1764,8 @@ button {
   text-align: center;
 }
 
-.section-pillars .section-kicker {
-  margin-bottom: 10px;
-}
-
-.section-pillars .section-heading h2 {
+.section-pillars .section-heading h2,
+.section-products .section-heading h2 {
   margin: 0;
 }
 
@@ -1771,13 +1794,9 @@ button {
 
   border-radius: 26px;
 
-  outline: none;
-
   cursor: pointer;
 
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .flip-card-inner {
@@ -1912,14 +1931,12 @@ button {
 }
 
 .flip-card:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 5px;
 }
 
 
 /* =========================================================
    ESTADO ACTIVO DEL FLIP
-   La clase .is-flipped se controla desde JavaScript.
    ========================================================= */
 
 .flip-card.is-flipped .flip-card-inner {
@@ -1951,7 +1968,8 @@ button {
 
 @media (max-width: 780px) {
 
-  .section-pillars .section-heading {
+  .section-pillars .section-heading,
+  .section-products .section-heading {
     margin-bottom: 36px;
   }
 
@@ -2019,28 +2037,6 @@ button {
 .section-products {
   background-color: #FFFDEE;
 }
-
-
-/* =========================================================
-   ENCABEZADO
-   ========================================================= */
-
-.section-products .section-heading {
-  max-width: 760px;
-
-  margin: 0 auto 48px;
-
-  text-align: center;
-}
-
-.section-products .section-kicker {
-  margin-bottom: 10px;
-}
-
-.section-products .section-heading h2 {
-  margin: 0;
-}
-
 
 /* =========================================================
    GRID DE PRODUCTOS
@@ -2171,17 +2167,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
 
   transition:
     transform 0.3s ease,
@@ -2191,10 +2177,6 @@ button {
 
 .product-card .button:hover,
 .products-cta .button:hover {
-  transform: translateY(-2px);
-
-  background-color: #4A682C;
-
   box-shadow:
     0 8px 18px rgba(62, 88, 37, 0.16);
 }
@@ -2223,15 +2205,12 @@ button {
 
   transition:
     color 0.3s ease,
-    background-color 0.3s ease,
-    transform 0.3s ease;
+    background-color 0.3s ease;
 }
 
 .product-card .button-secondary:hover {
   color: var(--white);
   background-color: var(--green-dark);
-
-  transform: translateY(-2px);
 }
 
 
@@ -2281,7 +2260,6 @@ button {
 .product-card .button:focus-visible,
 .product-card .button-secondary:focus-visible,
 .products-cta .button:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 4px;
 }
 
@@ -2316,12 +2294,7 @@ button {
 
 @media (max-width: 780px) {
 
-  .section-products .section-heading {
-    margin-bottom: 36px;
-  }
-
   .product-grid {
-    width: 100%;
 
     grid-template-columns: 1fr;
 
@@ -2331,7 +2304,6 @@ button {
   .product-card,
   .product-card:last-child {
     width: 100%;
-    max-width: 100%;
 
     margin: 0;
 
@@ -2343,8 +2315,7 @@ button {
   }
 
   .product-image-placeholder {
-    width: 100%;
-    min-height: 260px;
+    min-height: 220px;
   }
 
   .products-cta {
@@ -2420,10 +2391,6 @@ button {
   max-width: 600px;
 }
 
-.section-club .section-kicker {
-  margin-bottom: 10px;
-}
-
 .section-club .section-copy h2 {
   margin: 0 0 20px;
 }
@@ -2432,13 +2399,6 @@ button {
   max-width: 560px;
 
   margin: 0 0 28px;
-
-  color: rgba(37, 38, 34, 0.82);
-
-  font-family: var(--font-body);
-  font-size: 18px;
-
-  line-height: 1.65;
 }
 
 
@@ -2455,17 +2415,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
 
   box-shadow:
     0 8px 18px rgba(62, 88, 37, 0.14);
@@ -2477,10 +2427,6 @@ button {
 }
 
 .section-club .button:hover {
-  transform: translateY(-3px);
-
-  background-color: #4A682C;
-
   box-shadow:
     0 12px 24px rgba(62, 88, 37, 0.18);
 }
@@ -2558,7 +2504,6 @@ button {
    ========================================================= */
 
 .section-club .button:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 4px;
 }
 
@@ -2653,10 +2598,6 @@ button {
    CONTACTO / WHATSAPP
    ========================================================= */
 
-.section-contact {
-  background-color: var(--cream-light);
-}
-
 .contact-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
@@ -2679,10 +2620,6 @@ button {
 /* =========================================================
    TEXTO DE CONTACTO
    ========================================================= */
-
-.section-contact .section-kicker {
-  margin-bottom: 10px;
-}
 
 .section-contact h2 {
   max-width: 700px;
@@ -2717,17 +2654,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
 
   transition:
     transform 0.3s ease,
@@ -2736,10 +2663,6 @@ button {
 }
 
 .section-contact .button:hover {
-  transform: translateY(-3px);
-
-  background-color: #4A682C;
-
   box-shadow:
     0 10px 22px rgba(62, 88, 37, 0.16);
 }
@@ -2938,7 +2861,6 @@ button {
 .section-contact .button:focus-visible,
 .footer-links a:focus-visible,
 .footer-links button:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 4px;
 }
 
@@ -3004,11 +2926,6 @@ button {
 
     padding-top: 50px;
     padding-bottom: 38px;
-  }
-
-  .footer-brand,
-  .footer-social {
-    max-width: 100%;
   }
 
   .footer-bottom {
@@ -3194,12 +3111,8 @@ body {
    CERRAR
    ========================================================= */
 
-.modal-close {
-  position: absolute;
-
-  top: 16px;
-  right: 18px;
-
+.modal-close,
+.cart-header button {
   width: 38px;
   height: 38px;
 
@@ -3212,9 +3125,6 @@ body {
   color: var(--green-dark);
   background-color: transparent;
 
-  font-size: 28px;
-  line-height: 1;
-
   cursor: pointer;
 
   transition:
@@ -3222,7 +3132,18 @@ body {
     transform 0.3s ease;
 }
 
-.modal-close:hover {
+.modal-close {
+  position: absolute;
+
+  top: 16px;
+  right: 18px;
+
+  font-size: 28px;
+  line-height: 1;
+}
+
+.modal-close:hover,
+.cart-header button:hover {
   background-color: rgba(62, 88, 37, 0.08);
 
   transform: rotate(5deg);
@@ -3367,27 +3288,11 @@ body {
 
   padding: 12px 22px;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
 
   transition:
     transform 0.3s ease,
     background-color 0.3s ease;
-}
-
-.account-panel .button:hover {
-  transform: translateY(-2px);
-
-  background-color: #4A682C;
 }
 
 
@@ -3516,17 +3421,7 @@ body.modal-open {
 
   padding: 12px 22px;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
 
   transition:
     transform 0.3s ease,
@@ -3535,10 +3430,6 @@ body.modal-open {
 }
 
 [data-product-modal] .button:hover {
-  transform: translateY(-2px);
-
-  background-color: #4A682C;
-
   box-shadow:
     0 8px 18px rgba(62, 88, 37, 0.16);
 }
@@ -3569,12 +3460,6 @@ body.modal-open {
 /* =========================================================
    CARRITO DEMO
    ========================================================= */
-
-.demo-cart {
-  position: relative;
-  z-index: 2500;
-}
-
 
 /* =========================================================
    BOTÓN FLOTANTE DEL CARRITO
@@ -3616,7 +3501,7 @@ body.modal-open {
 .cart-trigger:hover {
   transform: translateY(-3px);
 
-  background-color: #4A682C;
+  background-color: var(--green-hover);
 
   box-shadow:
     0 14px 28px rgba(37, 38, 34, 0.22);
@@ -3681,35 +3566,10 @@ body.modal-open {
 }
 
 .cart-header button {
-  width: 38px;
-  height: 38px;
-
   flex-shrink: 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  color: var(--green-dark);
-  background-color: transparent;
-
   font-size: 27px;
-
-  cursor: pointer;
-
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
 }
-
-.cart-header button:hover {
-  background-color: rgba(62, 88, 37, 0.08);
-
-  transform: rotate(5deg);
-}
-
 
 /* Texto de advertencia demo */
 
@@ -3942,7 +3802,6 @@ body.modal-open {
 .cart-header button:focus-visible,
 .cart-quantity button:focus-visible,
 .cart-remove:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 3px;
 }
 
@@ -4054,11 +3913,6 @@ section.shop-hero {
     );
 }
 
-.shop-hero .section-container {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
 .shop-hero .section-heading {
   max-width: 760px;
 
@@ -4093,10 +3947,6 @@ section.shop-hero {
    PRODUCTOS EN TIENDA
    ========================================================= */
 
-.shop-products .product-grid {
-  align-items: stretch;
-}
-
 .shop-products .product-card {
   scroll-margin-top: 120px;
 }
@@ -4116,10 +3966,6 @@ section.shop-hero {
 /* =========================================================
    BLOQUE SCRATCH
    ========================================================= */
-
-.shop-discount {
-  background-color: var(--cream-light);
-}
 
 .shop-discount .section-container {
   position: relative;
@@ -4218,15 +4064,7 @@ section.shop-hero {
   align-items: center;
   justify-content: center;
 
-  border: 2px solid var(--green-dark);
-  border-radius: 999px;
-
-  color: var(--white);
-  background-color: var(--green-dark);
-
-  font-family: var(--font-subtitle);
   font-size: 15px;
-  font-weight: 700;
 
   box-shadow:
     0 8px 18px rgba(62, 88, 37, 0.14);
@@ -4238,10 +4076,6 @@ section.shop-hero {
 }
 
 .shop-discount .button:hover {
-  transform: translateY(-3px);
-
-  background-color: #4A682C;
-
   box-shadow:
     0 12px 24px rgba(62, 88, 37, 0.18);
 }
@@ -4354,7 +4188,6 @@ section.shop-hero {
 }
 
 .product-view-switch button:focus-visible {
-  outline: 3px solid var(--coral);
   outline-offset: 3px;
 }
 
@@ -4378,11 +4211,6 @@ section.shop-hero {
 /* =========================================================
    MISHICLUB — PÁGINA
    ========================================================= */
-
-.page-mishiclub {
-  background-color: var(--cream-light);
-}
-
 
 /* =========================================================
    1. HERO MISHICLUB
@@ -4434,11 +4262,6 @@ section.club-page-hero {
   z-index: 2;
 
   margin-bottom: 24px;
-}
-
-
-.club-page-heading .section-kicker {
-  margin-bottom: 10px;
 }
 
 
@@ -4595,11 +4418,6 @@ section.club-page-hero {
 /* =========================================================
    3. PRÓXIMAMENTE
    ========================================================= */
-
-.club-coming-soon {
-  background-color: var(--cream-light);
-}
-
 
 .club-coming-soon-card {
   max-width: 920px;
@@ -4793,17 +4611,6 @@ section.club-page-hero {
   text-align: center;
 }
 
-
-/* =========================================================
-   FONDO COMPARTIDO — MISHIPUNTOS / MISHIECO / MISHICARE
-   ========================================================= */
-
-.club-feature-points,
-.club-feature-eco,
-.club-feature-care {
-  background-color: var(--cream-light);
-}
-
 /* =========================================================
    5. MISHIPUNTOS
    ========================================================= */
@@ -4995,8 +4802,7 @@ section.club-page-hero {
 
 @media (max-width: 1000px) {
 
-  .club-feature-layout,
-  .club-feature-layout-reverse {
+  .club-feature-layout {
     grid-template-columns: 1fr 1fr;
 
     gap: 40px;
@@ -5061,8 +4867,7 @@ section.club-page-hero {
      Bloques conceptuales
      ----------------------------------------- */
 
-  .club-feature-layout,
-  .club-feature-layout-reverse {
+  .club-feature-layout {
     grid-template-columns: 1fr;
 
     min-height: auto;
@@ -5095,7 +4900,6 @@ section.club-page-hero {
 
   .club-feature-visual .image-placeholder {
     width: min(100%, 340px);
-    min-height: 250px;
   }
 
 
@@ -5156,8 +4960,7 @@ section.club-page-hero {
   }
 
 
-  .club-feature-layout,
-  .club-feature-layout-reverse {
+  .club-feature-layout {
     padding: 28px 20px;
 
     border-radius: 26px;
