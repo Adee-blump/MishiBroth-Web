@@ -8,7 +8,6 @@
    ========================================================= */
 
 .header-container,
-.container,
 .section-container {
   width: min(calc(100% - 48px), var(--page-width));
   margin-left: auto;
@@ -33,7 +32,6 @@ section:not(.hero) {
 /* Tablet */
 @media (max-width: 1000px) {
   .header-container,
-  .container,
   .section-container {
     width: min(100% - 36px, var(--page-width));
   }
@@ -47,7 +45,6 @@ section:not(.hero) {
 /* Móvil */
 @media (max-width: 780px) {
   .header-container,
-  .container,
   .section-container {
     width: calc(100% - 32px);
   }
@@ -66,7 +63,6 @@ section:not(.hero) {
 /* Móviles pequeños */
 @media (max-width: 480px) {
   .header-container,
-  .container,
   .section-container {
     width: calc(100% - 24px);
   }

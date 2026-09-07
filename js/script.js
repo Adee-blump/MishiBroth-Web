@@ -49,31 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-
     /* Cerrar al seleccionar un enlace */
 
     const navigationLinks =
-      mainNavigation.querySelectorAll("a");
+      mainNavigation.querySelectorAll("a, button");
 
     navigationLinks.forEach((link) => {
       link.addEventListener("click", () => {
         closeMenu();
       });
     });
-
-
-    /* Cerrar con Escape */
-
-    document.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Escape" &&
-        mainNavigation.classList.contains("is-open")
-      ) {
-        closeMenu();
-        menuToggle.focus();
-      }
-    });
-
 
     /* Cerrar si volvemos a escritorio */
 
@@ -83,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
 
   /* =======================================================
      2. HERO SLIDER
@@ -639,23 +623,6 @@ accountTabs.forEach((tab) => {
 
 });
 
-
-/* -------------------------------------------------------
-   Escape
-   ------------------------------------------------------- */
-
-document.addEventListener("keydown", (event) => {
-
-  if (
-    event.key === "Escape" &&
-    accountModal &&
-    !accountModal.hidden
-  ) {
-    closeAccountModal();
-  }
-
-});
-
 /* =======================================================
    6. MODAL DE PRODUCTO
    ======================================================= */
@@ -849,7 +816,6 @@ productButtons.forEach((button) => {
 
 });
 
-
 /* -------------------------------------------------------
    Cerrar modal
    ------------------------------------------------------- */
@@ -860,23 +826,6 @@ closeProductButtons.forEach((button) => {
     "click",
     closeProductModal
   );
-
-});
-
-
-/* -------------------------------------------------------
-   Escape
-   ------------------------------------------------------- */
-
-document.addEventListener("keydown", (event) => {
-
-  if (
-    event.key === "Escape" &&
-    productModal &&
-    !productModal.hidden
-  ) {
-    closeProductModal();
-  }
 
 });
 
@@ -1459,24 +1408,6 @@ if (cartItemsContainer) {
 
 }
 
-
-/* =======================================================
-   ESCAPE
-   ======================================================= */
-
-document.addEventListener("keydown", (event) => {
-
-  if (
-    event.key === "Escape" &&
-    cartPanel &&
-    !cartPanel.hidden
-  ) {
-    closeCart();
-  }
-
-});
-
-
 /* =======================================================
    ESTADO INICIAL
    ======================================================= */
@@ -1560,5 +1491,20 @@ else {
   });
 
 }
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+
+  if (mainNavigation?.classList.contains("is-open")) {
+    closeMenu();
+    menuToggle.focus();
+  } else if (accountModal && !accountModal.hidden) {
+    closeAccountModal();
+  } else if (productModal && !productModal.hidden) {
+    closeProductModal();
+  } else if (cartPanel && !cartPanel.hidden) {
+    closeCart();
+  }
+});
 
 });
