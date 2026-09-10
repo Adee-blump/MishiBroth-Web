@@ -670,8 +670,8 @@ const products = {
     priceText: "$1,50",
 
     images: {
-      front: "[MISHIBROTH INDIVIDUAL — FRENTE]",
-      back: "[MISHIBROTH INDIVIDUAL — REVERSO]"
+      front: "assets/productos/Sobre_individual_Fsf.png",
+      back: "assets/productos/Sobre_individual_Asf.png"
     }
   },
 
@@ -735,8 +735,12 @@ const openProductModal = (productId) => {
   productModalPrice.textContent =
     product.priceText;
 
-  productModalImage.textContent =
-  product.images.front;
+  productModalImage.innerHTML = `
+  <img
+    src="${product.images.front}"
+    alt="${product.name} — frente"
+  >
+  `;
 
   productViewButtons.forEach((button) => {
 
@@ -890,8 +894,11 @@ productViewButtons.forEach((button) => {
 
     setTimeout(() => {
 
-      productModalImage.textContent =
-        product.images[selectedView];
+      productModalImage.innerHTML = `
+    <img
+      src="${product.images[selectedView]}"
+      alt="${product.name} — ${selectedView === "front" ? "frente" : "reverso"}">
+    `;
 
       productModalImage.classList.remove(
         "is-changing"
