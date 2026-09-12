@@ -396,1122 +396,1153 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 /* =======================================================
-   4. FLIP CARDS — PILARES BROTH
-   ======================================================= */
-
-const flipCards = document.querySelectorAll("[data-flip-card]");
-
-flipCards.forEach((card) => {
-
-  const toggleCard = () => {
-    card.classList.toggle("is-flipped");
-  };
-
-
-  /* Click / tap */
-
-  card.addEventListener("click", () => {
-    toggleCard();
-  });
-
-
-  /* Teclado */
-
-  card.addEventListener("keydown", (event) => {
-
-    if (
-      event.key === "Enter" ||
-      event.key === " "
-    ) {
-      event.preventDefault();
+     4. FLIP CARDS — PILARES BROTH
+     ======================================================= */
+ 
+  const flipCards = document.querySelectorAll("[data-flip-card]");
+ 
+  flipCards.forEach((card) => {
+ 
+    const toggleCard = () => {
+      card.classList.toggle("is-flipped");
+    };
+ 
+ 
+    /* Click / tap */
+ 
+    card.addEventListener("click", () => {
       toggleCard();
-    }
-
-  });
-
-});
-
-/* =======================================================
-   5. MODAL DE CUENTA
-   ======================================================= */
-
-const accountModal =
-  document.querySelector("[data-account-modal]");
-
-const openAccountButtons =
-  document.querySelectorAll("[data-open-account-modal]");
-
-const closeAccountButtons =
-  document.querySelectorAll("[data-close-account-modal]");
-
-const accountTabs =
-  document.querySelectorAll("[data-account-tab]");
-
-const accountPanels =
-  document.querySelectorAll("[data-account-panel]");
-
-let lastFocusedElement = null;
-
-
-/* -------------------------------------------------------
-   Abrir modal
-   ------------------------------------------------------- */
-
-const openAccountModal = () => {
-
-  if (!accountModal) return;
-
-  lastFocusedElement = document.activeElement;
-
-  accountModal.hidden = false;
-
-  document.body.classList.add("modal-open");
-
-
-  /* Activar login por defecto */
-
-  accountTabs.forEach((tab) => {
-
-  const isLogin =
-    tab.dataset.accountTab === "login";
-
-  tab.classList.toggle(
-    "is-active",
-    isLogin
-  );
-
-  tab.setAttribute(
-    "aria-pressed",
-    String(isLogin)
-  );
-
-});
-
-  accountPanels.forEach((panel) => {
-
-    const isLogin =
-      panel.dataset.accountPanel === "login";
-
-    panel.hidden = !isLogin;
-
-  });
-
-
-  /* Enviar foco al primer campo */
-
-  const firstInput =
-    accountModal.querySelector("input");
-
-  if (firstInput) {
-    setTimeout(() => {
-      firstInput.focus();
-    }, 50);
-  }
-
-};
-
-
-/* -------------------------------------------------------
-   Cerrar modal
-   ------------------------------------------------------- */
-
-const closeAccountModal = () => {
-
-  if (!accountModal) return;
-
-  accountModal.hidden = true;
-
-  document.body.classList.remove("modal-open");
-
-
-  if (lastFocusedElement) {
-    lastFocusedElement.focus();
-  }
-
-};
-
-
-/* -------------------------------------------------------
-   Botones de apertura
-   ------------------------------------------------------- */
-
-openAccountButtons.forEach((button) => {
-
-  button.addEventListener(
-    "click",
-    openAccountModal
-  );
-
-});
-
-
-/* -------------------------------------------------------
-   Botones / backdrop para cerrar
-   ------------------------------------------------------- */
-
-closeAccountButtons.forEach((button) => {
-
-  button.addEventListener(
-    "click",
-    closeAccountModal
-  );
-
-});
-
-
-/* -------------------------------------------------------
-   Tabs login / registro
-   ------------------------------------------------------- */
-
-accountTabs.forEach((tab) => {
-
-  tab.addEventListener("click", () => {
-
-    const selectedTab =
-      tab.dataset.accountTab;
-
-
-    /* Cambiar botón activo */
-
-    accountTabs.forEach((item) => {
-
-  const isActive =
-    item.dataset.accountTab ===
-    selectedTab;
-
-  item.classList.toggle(
-    "is-active",
-    isActive
-  );
-
-  item.setAttribute(
-    "aria-pressed",
-    String(isActive)
-  );
-
-});
-
-
-    /* Cambiar panel */
-
-    accountPanels.forEach((panel) => {
-
-      const isActive =
-        panel.dataset.accountPanel ===
-        selectedTab;
-
-      panel.hidden = !isActive;
-
     });
-
-
-    /* Foco en primer campo */
-
-    const activePanel =
-      document.querySelector(
-        `[data-account-panel="${selectedTab}"]`
-      );
-
-    const firstInput =
-      activePanel?.querySelector("input");
-
-    if (firstInput) {
-      firstInput.focus();
-    }
-
+ 
+ 
+    /* Teclado */
+ 
+    card.addEventListener("keydown", (event) => {
+ 
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+        event.preventDefault();
+        toggleCard();
+      }
+ 
+    });
+ 
   });
-
-});
-
-/* =======================================================
-   6. MODAL DE PRODUCTO
-   ======================================================= */
-
-const productModal =
-  document.querySelector("[data-product-modal]");
-
-const productButtons =
-  document.querySelectorAll("[data-product]");
-
-const closeProductButtons =
-  document.querySelectorAll("[data-close-product-modal]");
-
-const productModalName =
-  document.querySelector("[data-product-modal-name]");
-
-const productModalPresentation =
-  document.querySelector("[data-product-modal-presentation]");
-
-const productModalPrice =
-  document.querySelector("[data-product-modal-price]");
-
-const productModalImage =
-  document.querySelector("[data-product-modal-image]");
-
-const productModalAdd =
-  document.querySelector("[data-product-modal-add]");
-
-const productViewButtons =
-  document.querySelectorAll("[data-product-view]");
-
-let currentProductView = "front";
-
-
-/* -------------------------------------------------------
-   Datos de productos
-   ------------------------------------------------------- */
-
-const products = {
-
-  individual: {
-    name: "MishiBroth Individual",
-    presentation: "1 sobre · 80 ml",
-    price: 1.50,
-    priceText: "$1,50",
-
-    images: {
-      front: "assets/productos/Sobre_individual_Fsf.png",
-      back: "assets/productos/Sobre_individual_Asf.png"
-    }
-  },
-
-  semanal: {
-    name: "Pack Semanal",
-    presentation: "7 sobres · 80 ml c/u",
-    price: 8.99,
-    priceText: "$8,99",
-
-    images: {
-      front: "[PACK SEMANAL — FRENTE]",
-      back: "[PACK SEMANAL — REVERSO]"
-    }
-  },
-
-  familiar: {
-    name: "Pack Familiar",
-    presentation: "7 sobres · 100 ml c/u",
-    price: 12.99,
-    priceText: "$12,99",
-
-    images: {
-      front: "[PACK FAMILIAR — FRENTE]",
-      back: "[PACK FAMILIAR — REVERSO]"
-    }
-  }
-
-};
-
-
-let currentProductId = null;
-let lastProductFocus = null;
-
-
-/* -------------------------------------------------------
-   Abrir modal
-   ------------------------------------------------------- */
-
-const openProductModal = (productId) => {
-
-  if (!productModal) return;
-
-  const product = products[productId];
-
-  if (!product) return;
-
-  currentProductId = productId;
-  currentProductView = "front";
-
-  lastProductFocus = document.activeElement;
-
-
-  /* Cargar contenido */
-
-  productModalName.textContent =
-    product.name;
-
-  productModalPresentation.textContent =
-    product.presentation;
-
-  productModalPrice.textContent =
-    product.priceText;
-
-  productModalImage.innerHTML = `
-  <img
-    src="${product.images.front}"
-    alt="${product.name} — frente"
-  >
-  `;
-
-  productViewButtons.forEach((button) => {
-
-  const isFront =
-    button.dataset.productView === "front";
-
-  button.classList.toggle(
-    "is-active",
-    isFront
-  );
-
-  button.setAttribute(
-    "aria-pressed",
-    String(isFront)
-  );
-
-});
-
-  /* Guardar producto en botón */
-
-  productModalAdd.dataset.addToCart =
-    productId;
-
-
-  /* Mostrar modal */
-
-  productModal.hidden = false;
-
-  document.body.classList.add("modal-open");
-
-
-  /* Foco */
-
-  setTimeout(() => {
-    productModalAdd.focus();
-  }, 50);
-
-};
-
-
-/* -------------------------------------------------------
-   Cerrar modal
-   ------------------------------------------------------- */
-
-const closeProductModal = () => {
-
-  if (!productModal) return;
-
-  productModal.hidden = true;
-
-  document.body.classList.remove("modal-open");
-
-  currentProductId = null;
-
-
-  if (lastProductFocus) {
-    lastProductFocus.focus();
-  }
-
-};
-
-
-/* -------------------------------------------------------
-   Botones "Ver producto"
-   ------------------------------------------------------- */
-
-productButtons.forEach((button) => {
-
-  button.addEventListener("click", () => {
-
-    const productId =
-      button.dataset.product;
-
-    openProductModal(productId);
-
-  });
-
-});
-
-/* -------------------------------------------------------
-   Cerrar modal
-   ------------------------------------------------------- */
-
-closeProductButtons.forEach((button) => {
-
-  button.addEventListener(
-    "click",
-    closeProductModal
-  );
-
-});
-
-/* =======================================================
-   CAMBIAR FRENTE / REVERSO
-   ======================================================= */
-
-productViewButtons.forEach((button) => {
-
-  button.addEventListener("click", () => {
-
-    if (!currentProductId) return;
-
-    const selectedView =
-      button.dataset.productView;
-
-    if (
-      selectedView !== "front" &&
-      selectedView !== "back"
-    ) {
-      return;
-    }
-
-    if (selectedView === currentProductView) {
-      return;
-    }
-
-    const product =
-      products[currentProductId];
-
-    if (!product) return;
-
-    currentProductView = selectedView;
-
-
-    /* Actualizar botón activo */
-
-    productViewButtons.forEach((item) => {
-
-  const isActive =
-    item.dataset.productView ===
-    selectedView;
-
-  item.classList.toggle(
-    "is-active",
-    isActive
-  );
-
-  item.setAttribute(
-    "aria-pressed",
-    String(isActive)
-  );
-
-});
-
-
-    /* Cambio suave de imagen */
-
-    productModalImage.classList.add(
-      "is-changing"
+ 
+  /* =======================================================
+     5. MODAL DE CUENTA
+     ======================================================= */
+ 
+  const accountModal =
+    document.querySelector("[data-account-modal]");
+ 
+  const openAccountButtons =
+    document.querySelectorAll("[data-open-account-modal]");
+ 
+  const closeAccountButtons =
+    document.querySelectorAll("[data-close-account-modal]");
+ 
+  const accountTabs =
+    document.querySelectorAll("[data-account-tab]");
+ 
+  const accountPanels =
+    document.querySelectorAll("[data-account-panel]");
+ 
+  let lastFocusedElement = null;
+ 
+ 
+  /* -------------------------------------------------------
+     Abrir modal
+     ------------------------------------------------------- */
+ 
+  const openAccountModal = () => {
+ 
+    if (!accountModal) return;
+ 
+    lastFocusedElement = document.activeElement;
+ 
+    accountModal.hidden = false;
+ 
+    document.body.classList.add("modal-open");
+ 
+ 
+    /* Activar login por defecto */
+ 
+    accountTabs.forEach((tab) => {
+ 
+    const isLogin =
+      tab.dataset.accountTab === "login";
+ 
+    tab.classList.toggle(
+      "is-active",
+      isLogin
     );
-
+ 
+    tab.setAttribute(
+      "aria-pressed",
+      String(isLogin)
+    );
+ 
+  });
+ 
+    accountPanels.forEach((panel) => {
+ 
+      const isLogin =
+        panel.dataset.accountPanel === "login";
+ 
+      panel.hidden = !isLogin;
+ 
+    });
+ 
+ 
+    /* Enviar foco al primer campo */
+ 
+    const firstInput =
+      accountModal.querySelector("input");
+ 
+    if (firstInput) {
+      setTimeout(() => {
+        firstInput.focus();
+      }, 50);
+    }
+ 
+  };
+ 
+ 
+  /* -------------------------------------------------------
+     Cerrar modal
+     ------------------------------------------------------- */
+ 
+  const closeAccountModal = () => {
+ 
+    if (!accountModal) return;
+ 
+    accountModal.hidden = true;
+ 
+    document.body.classList.remove("modal-open");
+ 
+ 
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+ 
+  };
+ 
+ 
+  /* -------------------------------------------------------
+     Botones de apertura
+     ------------------------------------------------------- */
+ 
+  openAccountButtons.forEach((button) => {
+ 
+    button.addEventListener(
+      "click",
+      openAccountModal
+    );
+ 
+  });
+ 
+ 
+  /* -------------------------------------------------------
+     Botones / backdrop para cerrar
+     ------------------------------------------------------- */
+ 
+  closeAccountButtons.forEach((button) => {
+ 
+    button.addEventListener(
+      "click",
+      closeAccountModal
+    );
+ 
+  });
+ 
+ 
+  /* -------------------------------------------------------
+     Tabs login / registro
+     ------------------------------------------------------- */
+ 
+  accountTabs.forEach((tab) => {
+ 
+    tab.addEventListener("click", () => {
+ 
+      const selectedTab =
+        tab.dataset.accountTab;
+ 
+ 
+      /* Cambiar botón activo */
+ 
+      accountTabs.forEach((item) => {
+ 
+    const isActive =
+      item.dataset.accountTab ===
+      selectedTab;
+ 
+    item.classList.toggle(
+      "is-active",
+      isActive
+    );
+ 
+    item.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+ 
+  });
+ 
+ 
+      /* Cambiar panel */
+ 
+      accountPanels.forEach((panel) => {
+ 
+        const isActive =
+          panel.dataset.accountPanel ===
+          selectedTab;
+ 
+        panel.hidden = !isActive;
+ 
+      });
+ 
+ 
+      /* Foco en primer campo */
+ 
+      const activePanel =
+        document.querySelector(
+          `[data-account-panel="${selectedTab}"]`
+        );
+ 
+      const firstInput =
+        activePanel?.querySelector("input");
+ 
+      if (firstInput) {
+        firstInput.focus();
+      }
+ 
+    });
+ 
+  });
+ 
+ 
+  /* -------------------------------------------------------
+     Escape
+     ------------------------------------------------------- */
+ 
+  document.addEventListener("keydown", (event) => {
+ 
+    if (
+      event.key === "Escape" &&
+      accountModal &&
+      !accountModal.hidden
+    ) {
+      closeAccountModal();
+    }
+ 
+  });
+ 
+  /* =======================================================
+     6. MODAL DE PRODUCTO
+     ======================================================= */
+ 
+  const productModal =
+    document.querySelector("[data-product-modal]");
+ 
+  const productButtons =
+    document.querySelectorAll("[data-product]");
+ 
+  const closeProductButtons =
+    document.querySelectorAll("[data-close-product-modal]");
+ 
+  const productModalName =
+    document.querySelector("[data-product-modal-name]");
+ 
+  const productModalPresentation =
+    document.querySelector("[data-product-modal-presentation]");
+ 
+  const productModalPrice =
+    document.querySelector("[data-product-modal-price]");
+ 
+  const productModalImage =
+    document.querySelector("[data-product-modal-image]");
+ 
+  const productModalAdd =
+    document.querySelector("[data-product-modal-add]");
+ 
+  const productViewButtons =
+    document.querySelectorAll("[data-product-view]");
+ 
+  let currentProductView = "front";
+ 
+ 
+  /* -------------------------------------------------------
+     Datos de productos
+     ------------------------------------------------------- */
+ 
+  const products = {
+ 
+    individual: {
+      name: "MishiBroth Individual",
+      presentation: "1 sobre · 80 ml",
+      price: 1.50,
+      priceText: "$1,50",
+ 
+      images: {
+        front: "[MISHIBROTH INDIVIDUAL — FRENTE]",
+        back: "[MISHIBROTH INDIVIDUAL — REVERSO]"
+      }
+    },
+ 
+    semanal: {
+      name: "Pack Semanal",
+      presentation: "7 sobres · 80 ml c/u",
+      price: 8.99,
+      priceText: "$8,99",
+ 
+      images: {
+        front: "[PACK SEMANAL — FRENTE]",
+        back: "[PACK SEMANAL — REVERSO]"
+      }
+    },
+ 
+    familiar: {
+      name: "Pack Familiar",
+      presentation: "7 sobres · 100 ml c/u",
+      price: 12.99,
+      priceText: "$12,99",
+ 
+      images: {
+        front: "[PACK FAMILIAR — FRENTE]",
+        back: "[PACK FAMILIAR — REVERSO]"
+      }
+    }
+ 
+  };
+ 
+ 
+  let currentProductId = null;
+  let lastProductFocus = null;
+ 
+ 
+  /* -------------------------------------------------------
+     Abrir modal
+     ------------------------------------------------------- */
+ 
+  const openProductModal = (productId) => {
+ 
+    if (!productModal) return;
+ 
+    const product = products[productId];
+ 
+    if (!product) return;
+ 
+    currentProductId = productId;
+    currentProductView = "front";
+ 
+    lastProductFocus = document.activeElement;
+ 
+ 
+    /* Cargar contenido */
+ 
+    productModalName.textContent =
+      product.name;
+ 
+    productModalPresentation.textContent =
+      product.presentation;
+ 
+    productModalPrice.textContent =
+      product.priceText;
+ 
+    productModalImage.textContent =
+    product.images.front;
+ 
+    productViewButtons.forEach((button) => {
+ 
+    const isFront =
+      button.dataset.productView === "front";
+ 
+    button.classList.toggle(
+      "is-active",
+      isFront
+    );
+ 
+    button.setAttribute(
+      "aria-pressed",
+      String(isFront)
+    );
+ 
+  });
+ 
+    /* Guardar producto en botón */
+ 
+    productModalAdd.dataset.addToCart =
+      productId;
+ 
+ 
+    /* Mostrar modal */
+ 
+    productModal.hidden = false;
+ 
+    document.body.classList.add("modal-open");
+ 
+ 
+    /* Foco */
+ 
     setTimeout(() => {
-
-      productModalImage.innerHTML = `
-    <img
-      src="${product.images[selectedView]}"
-      alt="${product.name} — ${selectedView === "front" ? "frente" : "reverso"}">
-    `;
-
-      productModalImage.classList.remove(
+      productModalAdd.focus();
+    }, 50);
+ 
+  };
+ 
+ 
+  /* -------------------------------------------------------
+     Cerrar modal
+     ------------------------------------------------------- */
+ 
+  const closeProductModal = () => {
+ 
+    if (!productModal) return;
+ 
+    productModal.hidden = true;
+ 
+    document.body.classList.remove("modal-open");
+ 
+    currentProductId = null;
+ 
+ 
+    if (lastProductFocus) {
+      lastProductFocus.focus();
+    }
+ 
+  };
+ 
+ 
+  /* -------------------------------------------------------
+     Botones "Ver producto"
+     ------------------------------------------------------- */
+ 
+  productButtons.forEach((button) => {
+ 
+    button.addEventListener("click", () => {
+ 
+      const productId =
+        button.dataset.product;
+ 
+      openProductModal(productId);
+ 
+    });
+ 
+  });
+ 
+ 
+  /* -------------------------------------------------------
+     Cerrar modal
+     ------------------------------------------------------- */
+ 
+  closeProductButtons.forEach((button) => {
+ 
+    button.addEventListener(
+      "click",
+      closeProductModal
+    );
+ 
+  });
+ 
+ 
+  /* -------------------------------------------------------
+     Escape
+     ------------------------------------------------------- */
+ 
+  document.addEventListener("keydown", (event) => {
+ 
+    if (
+      event.key === "Escape" &&
+      productModal &&
+      !productModal.hidden
+    ) {
+      closeProductModal();
+    }
+ 
+  });
+ 
+  /* =======================================================
+     CAMBIAR FRENTE / REVERSO
+     ======================================================= */
+ 
+  productViewButtons.forEach((button) => {
+ 
+    button.addEventListener("click", () => {
+ 
+      if (!currentProductId) return;
+ 
+      const selectedView =
+        button.dataset.productView;
+ 
+      if (
+        selectedView !== "front" &&
+        selectedView !== "back"
+      ) {
+        return;
+      }
+ 
+      if (selectedView === currentProductView) {
+        return;
+      }
+ 
+      const product =
+        products[currentProductId];
+ 
+      if (!product) return;
+ 
+      currentProductView = selectedView;
+ 
+ 
+      /* Actualizar botón activo */
+ 
+      productViewButtons.forEach((item) => {
+ 
+    const isActive =
+      item.dataset.productView ===
+      selectedView;
+ 
+    item.classList.toggle(
+      "is-active",
+      isActive
+    );
+ 
+    item.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+ 
+  });
+ 
+ 
+      /* Cambio suave de imagen */
+ 
+      productModalImage.classList.add(
         "is-changing"
       );
-
-    }, 180);
-
+ 
+      setTimeout(() => {
+ 
+        productModalImage.textContent =
+          product.images[selectedView];
+ 
+        productModalImage.classList.remove(
+          "is-changing"
+        );
+ 
+      }, 180);
+ 
+    });
+ 
   });
-
-});
-
-/* =======================================================
-   7. CARRITO DEMO
-   ======================================================= */
-
-const cart = document.querySelector("[data-cart]");
-
-const cartToggle =
-  document.querySelector("[data-cart-toggle]");
-
-const cartPanel =
-  document.querySelector("[data-cart-panel]");
-
-const cartClose =
-  document.querySelector("[data-cart-close]");
-
-const cartItemsContainer =
-  document.querySelector("[data-cart-items]");
-
-const cartCount =
-  document.querySelector("[data-cart-count]");
-
-const cartSubtotal =
-  document.querySelector("[data-cart-subtotal]");
-
-
-/*
-  El carrito se guarda solamente en memoria.
-
-  No hay:
-  - base de datos;
-  - backend;
-  - pagos;
-  - almacenamiento real.
-*/
-
-const cartItems = {};
-
-
-/* =======================================================
-   FORMATO DE PRECIO
-   ======================================================= */
-
-const formatPrice = (value) => {
-
-  return `$${value.toFixed(2).replace(".", ",")}`;
-
-};
-
-
-/* =======================================================
-   ABRIR / CERRAR
-   ======================================================= */
-
-const openCart = () => {
-
-  if (!cartPanel) return;
-
-  cartPanel.hidden = false;
-
-  if (cartToggle) {
-    cartToggle.setAttribute(
-      "aria-label",
-      "Cerrar carrito"
-    );
-
-    cartToggle.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-  }
-
-};
-
-
-const closeCart = () => {
-
-  if (!cartPanel) return;
-
-  cartPanel.hidden = true;
-
-  if (cartToggle) {
-    cartToggle.setAttribute(
-      "aria-label",
-      "Abrir carrito"
-    );
-
-    cartToggle.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-  }
-
-};
-
-
-const toggleCart = () => {
-
-  if (!cartPanel) return;
-
-  if (cartPanel.hidden) {
-    openCart();
-  } else {
-    closeCart();
-  }
-
-};
-
-
-if (cartToggle) {
-
-  cartToggle.addEventListener(
-    "click",
-    toggleCart
-  );
-
-}
-
-
-if (cartClose) {
-
-  cartClose.addEventListener(
-    "click",
-    closeCart
-  );
-
-}
-
-
-/* =======================================================
-   AGREGAR PRODUCTO
-   ======================================================= */
-
-const addProductToCart = (productId) => {
-
-  const product = products[productId];
-
-  if (!product) return;
-
-
+ 
+  /* =======================================================
+     7. CARRITO DEMO
+     ======================================================= */
+ 
+  const cart = document.querySelector("[data-cart]");
+ 
+  const cartToggle =
+    document.querySelector("[data-cart-toggle]");
+ 
+  const cartPanel =
+    document.querySelector("[data-cart-panel]");
+ 
+  const cartClose =
+    document.querySelector("[data-cart-close]");
+ 
+  const cartItemsContainer =
+    document.querySelector("[data-cart-items]");
+ 
+  const cartCount =
+    document.querySelector("[data-cart-count]");
+ 
+  const cartSubtotal =
+    document.querySelector("[data-cart-subtotal]");
+ 
+ 
   /*
-    Si ya existe, aumentamos cantidad.
+    El carrito se guarda solamente en memoria.
+ 
+    No hay:
+    - base de datos;
+    - backend;
+    - pagos;
+    - almacenamiento real.
   */
-
-  if (cartItems[productId]) {
-
-    cartItems[productId].quantity += 1;
-
-  } else {
-
-    cartItems[productId] = {
-      ...product,
-      quantity: 1
-    };
-
-  }
-
-
-  if (cart) {
-  renderCart();
-}
-
-  openCart();
-
-};
-
-
-/* =======================================================
-   ELIMINAR PRODUCTO
-   ======================================================= */
-
-const removeProductFromCart = (productId) => {
-
-  if (!cartItems[productId]) return;
-
-  delete cartItems[productId];
-
-  renderCart();
-
-};
-
-
-/* =======================================================
-   CAMBIAR CANTIDAD
-   ======================================================= */
-
-const changeProductQuantity = (
-  productId,
-  change
-) => {
-
-  const item = cartItems[productId];
-
-  if (!item) return;
-
-  item.quantity += change;
-
-
-  /*
-    Si llega a cero, desaparece.
-  */
-
-  if (item.quantity <= 0) {
-
-    delete cartItems[productId];
-
-  }
-
-  renderCart();
-
-};
-
-
-/* =======================================================
-   CALCULAR TOTAL DE UNIDADES
-   ======================================================= */
-
-const calculateCartCount = () => {
-
-  return Object.values(cartItems)
-    .reduce(
-      (total, item) =>
-        total + item.quantity,
-      0
-    );
-
-};
-
-
-/* =======================================================
-   CALCULAR SUBTOTAL
-   ======================================================= */
-
-const calculateSubtotal = () => {
-
-  return Object.values(cartItems)
-    .reduce(
-      (total, item) =>
-        total +
-        item.price * item.quantity,
-      0
-    );
-
-};
-
-
-/* =======================================================
-   RENDERIZAR CARRITO
-   ======================================================= */
-
-const renderCart = () => {
-
-  if (
-    !cartItemsContainer ||
-    !cartCount ||
-    !cartSubtotal
-  ) {
-    return;
-  }
-
-
-  const entries =
-    Object.entries(cartItems);
-
-
-  /* Limpiar contenido anterior */
-
-  cartItemsContainer.innerHTML = "";
-
-
-  /* -----------------------------------------
-     Carrito vacío
-     ----------------------------------------- */
-
-  if (entries.length === 0) {
-
-    const emptyMessage =
-      document.createElement("p");
-
-    emptyMessage.dataset.emptyCart = "";
-
-    emptyMessage.textContent =
-      "Tu carrito está vacío.";
-
-    cartItemsContainer.appendChild(
-      emptyMessage
-    );
-
-  }
-
-
-  /* -----------------------------------------
-     Productos
-     ----------------------------------------- */
-
-  entries.forEach(
-    ([productId, item]) => {
-
-      const cartItem =
-        document.createElement("article");
-
-      cartItem.className = "cart-item";
-
-
-      cartItem.innerHTML = `
-        <div class="cart-item-top">
-
-          <div class="cart-item-info">
-            <h3 class="cart-item-name">
-              ${item.name}
-            </h3>
-
-            <p class="cart-item-presentation">
-              ${item.presentation}
-            </p>
-          </div>
-
-          <span class="cart-item-price">
-            ${formatPrice(
-              item.price * item.quantity
-            )}
-          </span>
-
-        </div>
-
-        <div class="cart-item-bottom">
-
-          <div
-            class="cart-quantity"
-            aria-label="Cantidad de ${item.name}"
-          >
-
-            <button
-              type="button"
-              aria-label="Disminuir cantidad de ${item.name}"
-              data-cart-decrease="${productId}"
-            >
-              −
-            </button>
-
-            <span>
-              ${item.quantity}
-            </span>
-
-            <button
-              type="button"
-              aria-label="Aumentar cantidad de ${item.name}"
-              data-cart-increase="${productId}"
-            >
-              +
-            </button>
-
-          </div>
-
-          <button
-            class="cart-remove"
-            type="button"
-            data-cart-remove="${productId}"
-          >
-            Eliminar
-          </button>
-
-        </div>
-      `;
-
-
-      cartItemsContainer.appendChild(
-        cartItem
+ 
+  const cartItems = {};
+ 
+ 
+  /* =======================================================
+     FORMATO DE PRECIO
+     ======================================================= */
+ 
+  const formatPrice = (value) => {
+ 
+    return `$${value.toFixed(2).replace(".", ",")}`;
+ 
+  };
+ 
+ 
+  /* =======================================================
+     ABRIR / CERRAR
+     ======================================================= */
+ 
+  const openCart = () => {
+ 
+    if (!cartPanel) return;
+ 
+    cartPanel.hidden = false;
+ 
+    if (cartToggle) {
+      cartToggle.setAttribute(
+        "aria-label",
+        "Cerrar carrito"
       );
-
+ 
+      cartToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
     }
-  );
-
-
-  /* -----------------------------------------
-     Contador
-     ----------------------------------------- */
-
-  cartCount.textContent =
-    calculateCartCount();
-
-
-  /* -----------------------------------------
-     Subtotal
-     ----------------------------------------- */
-
-  cartSubtotal.textContent =
-    formatPrice(
-      calculateSubtotal()
+ 
+  };
+ 
+ 
+  const closeCart = () => {
+ 
+    if (!cartPanel) return;
+ 
+    cartPanel.hidden = true;
+ 
+    if (cartToggle) {
+      cartToggle.setAttribute(
+        "aria-label",
+        "Abrir carrito"
+      );
+ 
+      cartToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    }
+ 
+  };
+ 
+ 
+  const toggleCart = () => {
+ 
+    if (!cartPanel) return;
+ 
+    if (cartPanel.hidden) {
+      openCart();
+    } else {
+      closeCart();
+    }
+ 
+  };
+ 
+ 
+  if (cartToggle) {
+ 
+    cartToggle.addEventListener(
+      "click",
+      toggleCart
     );
-
-};
-
-
-/* =======================================================
-   DETECTAR "AGREGAR AL CARRITO"
-   ======================================================= */
-
-/*
-  Usamos delegación de eventos.
-
-  Esto permite que funcione tanto:
-  - en las tarjetas;
-  - como en el botón del modal,
-    cuyo data-add-to-cart cambia dinámicamente.
-*/
-
-document.addEventListener("click", (event) => {
-
-  const addButton =
-    event.target.closest(
-      "[data-add-to-cart]"
+ 
+  }
+ 
+ 
+  if (cartClose) {
+ 
+    cartClose.addEventListener(
+      "click",
+      closeCart
     );
-
-  if (!addButton) return;
-
-  const productId =
-    addButton.dataset.addToCart;
-
-  if (!productId) return;
-
-  addProductToCart(productId);
-
-
+ 
+  }
+ 
+ 
+  /* =======================================================
+     AGREGAR PRODUCTO
+     ======================================================= */
+ 
+  const addProductToCart = (productId) => {
+ 
+    const product = products[productId];
+ 
+    if (!product) return;
+ 
+ 
+    /*
+      Si ya existe, aumentamos cantidad.
+    */
+ 
+    if (cartItems[productId]) {
+ 
+      cartItems[productId].quantity += 1;
+ 
+    } else {
+ 
+      cartItems[productId] = {
+        ...product,
+        quantity: 1
+      };
+ 
+    }
+ 
+ 
+    if (cart) {
+    renderCart();
+  }
+ 
+    openCart();
+ 
+  };
+ 
+ 
+  /* =======================================================
+     ELIMINAR PRODUCTO
+     ======================================================= */
+ 
+  const removeProductFromCart = (productId) => {
+ 
+    if (!cartItems[productId]) return;
+ 
+    delete cartItems[productId];
+ 
+    renderCart();
+ 
+  };
+ 
+ 
+  /* =======================================================
+     CAMBIAR CANTIDAD
+     ======================================================= */
+ 
+  const changeProductQuantity = (
+    productId,
+    change
+  ) => {
+ 
+    const item = cartItems[productId];
+ 
+    if (!item) return;
+ 
+    item.quantity += change;
+ 
+ 
+    /*
+      Si llega a cero, desaparece.
+    */
+ 
+    if (item.quantity <= 0) {
+ 
+      delete cartItems[productId];
+ 
+    }
+ 
+    renderCart();
+ 
+  };
+ 
+ 
+  /* =======================================================
+     CALCULAR TOTAL DE UNIDADES
+     ======================================================= */
+ 
+  const calculateCartCount = () => {
+ 
+    return Object.values(cartItems)
+      .reduce(
+        (total, item) =>
+          total + item.quantity,
+        0
+      );
+ 
+  };
+ 
+ 
+  /* =======================================================
+     CALCULAR SUBTOTAL
+     ======================================================= */
+ 
+  const calculateSubtotal = () => {
+ 
+    return Object.values(cartItems)
+      .reduce(
+        (total, item) =>
+          total +
+          item.price * item.quantity,
+        0
+      );
+ 
+  };
+ 
+ 
+  /* =======================================================
+     RENDERIZAR CARRITO
+     ======================================================= */
+ 
+  const renderCart = () => {
+ 
+    if (
+      !cartItemsContainer ||
+      !cartCount ||
+      !cartSubtotal
+    ) {
+      return;
+    }
+ 
+ 
+    const entries =
+      Object.entries(cartItems);
+ 
+ 
+    /* Limpiar contenido anterior */
+ 
+    cartItemsContainer.innerHTML = "";
+ 
+ 
+    /* -----------------------------------------
+       Carrito vacío
+       ----------------------------------------- */
+ 
+    if (entries.length === 0) {
+ 
+      const emptyMessage =
+        document.createElement("p");
+ 
+      emptyMessage.dataset.emptyCart = "";
+ 
+      emptyMessage.textContent =
+        "Tu carrito está vacío.";
+ 
+      cartItemsContainer.appendChild(
+        emptyMessage
+      );
+ 
+    }
+ 
+ 
+    /* -----------------------------------------
+       Productos
+       ----------------------------------------- */
+ 
+    entries.forEach(
+      ([productId, item]) => {
+ 
+        const cartItem =
+          document.createElement("article");
+ 
+        cartItem.className = "cart-item";
+ 
+ 
+        cartItem.innerHTML = `
+          <div class="cart-item-top">
+ 
+            <div class="cart-item-info">
+              <h3 class="cart-item-name">
+                ${item.name}
+              </h3>
+ 
+              <p class="cart-item-presentation">
+                ${item.presentation}
+              </p>
+            </div>
+ 
+            <span class="cart-item-price">
+              ${formatPrice(
+                item.price * item.quantity
+              )}
+            </span>
+ 
+          </div>
+ 
+          <div class="cart-item-bottom">
+ 
+            <div
+              class="cart-quantity"
+              aria-label="Cantidad de ${item.name}"
+            >
+ 
+              <button
+                type="button"
+                aria-label="Disminuir cantidad de ${item.name}"
+                data-cart-decrease="${productId}"
+              >
+                −
+              </button>
+ 
+              <span>
+                ${item.quantity}
+              </span>
+ 
+              <button
+                type="button"
+                aria-label="Aumentar cantidad de ${item.name}"
+                data-cart-increase="${productId}"
+              >
+                +
+              </button>
+ 
+            </div>
+ 
+            <button
+              class="cart-remove"
+              type="button"
+              data-cart-remove="${productId}"
+            >
+              Eliminar
+            </button>
+ 
+          </div>
+        `;
+ 
+ 
+        cartItemsContainer.appendChild(
+          cartItem
+        );
+ 
+      }
+    );
+ 
+ 
+    /* -----------------------------------------
+       Contador
+       ----------------------------------------- */
+ 
+    cartCount.textContent =
+      calculateCartCount();
+ 
+ 
+    /* -----------------------------------------
+       Subtotal
+       ----------------------------------------- */
+ 
+    cartSubtotal.textContent =
+      formatPrice(
+        calculateSubtotal()
+      );
+ 
+  };
+ 
+ 
+  /* =======================================================
+     DETECTAR "AGREGAR AL CARRITO"
+     ======================================================= */
+ 
   /*
-    Si agregamos desde el modal
-    de producto, lo cerramos.
+    Usamos delegación de eventos.
+ 
+    Esto permite que funcione tanto:
+    - en las tarjetas;
+    - como en el botón del modal,
+      cuyo data-add-to-cart cambia dinámicamente.
   */
-
-  if (
-    productModal &&
-    addButton.closest("[data-product-modal]")
-  ) {
-    closeProductModal();
-  }
-
-});
-
-
-/* =======================================================
-   CONTROLES INTERNOS DEL CARRITO
-   ======================================================= */
-
-if (cartItemsContainer) {
-
-  cartItemsContainer.addEventListener(
-    "click",
-    (event) => {
-
-
-      /* Aumentar */
-
-      const increaseButton =
-        event.target.closest(
-          "[data-cart-increase]"
-        );
-
-      if (increaseButton) {
-
-        changeProductQuantity(
-          increaseButton.dataset.cartIncrease,
-          1
-        );
-
-        return;
-      }
-
-
-      /* Disminuir */
-
-      const decreaseButton =
-        event.target.closest(
-          "[data-cart-decrease]"
-        );
-
-      if (decreaseButton) {
-
-        changeProductQuantity(
-          decreaseButton.dataset.cartDecrease,
-          -1
-        );
-
-        return;
-      }
-
-
-      /* Eliminar */
-
-      const removeButton =
-        event.target.closest(
-          "[data-cart-remove]"
-        );
-
-      if (removeButton) {
-
-        removeProductFromCart(
-          removeButton.dataset.cartRemove
-        );
-
-      }
-
+ 
+  document.addEventListener("click", (event) => {
+ 
+    const addButton =
+      event.target.closest(
+        "[data-add-to-cart]"
+      );
+ 
+    if (!addButton) return;
+ 
+    const productId =
+      addButton.dataset.addToCart;
+ 
+    if (!productId) return;
+ 
+    addProductToCart(productId);
+ 
+ 
+    /*
+      Si agregamos desde el modal
+      de producto, lo cerramos.
+    */
+ 
+    if (
+      productModal &&
+      addButton.closest("[data-product-modal]")
+    ) {
+      closeProductModal();
     }
-  );
-
-}
-
-/* =======================================================
-   ESTADO INICIAL
-   ======================================================= */
-
-renderCart();
-
-/* =======================================================
-   8. ANIMACIONES AL HACER SCROLL
-   ======================================================= */
-
-const revealElements =
-  document.querySelectorAll("[data-reveal]");
-
-
-/*
-  Comprobamos si el usuario prefiere
-  reducir las animaciones.
-*/
-
-const prefersReducedMotion =
-  window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-
-/* -------------------------------------------------------
-   Sin animación
-   ------------------------------------------------------- */
-
-if (prefersReducedMotion) {
-
-  revealElements.forEach((element) => {
-    element.classList.add("is-visible");
+ 
   });
-
-}
-
-
-/* -------------------------------------------------------
-   Con animación
-   ------------------------------------------------------- */
-
-else {
-
-  const revealObserver =
-    new IntersectionObserver(
-      (entries, observer) => {
-
-        entries.forEach((entry) => {
-
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add(
-            "is-visible"
+ 
+ 
+  /* =======================================================
+     CONTROLES INTERNOS DEL CARRITO
+     ======================================================= */
+ 
+  if (cartItemsContainer) {
+ 
+    cartItemsContainer.addEventListener(
+      "click",
+      (event) => {
+ 
+ 
+        /* Aumentar */
+ 
+        const increaseButton =
+          event.target.closest(
+            "[data-cart-increase]"
           );
-
-
-          /*
-            Después de aparecer una vez,
-            dejamos de observarlo.
-          */
-
-          observer.unobserve(
-            entry.target
+ 
+        if (increaseButton) {
+ 
+          changeProductQuantity(
+            increaseButton.dataset.cartIncrease,
+            1
           );
-
-        });
-
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px"
+ 
+          return;
+        }
+ 
+ 
+        /* Disminuir */
+ 
+        const decreaseButton =
+          event.target.closest(
+            "[data-cart-decrease]"
+          );
+ 
+        if (decreaseButton) {
+ 
+          changeProductQuantity(
+            decreaseButton.dataset.cartDecrease,
+            -1
+          );
+ 
+          return;
+        }
+ 
+ 
+        /* Eliminar */
+ 
+        const removeButton =
+          event.target.closest(
+            "[data-cart-remove]"
+          );
+ 
+        if (removeButton) {
+ 
+          removeProductFromCart(
+            removeButton.dataset.cartRemove
+          );
+ 
+        }
+ 
       }
     );
-
-
-  revealElements.forEach((element) => {
-    revealObserver.observe(element);
-  });
-
-}
-
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
-
-  if (mainNavigation?.classList.contains("is-open")) {
-    closeMenu();
-    menuToggle.focus();
-  } else if (accountModal && !accountModal.hidden) {
-    closeAccountModal();
-  } else if (productModal && !productModal.hidden) {
-    closeProductModal();
-  } else if (cartPanel && !cartPanel.hidden) {
-    closeCart();
+ 
   }
-});
-
+ 
+ 
+  /* =======================================================
+     ESCAPE
+     ======================================================= */
+ 
+  document.addEventListener("keydown", (event) => {
+ 
+    if (
+      event.key === "Escape" &&
+      cartPanel &&
+      !cartPanel.hidden
+    ) {
+      closeCart();
+    }
+ 
+  });
+ 
+ 
+  /* =======================================================
+     ESTADO INICIAL
+     ======================================================= */
+ 
+  renderCart();
+ 
+  /* =======================================================
+     8. ANIMACIONES AL HACER SCROLL
+     ======================================================= */
+ 
+  const revealElements =
+    document.querySelectorAll("[data-reveal]");
+ 
+ 
+  /*
+    Comprobamos si el usuario prefiere
+    reducir las animaciones.
+  */
+ 
+  const prefersReducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+ 
+ 
+  /* -------------------------------------------------------
+     Sin animación
+     ------------------------------------------------------- */
+ 
+  if (prefersReducedMotion) {
+ 
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+ 
+  }
+ 
+ 
+  /* -------------------------------------------------------
+     Con animación
+     ------------------------------------------------------- */
+ 
+  else {
+ 
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+ 
+          entries.forEach((entry) => {
+ 
+            if (!entry.isIntersecting) {
+              return;
+            }
+ 
+            entry.target.classList.add(
+              "is-visible"
+            );
+ 
+ 
+            /*
+              Después de aparecer una vez,
+              dejamos de observarlo.
+            */
+ 
+            observer.unobserve(
+              entry.target
+            );
+ 
+          });
+ 
+        },
+        {
+          threshold: 0.15,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
+ 
+ 
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+ 
+  }
+ 
 });
