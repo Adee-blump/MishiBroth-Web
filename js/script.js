@@ -60,6 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    /* Cerrar con Escape */
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        mainNavigation.classList.contains("is-open")
+      ) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+
     /* Cerrar si volvemos a escritorio */
 
     window.addEventListener("resize", () => {
@@ -623,23 +635,6 @@ document.addEventListener("DOMContentLoaded", () => {
  
   });
  
- 
-  /* -------------------------------------------------------
-     Escape
-     ------------------------------------------------------- */
- 
-  document.addEventListener("keydown", (event) => {
- 
-    if (
-      event.key === "Escape" &&
-      accountModal &&
-      !accountModal.hidden
-    ) {
-      closeAccountModal();
-    }
- 
-  });
- 
   /* =======================================================
      6. MODAL DE PRODUCTO
      ======================================================= */
@@ -844,23 +839,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       closeProductModal
     );
- 
-  });
- 
- 
-  /* -------------------------------------------------------
-     Escape
-     ------------------------------------------------------- */
- 
-  document.addEventListener("keydown", (event) => {
- 
-    if (
-      event.key === "Escape" &&
-      productModal &&
-      !productModal.hidden
-    ) {
-      closeProductModal();
-    }
  
   });
  
@@ -1148,8 +1126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCart();
  
   };
- 
- 
+
   /* =======================================================
      CALCULAR TOTAL DE UNIDADES
      ======================================================= */
@@ -1447,17 +1424,25 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =======================================================
      ESCAPE
      ======================================================= */
- 
+
   document.addEventListener("keydown", (event) => {
- 
-    if (
-      event.key === "Escape" &&
-      cartPanel &&
-      !cartPanel.hidden
-    ) {
+
+    if (event.key !== "Escape") return;
+
+    if (accountModal && !accountModal.hidden) {
+      closeAccountModal();
+      return;
+    }
+
+    if (productModal && !productModal.hidden) {
+      closeProductModal();
+      return;
+    }
+
+    if (cartPanel && !cartPanel.hidden) {
       closeCart();
     }
- 
+
   });
  
  
