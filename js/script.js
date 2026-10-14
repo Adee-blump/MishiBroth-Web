@@ -682,8 +682,8 @@ document.addEventListener("DOMContentLoaded", () => {
       priceText: "$1,50",
  
       images: {
-        front: "[MISHIBROTH INDIVIDUAL — FRENTE]",
-        back: "[MISHIBROTH INDIVIDUAL — REVERSO]"
+        front: "assets/productos/SobreIndividual_VF.png",
+        back: "assets/productos/SobreIndividual_VA.png"
       }
     },
  
@@ -694,8 +694,8 @@ document.addEventListener("DOMContentLoaded", () => {
       priceText: "$8,99",
  
       images: {
-        front: "[PACK SEMANAL — FRENTE]",
-        back: "[PACK SEMANAL — REVERSO]"
+        front: "assets/productos/Pack_Semanal_VF.png",
+        back: "assets/productos/Pack_Semanal_VA.png"
       }
     },
  
@@ -706,8 +706,8 @@ document.addEventListener("DOMContentLoaded", () => {
       priceText: "$12,99",
  
       images: {
-        front: "[PACK FAMILIAR — FRENTE]",
-        back: "[PACK FAMILIAR — REVERSO]"
+        front: "assets/productos/Pack_Familiar_VF.png",
+        back: "assets/productos/Pack_Familiar_VA.webp"
       }
     }
  
@@ -747,8 +747,9 @@ document.addEventListener("DOMContentLoaded", () => {
     productModalPrice.textContent =
       product.priceText;
  
-    productModalImage.textContent =
-    product.images.front;
+    const imgElement = productModalImage.querySelector("img");
+    imgElement.src = product.images.front;
+    imgElement.alt = `${product.name} — frente`;
  
     productViewButtons.forEach((button) => {
  
@@ -903,8 +904,9 @@ document.addEventListener("DOMContentLoaded", () => {
  
       setTimeout(() => {
  
-        productModalImage.textContent =
-          product.images[selectedView];
+        const imgElement = productModalImage.querySelector("img");
+        imgElement.src = product.images[selectedView];
+        imgElement.alt = `${product.name} — ${selectedView === "front" ? "frente" : "reverso"}`;
  
         productModalImage.classList.remove(
           "is-changing"
