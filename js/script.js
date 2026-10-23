@@ -464,64 +464,50 @@ document.addEventListener("DOMContentLoaded", () => {
  
   let lastFocusedElement = null;
  
- 
-  /* -------------------------------------------------------
-     Abrir modal
-     ------------------------------------------------------- */
- 
+ /* -------------------------------------------------------
+   Abrir modal o Cerrar sesión si ya estamos logueados
+   ------------------------------------------------------- */
   const openAccountModal = () => {
- 
-    if (!accountModal) return;
- 
-    lastFocusedElement = document.activeElement;
- 
-    accountModal.hidden = false;
- 
-    document.body.classList.add("modal-open");
- 
- 
-    /* Activar login por defecto */
- 
-    accountTabs.forEach((tab) => {
- 
-    const isLogin =
-      tab.dataset.accountTab === "login";
- 
-    tab.classList.toggle(
-      "is-active",
-      isLogin
-    );
- 
-    tab.setAttribute(
-      "aria-pressed",
-      String(isLogin)
-    );
- 
-  });
- 
-    accountPanels.forEach((panel) => {
- 
-      const isLogin =
-        panel.dataset.accountPanel === "login";
- 
-      panel.hidden = !isLogin;
- 
-    });
- 
- 
-    /* Enviar foco al primer campo */
- 
-    const firstInput =
-      accountModal.querySelector("input");
- 
-    if (firstInput) {
-      setTimeout(() => {
-        firstInput.focus();
-      }, 50);
+  // 1. Revisamos si el usuario ya tiene su "pulsera VIP" guardada
+  const token = localStorage.getItem('mishibroth_token');
+
+  if (token) {
+    // Si ya inició sesión, le damos la opción de salir
+    if (confirm("Ya iniciaste sesión como Administradora. ¿Deseas cerrar sesión? 🐱")) {
+      localStorage.removeItem('mishibroth_token');
+      alert("Sesión cerrada correctamente.");
+      location.reload(); // Recargamos la página para limpiar todo
     }
- 
-  };
- 
+    return; // Detenemos la función para que NO se abra el modal
+  }
+
+  // 2. Si no hay token, abrimos el modal normalmente
+  if (!accountModal) return;
+
+  lastFocusedElement = document.activeElement;
+  accountModal.hidden = false;
+  document.body.classList.add("modal-open");
+
+  /* Activar login por defecto */
+  accountTabs.forEach((tab) => {
+    const isLogin = tab.dataset.accountTab === "login";
+    tab.classList.toggle("is-active", isLogin);
+    tab.setAttribute("aria-pressed", String(isLogin));
+  });
+
+  accountPanels.forEach((panel) => {
+    const isLogin = panel.dataset.accountPanel === "login";
+    panel.hidden = !isLogin;
+  });
+
+  /* Enviar foco al primer campo */
+  const firstInput = accountModal.querySelector("input");
+  if (firstInput) {
+    setTimeout(() => {
+      firstInput.focus();
+    }, 50);
+  }
+};
  
   /* -------------------------------------------------------
      Cerrar modal
@@ -634,7 +620,121 @@ document.addEventListener("DOMContentLoaded", () => {
     });
  
   });
- 
+
+  /* -------------------------------------------------------
+   Registro de Usuario (Conexión con el Backend)
+   ------------------------------------------------------- */
+const registerPanel = document.querySelector('[data-account-panel="register"]');
+
+if (registerPanel) {
+  const registerButton = registerPanel.querySelector('.button');
+  const nameInput = registerPanel.querySelector('input[autocomplete="name"]');
+  const emailInput = registerPanel.querySelector('input[type="email"]');
+  const passwordInput = registerPanel.querySelector('input[type="password"]');
+
+  registerButton.addEventListener('click', async () => {
+    const nombre = nameInput.value.trim();
+    const correo = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!nombre || !correo || !password) {
+      alert("Por favor, completa todos los campos para registrarte. 🐱");
+      return;
+    }
+
+    try {
+      // 1. Cambiamos el botón para que el usuario sepa que está cargando
+      registerButton.textContent = "Registrando...";
+      registerButton.disabled = true;
+
+      // 2. Usamos fetch para enviar los datos por POST a nuestro backend en formato JSON
+      const response = await fetch('/api/registro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, correo, password })
+      });
+
+      const data = await response.json();
+
+      // 3. Revisamos si el backend nos dijo que todo salió bien (código 201)
+      if (response.ok) {
+        alert("¡Éxito! " + data.mensaje);
+        
+        // Limpiamos el formulario y regresamos a la pestaña de Iniciar Sesión
+        nameInput.value = "";
+        emailInput.value = "";
+        passwordInput.value = "";
+        document.querySelector('[data-account-tab="login"]').click();
+      } else {
+        alert("Error: " + data.mensaje);
+      }
+
+    } catch (error) {
+      alert("Hubo un problema de conexión con el servidor.");
+    } finally {
+      // Restauramos el botón a la normalidad
+      registerButton.textContent = "Registrarme";
+      registerButton.disabled = false;
+    }
+  });
+}
+
+/* -------------------------------------------------------
+   Inicio de Sesión (Conexión con el Backend)
+   ------------------------------------------------------- */
+const loginPanel = document.querySelector('[data-account-panel="login"]');
+
+if (loginPanel) {
+  const loginButton = loginPanel.querySelector('.button');
+  const emailInput = loginPanel.querySelector('input[type="email"]');
+  const passwordInput = loginPanel.querySelector('input[type="password"]');
+
+  loginButton.addEventListener('click', async () => {
+    const correo = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!correo || !password) {
+      alert("Por favor, ingresa tu correo y contraseña. 🐱");
+      return;
+    }
+
+    try {
+      loginButton.textContent = "Ingresando...";
+      loginButton.disabled = true;
+
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ correo, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(`${data.mensaje} (Rol: ${data.rol})`);
+        
+        // Guardamos la "pulsera VIP" en la memoria del navegador
+        localStorage.setItem('mishibroth_token', data.token);
+        
+        // Limpiamos los campos y cerramos el modal
+        emailInput.value = "";
+        passwordInput.value = "";
+        closeAccountModal();
+      } else {
+        alert("Error: " + data.mensaje);
+      }
+
+    } catch (error) {
+      alert("Hubo un problema de conexión con el servidor.");
+    } finally {
+      loginButton.textContent = "Ingresar";
+      loginButton.disabled = false;
+    }
+  });
+}
+
   /* =======================================================
      6. MODAL DE PRODUCTO
      ======================================================= */
