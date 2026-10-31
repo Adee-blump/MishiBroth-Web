@@ -1632,4 +1632,68 @@ if (loginPanel) {
  
   }
  
+/* -------------------------------------------------------
+   Control visual del Panel de Administración
+   ------------------------------------------------------- */
+const adminPanelModal = document.getElementById('admin-panel-modal');
+const closeAdminBtn = document.getElementById('close-admin-btn');
+
+// Función temporal para abrirlo fácilmente mientras desarrollamos
+// En el futuro, esto se conectará al inicio de sesión del administrador
+// const openAdminPanel = () => {
+  // adminPanelModal.hidden = false; };
+
+// Función para cerrarlo
+closeAdminBtn.addEventListener('click', () => {
+  adminPanelModal.hidden = true;
+});
+
+// ¡Descomenta esta línea para abrir el panel y probar el diseño!
+openAdminPanel();
+
+/* -------------------------------------------------------
+   Subir nuevo producto desde el Panel
+   ------------------------------------------------------- */
+const formNuevoProducto = document.getElementById('form-nuevo-producto');
+
+if (formNuevoProducto) {
+  formNuevoProducto.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Evita que la página se recargue al enviar
+
+    const nombre = document.getElementById('prod-nombre').value.trim();
+    const precio = document.getElementById('prod-precio').value.trim();
+    const descripcion = document.getElementById('prod-descripcion').value.trim();
+    const imagen = document.getElementById('prod-imagen').value.trim();
+    const botonSubir = formNuevoProducto.querySelector('button');
+
+    try {
+      botonSubir.textContent = "Subiendo...";
+      botonSubir.disabled = true;
+
+      // Enviamos los datos a la ruta que creaste hoy en server.js
+      const response = await fetch('/api/productos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, precio, descripcion, imagen })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("¡Éxito! " + data.mensaje + " 🐾");
+        formNuevoProducto.reset(); // Limpiamos los campos
+        adminPanelModal.hidden = true; // Cerramos el panel
+      } else {
+        alert("Error: " + data.mensaje);
+      }
+    } catch (error) {
+      // Este mensaje saldrá si pruebas ahora sin internet, ¡pero demuestra que funciona el intento!
+      alert("Error de conexión. El internet está fallando, pero tu código está perfecto. 🐱");
+    } finally {
+      botonSubir.textContent = "Subir Producto al Catálogo";
+      botonSubir.disabled = false;
+    }
+  });
+}
+
 });

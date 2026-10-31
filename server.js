@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose'); // El traductor para MongoDB
 const path = require('path');
 const Usuario = require('./models/Usuario');
+const Producto = require('./models/Producto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -104,7 +105,41 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+/* ==========================================
+   RUTAS DE PRODUCTOS (CATÁLOGO)
+   ========================================== */
+
+// 1. Ruta para VER todos los productos
+app.get('/api/productos', async (req, res) => {
+  try {
+    const productos = await Producto.find();
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al cargar los productos." });
+  }
+});
+
+// 2. Ruta para AGREGAR un producto nuevo
+app.post('/api/productos', async (req, res) => {
+  try {
+    const { nombre, precio, descripcion, imagen } = req.body;
+    
+    const nuevoProducto = new Producto({
+      nombre,
+      precio,
+      descripcion,
+      imagen
+    });
+
+    await nuevoProducto.save();
+    res.status(201).json({ mensaje: "¡Producto agregado al catálogo!", producto: nuevoProducto });
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al guardar el producto." });
+  }
+});
+
 // 4. Encender el servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor de MishiBroth corriendo en http://localhost:${PORT}`);
 });
+

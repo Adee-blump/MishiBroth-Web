@@ -5033,3 +5033,73 @@ section.club-page-hero {
   }
 
 }
+
+/* ================= MODAL PANEL DE ADMINISTRACIÓN ================= */
+#admin-panel-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que esté por encima de todo */
+}
+
+/* Ocultar el modal cuando tenga el atributo 'hidden' */
+#admin-panel-modal[hidden] {
+  display: none;
+}
+
+#admin-panel-modal .modal-content {
+  background-color: #ffffff; /* Blanco sólido para eliminar la transparencia */
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); /* Sombra más fuerte para resaltarlo del fondo */
+}
+
+#admin-panel-modal h2 {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--color-primary-dark);
+  margin-bottom: 10px;
+}
+
+#admin-panel-modal p {
+  font-family: 'Nunito', sans-serif;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#admin-panel-modal input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+#admin-panel-modal input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+#admin-panel-modal .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+}
+
+#admin-panel-modal .close-btn:hover {
+  color: var(--color-primary-dark);
+}

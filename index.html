@@ -587,6 +587,24 @@
   </div>
 </div>
 
+<!-- ================= MODAL PANEL DE ADMINISTRACIÓN ================= -->
+<div class="modal" id="admin-panel-modal" hidden>
+  <div class="modal-content">
+    <button class="close-btn" id="close-admin-btn">✖</button>
+    <h2>Panel de Control MishiBroth 🐾</h2>
+    <p>Añade nuevos productos al catálogo sin tocar el código.</p>
+
+    <form id="form-nuevo-producto" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+      <input type="text" id="prod-nombre" placeholder="Nombre del producto (ej. Pack Familiar)" required>
+      <input type="number" id="prod-precio" placeholder="Precio en $" step="0.01" required>
+      <input type="text" id="prod-descripcion" placeholder="Descripción de los beneficios" required>
+      <input type="text" id="prod-imagen" placeholder="Ruta de imagen (ej. /assets/productos/sobre.png)" required>
+      
+      <button type="submit" class="button">Subir Producto al Catálogo</button>
+    </form>
+  </div>
+</div>
+
   <script src="js/script.js"></script>
 </body>
 </html>
