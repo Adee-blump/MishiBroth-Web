@@ -138,6 +138,16 @@ app.post('/api/productos', async (req, res) => {
   }
 });
 
+// Ruta para eliminar un producto de MongoDB
+app.delete('/api/productos/:id', async (req, res) => {
+  try {
+    await Producto.findByIdAndDelete(req.params.id);
+    res.json({ mensaje: "Producto eliminado de la base de datos 😿" });
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al intentar borrar el producto" });
+  }
+});
+
 // 4. Encender el servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor de MishiBroth corriendo en http://localhost:${PORT}`);

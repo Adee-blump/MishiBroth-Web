@@ -715,9 +715,16 @@ if (loginPanel) {
       if (response.ok) {
         alert(`${data.mensaje} (Rol: ${data.rol})`);
         
-        // Guardamos la "pulsera VIP" en la memoria del navegador
+        // Guardamos la "pulsera VIP" y el rol en la memoria del navegador
         localStorage.setItem('mishibroth_token', data.token);
+        localStorage.setItem('mishibroth_rol', data.rol);
         
+        // Verificamos si es administradora para mostrar el botón
+        if (data.rol === 'admin') {
+           const btnPanel = document.getElementById('btn-abrir-panel');
+           if(btnPanel) btnPanel.hidden = false;
+        }
+
         // Limpiamos los campos y cerramos el modal
         emailInput.value = "";
         passwordInput.value = "";
@@ -1632,33 +1639,19 @@ if (loginPanel) {
  
   }
  
-/* -------------------------------------------------------
-   Control visual del Panel de Administración
-   ------------------------------------------------------- */
-const adminPanelModal = document.getElementById('admin-panel-modal');
-const closeAdminBtn = document.getElementById('close-admin-btn');
+// --- LÓGICA DEL PANEL DE ADMIN Y BASE DE DATOS ---
+const rolGuardado = localStorage.getItem('mishibroth_rol');
+const btnPanel = document.getElementById('btn-abrir-panel');
 
-// Función temporal para abrirlo fácilmente mientras desarrollamos
-// En el futuro, esto se conectará al inicio de sesión del administrador
-// const openAdminPanel = () => {
-  // adminPanelModal.hidden = false; };
+if (rolGuardado === 'admin' && btnPanel) {
+  btnPanel.hidden = false;
+}
 
-// Función para cerrarlo
-closeAdminBtn.addEventListener('click', () => {
-  adminPanelModal.hidden = true;
-});
-
-// ¡Descomenta esta línea para abrir el panel y probar el diseño!
-openAdminPanel();
-
-/* -------------------------------------------------------
-   Subir nuevo producto desde el Panel
-   ------------------------------------------------------- */
 const formNuevoProducto = document.getElementById('form-nuevo-producto');
 
 if (formNuevoProducto) {
   formNuevoProducto.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Evita que la página se recargue al enviar
+    e.preventDefault();
 
     const nombre = document.getElementById('prod-nombre').value.trim();
     const precio = document.getElementById('prod-precio').value.trim();
@@ -1670,7 +1663,6 @@ if (formNuevoProducto) {
       botonSubir.textContent = "Subiendo...";
       botonSubir.disabled = true;
 
-      // Enviamos los datos a la ruta que creaste hoy en server.js
       const response = await fetch('/api/productos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1681,19 +1673,104 @@ if (formNuevoProducto) {
 
       if (response.ok) {
         alert("¡Éxito! " + data.mensaje + " 🐾");
-        formNuevoProducto.reset(); // Limpiamos los campos
-        adminPanelModal.hidden = true; // Cerramos el panel
+        formNuevoProducto.reset();
+        document.getElementById('admin-panel-modal').hidden = true;
       } else {
-        alert("Error: " + data.mensaje);
+        alert("Error al subir: " + data.mensaje);
       }
     } catch (error) {
-      // Este mensaje saldrá si pruebas ahora sin internet, ¡pero demuestra que funciona el intento!
-      alert("Error de conexión. El internet está fallando, pero tu código está perfecto. 🐱");
+      alert("Error de conexión. Revisa que el servidor Node esté encendido.");
     } finally {
       botonSubir.textContent = "Subir Producto al Catálogo";
       botonSubir.disabled = false;
     }
   });
 }
+
+// --- LÓGICA PARA MOSTRAR Y BORRAR PRODUCTOS DE MONGODB ---
+const cargarProductosBD = async () => {
+  const gridsProductos = document.querySelectorAll('.product-grid');
+  const esAdmin = localStorage.getItem('mishibroth_rol') === 'admin'; // Verificamos tu rol
+  
+  if (gridsProductos.length > 0) {
+    try {
+      const response = await fetch('/api/productos');
+      const productosDB = await response.json();
+      
+      gridsProductos.forEach(grid => {
+        productosDB.forEach(producto => {
+          
+          products[producto._id] = {
+            name: producto.nombre,
+            presentation: producto.descripcion,
+            price: parseFloat(producto.precio),
+            priceText: `$${parseFloat(producto.precio).toFixed(2).replace('.', ',')}`,
+            images: { front: producto.imagen, back: producto.imagen }
+          };
+
+          const nuevaTarjeta = document.createElement('article');
+          nuevaTarjeta.className = 'product-card';
+          
+          // Preparamos los botones normales
+          let botonesHTML = `
+            <button class="button btn-dinamico-ver" type="button" data-product="${producto._id}">Ver producto</button>
+            <button class="button-secondary" type="button" data-add-to-cart="${producto._id}">Agregar al carrito</button>
+          `;
+          
+          // Si eres admin, agregamos el botón rojo de borrar
+          if (esAdmin) {
+            botonesHTML += `<button class="button btn-dinamico-borrar" type="button" style="background-color: #d9534f; color: white; border: none; margin-top: 10px;">🗑️ Borrar</button>`;
+          }
+
+          nuevaTarjeta.innerHTML = `
+            <div class="product-image-placeholder">
+              <img src="${producto.imagen}" alt="${producto.nombre}" />
+            </div>
+            <h2>${producto.nombre}</h2>
+            <p>${producto.descripcion}</p>
+            <p class="product-price">$${parseFloat(producto.precio).toFixed(2).replace('.', ',')}</p>
+            ${botonesHTML}
+          `;
+          
+          // Conexión del botón "Ver producto"
+          const btnVer = nuevaTarjeta.querySelector('.btn-dinamico-ver');
+          btnVer.addEventListener('click', () => {
+            openProductModal(producto._id);
+          });
+
+          // Conexión del botón "Borrar" (Solo si es admin)
+          if (esAdmin) {
+            const btnBorrar = nuevaTarjeta.querySelector('.btn-dinamico-borrar');
+            btnBorrar.addEventListener('click', async () => {
+              const confirmar = confirm(`¿Estás segura de que quieres borrar "${producto.nombre}" para siempre? 😿`);
+              
+              if (confirmar) {
+                try {
+                  btnBorrar.textContent = "Borrando...";
+                  const res = await fetch(`/api/productos/${producto._id}`, { method: 'DELETE' });
+                  
+                  if (res.ok) {
+                    nuevaTarjeta.remove(); // Hace desaparecer la tarjeta visualmente al instante
+                  } else {
+                    alert("No se pudo borrar del servidor.");
+                    btnBorrar.textContent = "🗑️ Borrar";
+                  }
+                } catch (error) {
+                  alert("Error de conexión al intentar borrar.");
+                }
+              }
+            });
+          }
+          
+          grid.appendChild(nuevaTarjeta);
+        });
+      });
+    } catch (error) {
+      console.error("No se pudieron cargar los productos", error);
+    }
+  }
+};
+
+cargarProductosBD();
 
 });

@@ -42,7 +42,7 @@
 
       <a
         class="brand"
-        href="index.html"
+        href="/"
         aria-label="Ir al inicio de MishiBroth"
       >
         <span class="brand-logo-placeholder">
@@ -73,31 +73,31 @@
         <ul>
 
           <li>
-            <a href="index.html">
+            <a href="/">
               Inicio
             </a>
           </li>
 
           <li>
-            <a href="index.html#por-que-mishibroth">
+            <a href="/#por-que-mishibroth">
               ¿Por qué MishiBroth?
             </a>
           </li>
 
           <li>
-            <a href="tienda.html">
+            <a href="/tienda.html">
               Tienda
             </a>
           </li>
 
           <li>
-            <a href="mishiclub.html">
+            <a href="/mishiclub.html">
               MishiClub
             </a>
           </li>
 
           <li>
-            <a href="index.html#contacto">
+            <a href="/#contacto">
               Contacto
             </a>
           </li>
@@ -112,6 +112,14 @@
             </button>
           </li>
 
+           <li>
+            <button 
+              id="btn-abrir-panel" 
+              class="button" 
+              hidden>
+              Panel Admin 🐾
+            </button>
+          </li>
         </ul>
 
       </nav>
@@ -492,7 +500,7 @@
 
   <a
     class="brand"
-    href="index.html"
+    href="/"
     aria-label="Ir al inicio de MishiBroth"
   >
     <span class="brand-logo-placeholder">
@@ -519,31 +527,31 @@
         <ul>
 
           <li>
-            <a href="index.html">
+            <a href="/">
               Inicio
             </a>
           </li>
 
           <li>
-            <a href="index.html#por-que-mishibroth">
+            <a href="/#por-que-mishibroth">
               ¿Por qué MishiBroth?
             </a>
           </li>
 
           <li>
-            <a href="tienda.html">
+            <a href="/tienda.html">
               Tienda
             </a>
           </li>
 
           <li>
-            <a href="mishiclub.html">
+            <a href="/mishiclub.html">
               MishiClub
             </a>
           </li>
 
           <li>
-            <a href="index.html#contacto">
+            <a href="/#contacto">
               Contacto
             </a>
           </li>
@@ -759,7 +767,24 @@
     </div>
 
   </div>
+  
+  <!-- ================= MODAL PANEL DE ADMINISTRACIÓN ================= -->
+<div class="modal" id="admin-panel-modal" hidden>
+  <div class="modal-content">
+    <button class="close-btn" id="close-admin-btn">✖</button>
+    <h2>Panel de Control MishiBroth 🐾</h2>
+    <p>Añade nuevos productos al catálogo sin tocar el código.</p>
 
+    <form id="form-nuevo-producto" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+      <input type="text" id="prod-nombre" placeholder="Nombre del producto (ej. Pack Familiar)" required>
+      <input type="number" id="prod-precio" placeholder="Precio en $" step="0.01" required>
+      <input type="text" id="prod-descripcion" placeholder="Descripción de los beneficios" required>
+      <input type="text" id="prod-imagen" placeholder="Ruta de imagen (ej. /assets/productos/sobre.png)" required>
+      
+      <button type="submit" class="button">Subir Producto al Catálogo</button>
+    </form>
+  </div>
+</div>
 
   <!-- =========================================================
        JAVASCRIPT COMPARTIDO
