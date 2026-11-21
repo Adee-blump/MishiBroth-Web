@@ -5103,3 +5103,184 @@ section.club-page-hero {
 #admin-panel-modal .close-btn:hover {
   color: var(--color-primary-dark);
 }
+
+/* =========================================================
+   AJUSTES FINALES DE ILUSTRACIONES Y DECORACIONES
+   ========================================================= */
+
+/* 1. Quitar los cuadritos blancos y bordes punteados de todas las decoraciones */
+.decorations-placeholder,
+.club-decoration,
+.club-mini-decoration,
+.club-floating-decoration,
+.hero-product-placeholder {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 2. Hacer más grandes y protagonistas las ilustraciones de los michis */
+.hero-visual > img,
+.section-visual > img,
+.hydration-visual > img,
+.club-hero-visual > img,
+.club-feature-visual > img {
+  max-height: 360px !important;
+  width: auto !important;
+  transform: scale(1.12);
+}
+
+/* 3. Centrar los 3 productos justo en medio de la mancha rosada */
+.hero-slide[data-slide="2"] .hero-visual {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+.hero-slide[data-slide="2"] .hero-product-list {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 18px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.hero-slide[data-slide="2"] .hero-product-placeholder {
+  width: auto !important;
+  height: auto !important;
+}
+
+.hero-slide[data-slide="2"] .hero-product-placeholder img {
+  max-height: 210px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+/* 4. Hacer un poco más grandecito al michi dormido de MishiClub y al de Contacto */
+.club-breathing-mishi img {
+  max-height: 220px !important;
+}
+
+.contact-card > img {
+  max-height: 210px !important;
+}
+
+/* =========================================================
+   CHATBOT FLOTANTE MISHIBOT (ESQUINA INFERIOR IZQUIERDA)
+   ========================================================= */
+.mishibot-widget {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  z-index: 1200;
+  font-family: inherit;
+}
+
+.mishibot-toggle {
+  background-color: #3f5728;
+  color: #fcf9f2;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.mishibot-toggle:hover {
+  background-color: #31451e;
+  transform: translateY(-2px);
+}
+
+.mishibot-window {
+  width: 330px;
+  max-width: calc(100vw - 44px);
+  background-color: #fcf9f2;
+  border: 2px solid #dfe5d5;
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mishibot-header {
+  background-color: #3f5728;
+  color: #fcf9f2;
+  padding: 12px 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mishibot-header button {
+  background: transparent;
+  border: none;
+  color: #fcf9f2;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.mishibot-messages {
+  padding: 14px;
+  max-height: 270px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mishibot-msg {
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 85%;
+}
+
+.mishibot-msg.bot {
+  background-color: #eef2e6;
+  color: #2c3a1e;
+  align-self: flex-start;
+}
+
+.mishibot-msg.user {
+  background-color: #3f5728;
+  color: #fcf9f2;
+  align-self: flex-end;
+}
+
+.mishibot-form {
+  display: flex;
+  border-top: 1px solid #dfe5d5;
+  padding: 8px;
+  gap: 6px;
+  background-color: #fff;
+}
+
+.mishibot-form input {
+  flex: 1;
+  border: 1px solid #d5dcc9;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.mishibot-form button {
+  background-color: #3f5728;
+  color: #fcf9f2;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}

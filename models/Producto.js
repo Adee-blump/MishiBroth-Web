@@ -15,8 +15,10 @@ const productoSchema = new mongoose.Schema({
   },
   imagen: {
     type: String,
-    required: true // Aquí guardaremos la ruta de tu imagen, ej: '/assets/productos/sobre.png'
-  }
+    required: true // Aquí guardaremos de la imagen del frente, ej: '/assets/productos/sobre.png'
+  },
+  imagenReverso: { 
+    type: String } // Aquí guardaremos de la imagen del reverso, ej: '/assets/productos/sobre.png'
 });
 
 module.exports = mongoose.model('Producto', productoSchema);

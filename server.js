@@ -10,30 +10,12 @@ const jwt = require('jsonwebtoken');
 const app = express();
 app.use(express.json());
 // Usa el puerto del .env, o el 3000 si no lo encuentra
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 
 // 1. Conexión a MongoDB Atlas
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ Base de datos MongoDB conectada con éxito'))
   .catch((error) => console.error('❌ Error al conectar con MongoDB:', error));
-
-// 2. Dar permiso público solo a las carpetas estáticas
-app.use('/css', express.static(path.join(__dirname, 'css')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-// 3. Rutas de páginas
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-app.get('/tienda.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'tienda.html'));
-});
-
-app.get('/mishiclub.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'mishiclub.html'));
-});
 
 // Ruta para registrar usuarios nuevos
 app.post('/api/registro', async (req, res) => {
@@ -94,7 +76,7 @@ app.post('/api/login', async (req, res) => {
     );
 
     res.json({
-      mensaje: `¡Bienvenida de nuevo, ${usuario.nombre}!`,
+      mensaje: `¡Hola de nuevo, ${usuario.nombre}!`,
       token: token,
       rol: usuario.rol
     });
@@ -109,7 +91,7 @@ app.post('/api/login', async (req, res) => {
    RUTAS DE PRODUCTOS (CATÁLOGO)
    ========================================== */
 
-// 1. Ruta para VER todos los productos
+// Ruta para VER todos los productos
 app.get('/api/productos', async (req, res) => {
   try {
     const productos = await Producto.find();
@@ -119,16 +101,17 @@ app.get('/api/productos', async (req, res) => {
   }
 });
 
-// 2. Ruta para AGREGAR un producto nuevo
+// Ruta para AGREGAR un producto nuevo
 app.post('/api/productos', async (req, res) => {
   try {
     const { nombre, precio, descripcion, imagen } = req.body;
-    
+
     const nuevoProducto = new Producto({
       nombre,
       precio,
       descripcion,
-      imagen
+      imagen,
+      imagenReverso: req.body.imagenReverso || imagen // Si no se envía imagenReverso, usar la misma que la frontal
     });
 
     await nuevoProducto.save();
@@ -148,7 +131,79 @@ app.delete('/api/productos/:id', async (req, res) => {
   }
 });
 
-// 4. Encender el servidor
+// =========================================================
+// RUTA DEL CHATBOT CON IA (MISHIBOT)
+// =========================================================
+app.post('/api/chat', async (req, res) => {
+  const { mensaje } = req.body;
+  if (!mensaje || !mensaje.trim()) {
+    return res.status(400).json({ respuesta: "Por favor escribe una pregunta para MishiBot 🐾" });
+  }
+
+  const contextoMarca = `Eres MishiBot, el asistente virtual amable y experto en hidratación felina de la marca MishiBroth.
+Información oficial de MishiBroth:
+- Producto: Caldo complementario para gatos que acompaña sus croquetas para mejorar la hidratación diaria y el bienestar renal/urinario.
+- Presentaciones: 
+  1) MishiBroth Individual (1 sobre de 80 ml).
+  2) Pack Semanal (7 sobres de 80 ml c/u).
+  3) Pack Familiar (7 sobres de 100 ml c/u).
+- Comunidad MishiClub: incluye MishiPuntos (recompensas), MishiEco (devolución de cajas para reciclaje a cambio de puntos) y MishiCare (guías de cuidado felino).
+- Contacto: Instagram @mishi_broth y WhatsApp +593 98 324 1544.
+Reglas: Responde siempre en español, de forma cálida, breve (máximo 3 o 4 líneas), clara y con algún emoji de gatito o agüita. Si preguntan algo médico grave, sugiere consultar a un veterinario.`;
+
+  try {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) throw new Error("Falta GEMINI_API_KEY en .env");
+
+    const modelos = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
+    let textoIA = null;
+
+    for (const modelo of modelos) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': apiKey
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: `${contextoMarca}\n\nPregunta del usuario: ${mensaje}` }]
+            }
+          ]
+        })
+      });
+
+      const data = await response.json();
+      textoIA = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (textoIA) break; // Si respondió bien, salimos del ciclo
+      console.warn(`Modelo ${modelo} no disponible, probando respaldo...`, data?.error?.status);
+    }
+
+    if (textoIA) {
+      return res.json({ respuesta: textoIA.trim() });
+    } else {
+      throw new Error("Sin texto de IA");
+    }
+  } catch (error) {
+    console.error("Error en /api/chat:", error.message);
+    // Respaldo inteligente para que nunca falle en vivo
+    return res.json({
+      respuesta: "¡Miau! 🐾 Soy MishiBot. MishiBroth es un caldo pensado para acompañar las croquetas de tu gato y sumar hidratación diaria. Tenemos Individual (80 ml), Pack Semanal (7x80 ml) y Pack Familiar (7x100 ml). ¿En qué te ayudo?"
+    });
+  }
+});
+
+// Servir el frontend de React compilado
+const frontendDist = path.join(__dirname, 'frontend', 'dist');
+app.use(express.static(frontendDist));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'));
+});
+
+// Encender el servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor de MishiBroth corriendo en http://localhost:${PORT}`);
 });
