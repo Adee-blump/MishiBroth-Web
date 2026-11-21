@@ -199,7 +199,7 @@ Reglas: Responde siempre en español, de forma cálida, breve (máximo 3 o 4 lí
 const frontendDist = path.join(__dirname, 'frontend', 'dist');
 app.use(express.static(frontendDist));
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(frontendDist, 'index.html'));
 });
 
